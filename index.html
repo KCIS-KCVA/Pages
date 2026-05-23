@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>KCVA | 康桥排球协会</title>
+    <!-- Tab 图标 使用透明PNG -->
+    <link rel="icon" type="image/png" href="assets/KCVA_Transparent.png">
+    <link rel="apple-touch-icon" href="assets/KCVA_Transparent.png">
+    <!-- 字体与图标库 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --kc-purple: #8B008B;
+            --kc-teal: #0097A6;
+            --teal-dark: #007A86;
+            --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        body {
+            font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+            background: #FFFFFF;
+            color: #1F2A44;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EDF2F7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--kc-teal);
+            border-radius: 12px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Header */
+        .site-header {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,151,166,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo-img-primary {
+            height: 56px;
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-text .org-name-en {
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, var(--kc-purple), var(--kc-teal));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .logo-text .org-name-zh {
+            font-size: 0.65rem;
+            color: #5B6E8C;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2D3A5E;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--kc-purple), var(--kc-teal));
+            transition: width 0.2s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            background: radial-gradient(circle at 10% 20%, rgba(139,0,139,0.03), rgba(0,151,166,0.02)), #FFFFFF;
+            padding: 60px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero-title .black-part { color: #0A1428; display: inline-block; }
+        .hero-title .teal-part { color: var(--kc-teal); display: inline-block; }
+        .hero-title .purple-part { color: var(--kc-purple); display: inline-block; }
+        .hero-title br { display: none; }
+        .hero-text p {
+            font-size: 1rem;
+            color: #3F5579;
+            max-width: 600px;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        .hero-visual {
+            flex: 1;
+            min-width: 240px;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .floating-volleyball {
+            transition: all 0.08s linear;
+            will-change: transform, opacity;
+        }
+        .floating-volleyball img {
+            width: 100%;
+            max-width: 420px;  /* 缩小 logo 尺寸 */
+            filter: drop-shadow(0 20px 25px rgba(139,0,139,0.1));
+            transition: all 0.2s;
+        }
+
+        /* 通用区块 */
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid #EDF2F7;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0F1A2F;
+            letter-spacing: -0.3px;
+        }
+        .section-sub {
+            color: #5C6F91;
+            max-width: 650px;
+            margin-bottom: 48px;
+        }
+        .title-accent {
+            display: inline-block;
+            width: 56px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--kc-purple), var(--kc-teal));
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+
+        /* 近期事件卡片 - 横向滚动，无图标 */
+        .events-wrapper {
+            overflow-x: auto;
+            overflow-y: visible;
+            padding-bottom: 12px;
+            margin: 0 -8px;
+            scrollbar-width: thin;
+        }
+        .card-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 28px;
+            padding: 8px 8px 16px 8px;
+            min-width: min-content;
+        }
+        .event-card {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #EFF3F9;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            flex: 0 0 300px;
+            width: 300px;
+        }
+        .event-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,151,166,0.3);
+        }
+        .event-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .event-date {
+            font-weight: 600;
+            color: var(--kc-purple);
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* 合作伙伴无限自动滚动 */
+        .sponsors-scroll-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 40px 0 20px;
+        }
+        .sponsors-track {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+            animation: scrollSponsors 24s linear infinite;
+        }
+        .sponsor-logo {
+            height: 80px;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+            margin: 0 32px;
+            opacity: 0.85;
+            transition: opacity 0.2s, transform 0.2s;
+            cursor: default;
+        }
+        .sponsor-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            animation-play-state: paused;
+        }
+        /* 鼠标悬停时暂停滚动 */
+        .sponsors-scroll-container:hover .sponsors-track {
+            animation-play-state: paused;
+        }
+        @keyframes scrollSponsors {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 加入我们区块 */
+        .join-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+        .join-btn {
+            display: inline-block;
+            background: var(--kc-teal);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 14px 48px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,151,166,0.3);
+            margin-top: 20px;
+        }
+        .join-btn:hover {
+            background: var(--teal-dark);
+            transform: translateY(-3px);
+        }
+
+        /* 模态框 (微信视频号二维码) */
+        .qrcode-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .qrcode-content {
+            background: white;
+            padding: 28px;
+            border-radius: 40px;
+            text-align: center;
+            max-width: 300px;
+            width: 80%;
+        }
+        .qrcode-content img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+        }
+        .close-modal {
+            background: var(--kc-teal);
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: #FCFDFF;
+            padding: 56px 0 32px;
+            border-top: 1px solid #EEF2F8;
+        }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--kc-purple);
+        }
+        .footer-col p, .footer-col a, .footer-address {
+            color: #6C7E9E;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--kc-teal);
+        }
+        .contact-email {
+            font-family: monospace;
+            color: #2D3A5E;
+        }
+        .social-icons {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #F0F3F9;
+            padding: 6px 16px;
+            border-radius: 40px;
+            color: #2D3A5E;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .social-link i {
+            font-size: 1rem;
+        }
+        .social-link:hover {
+            background: var(--kc-teal);
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #8A9BB0;
+            padding-top: 32px;
+            border-top: 1px solid #E9EEF5;
+        }
+
+        /* 移动端优化 (445*748 适配) */
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .hero { padding: 40px 0 60px; }
+            .hero-title { font-size: 2rem; }
+            .hero-text p { font-size: 0.9rem; }
+            .hero-visual img { max-width: 280px; }
+            .navbar { flex-direction: column; align-items: flex-start; }
+            .nav-links { width: 100%; justify-content: flex-start; gap: 1.2rem; flex-wrap: wrap; }
+            .hero-grid { flex-direction: column; }
+            .hero-visual { order: -1; margin-bottom: 20px; }
+            .event-card { flex: 0 0 260px; width: 260px; padding: 22px; }
+            .sponsor-logo { height: 60px; margin: 0 20px; }
+            .join-btn { font-size: 1rem; padding: 12px 36px; }
+            .footer-grid { gap: 32px; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.7rem; }
+            .hero-text p { font-size: 0.85rem; }
+            .section-title { font-size: 1.6rem; }
+            .event-card h3 { font-size: 1.2rem; }
+            .sponsor-logo { height: 50px; margin: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo-area">
+                <img src="assets/KCVA_1.png" alt="KCVA" class="logo-img-primary" onerror="this.style.display='none'">
+                <div class="logo-text">
+                    <div class="org-name-en">Kang Chiao Volleyball Association</div>
+                    <div class="org-name-zh">康桥排球协会</div>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#events">近期事件</a></li>
+                <li><a href="#sponsors">合作伙伴</a></li>
+                <li><a href="#contact">联络</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <div class="hero-title">
+                        <span class="black-part">Kang Chiao </span>
+                        <span class="teal-part">Volleyball </span>
+                        <span class="purple-part">Association</span>
+                    </div>
+                    <p>我们是 KCVA，一群把排球当成热爱的国际高中生。我们聚在一起，不只是为了随便打打球，而是想为所有热爱排球的国际学校同学们，搭建一个真正标准、好玩且充满仪式感的精英联赛平台。从赛规制定、裁判对接，到每一场比赛的现场组织和后勤保障，我们全部做到规范化管理。我们希望用最热血的赛场对抗、最硬核的团队协作，让每一位上场的球员都能拼出全力、不留遗憾。在这里，我们不仅在组织排球赛，更在为属于我们的青春，定格每一个不可复制的高光时刻！</p>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-volleyball" id="volleyballAnim">
+                        <img src="assets/KCVA_Transparent.png" alt="KCVA" id="dynamicVolleyImg" style="width:100%; max-width:420px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- 近期事件：无图标，基于 CSV -->
+        <section id="events">
+            <div class="title-accent"></div>
+            <h2 class="section-title">近期事件</h2>
+            <p class="section-sub">KCVA 官方确认的赛事与活动，热血场次 · 真实对抗。</p>
+            <div class="events-wrapper">
+                <div id="eventsContainer" class="card-grid">
+                    <div class="event-card"><h3>加载赛事数据...</h3><div class="event-date">请稍后</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 合作伙伴 无限自动滚动区 -->
+        <section id="sponsors">
+            <div class="title-accent"></div>
+            <h2 class="section-title">合作伙伴</h2>
+            <p class="section-sub">感谢以下伙伴对 KCVA 的信任与支持。</p>
+            <div class="sponsors-scroll-container">
+                <div class="sponsors-track" id="sponsorsTrack"></div>
+            </div>
+        </section>
+
+        <!-- 加入我们 -->
+        <div class="join-section">
+            <div class="title-accent" style="margin: 0 auto 20px;"></div>
+            <h2 class="section-title" style="margin-bottom: 16px;">加入我们</h2>
+            <p style="color: #5C6F91; max-width: 500px; margin: 0 auto 20px;">成为 KCVA 一员，共同塑造国际高中排球新篇章。</p>
+            <a href="#" id="joinKCVAButton" class="join-btn">申请加入 KCVA →</a>
+        </div>
+    </div>
+</main>
+
+<footer id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>KCVA 康桥排球协会</h4>
+                <p>Kang Chiao Volleyball Association</p>
+                <div class="footer-address">江苏省昆山市花桥经济开发区西环路500号<br>邮编：215332</div>
+            </div>
+            <div class="footer-col">
+                <h4>联络支持</h4>
+                <div><strong>技术支持</strong><br><a href="mailto:support@ksvg.com.cn" class="contact-email">support@ksvg.com.cn</a></div>
+                <div style="margin-top: 12px;"><strong>组委会支持</strong><br><a href="mailto:b1nzew44@gmail.com" class="contact-email">b1nzew44@gmail.com</a><br><span style="font-family: monospace; color: #2D3A5E;">15858204360</span></div>
+            </div>
+            <div class="footer-col">
+                <h4>友情链接</h4>
+                <a href="https://kcisec.site" target="_blank" rel="noopener">昆山康桥校园网站</a>
+                <a href="https://ksvg.com.cn" target="_blank" rel="noopener">昆山康桥学生摄影合作组织</a>
+                <a href="https://bankofkangchiao.com" target="_blank" rel="noopener">康桥银行</a>
+            </div>
+            <div class="footer-col">
+                <h4>官方社交</h4>
+                <div class="social-icons">
+                    <a href="https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu?from_tab_name=main" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-tiktok"></i> 抖音</a>
+                    <a href="#" id="wechatVideoBtn" class="social-link"><i class="fab fa-weixin"></i> 微信视频号</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 KCVA (Kang Chiao Volleyball Association) 康桥排球协会 — 热血赛场 · 校际联结
+        </div>
+    </div>
+</footer>
+
+<!-- 微信视频号二维码模态窗 -->
+<div id="qrcodeModal" class="qrcode-modal">
+    <div class="qrcode-content">
+        <img src="assets/wechat_op_qr_code.jpg" alt="微信视频号二维码" id="wxQrImg" onerror="this.src='https://placehold.co/200x200?text=QR+Code'">
+        <p>扫描关注 KCVA 微信视频号</p>
+        <button class="close-modal" id="closeModalBtn">关闭</button>
+    </div>
+</div>
+
+<script>
+    // 1. 增强型 CSV 解析 (无 description 字段，仅需名称、日期、地点)
+    async function loadEvents() {
+        try {
+            const response = await fetch('assets/events.csv');
+            const text = await response.text();
+            const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+            if (lines.length < 2) throw new Error('no data');
+            // 第一行是标题：Event_Name,Description,Date,Location 但我们忽略description
+            const events = [];
+            for (let i = 1; i < lines.length; i++) {
+                let line = lines[i].trim();
+                // 简易解析，处理可能的引号
+                let row = [];
+                let inQuote = false;
+                let current = '';
+                for (let ch of line) {
+                    if (ch === '"') inQuote = !inQuote;
+                    else if (ch === ',' && !inQuote) {
+                        row.push(current.trim());
+                        current = '';
+                    } else {
+                        current += ch;
+                    }
+                }
+                row.push(current.trim());
+                if (row.length >= 3) {
+                    let name = row[0] || 'KCVA Event';
+                    let dateRaw = row[2] || 'TBD';
+                    let location = (row[3] || '').replace(/^"|"$/g, '');
+                    events.push({ name, date: dateRaw, location });
+                }
+            }
+            if (events.length === 0) throw new Error('empty');
+            // 简单排序: 使最新日期靠前 (JUN 13, 2026 等)
+            events.sort((a,b) => {
+                const aDate = a.date.includes('JUN') ? '2026-06' : '2026-12';
+                const bDate = b.date.includes('JUN') ? '2026-06' : '2026-12';
+                return bDate.localeCompare(aDate);
+            });
+            renderEvents(events);
+        } catch (err) {
+            console.warn('CSV备用数据', err);
+            const fallback = [
+                { name: 'KCVA X WLSA Tournament', date: 'JUN 13, 2026', location: 'WLSA, Shanghai, China' }
+            ];
+            renderEvents(fallback);
+        }
+    }
+
+    function renderEvents(events) {
+        const container = document.getElementById('eventsContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        if (events.length === 0) {
+            container.innerHTML = '<div class="event-card"><h3>即将公布</h3><div class="event-date">敬请期待</div><p>更多精彩赛事筹备中</p></div>';
+            return;
+        }
+        events.forEach(ev => {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+                <div class="event-date">${escapeHtml(ev.date)}</div>
+                <h3>${escapeHtml(ev.name)}</h3>
+                <p style="color:#5C6F91; margin-top:8px;">${escapeHtml(ev.location) || 'KCVA 官方场地'}</p>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    // 2. 合作伙伴无限滚动 (自动循环)
+    const partnerLogos = [
+        { src: 'assets/kcisLogo.jpg', name: 'Kang Chiao International School' },
+        { src: 'assets/ksvgLogo.png', name: 'KSVG' },
+        { src: 'assets/Handsome.png', name: 'Handsome' },
+        { src: 'assets/JF_Corp.png', name: 'JF Corp' },
+        { src: 'assets/KCVA_3.png', name: 'KCVA Partner' },
+        { src: 'assets/aprjsa.png', name: 'Aprjsa' },
+        { src: 'assets/boya.png', name: 'Boya' }
+    ];
+
+    function initSponsorsCarousel() {
+        const track = document.getElementById('sponsorsTrack');
+        if (!track) return;
+        track.innerHTML = '';
+        // 构建两份 logo 列表以实现无缝循环
+        const allLogos = [...partnerLogos, ...partnerLogos];
+        allLogos.forEach(logo => {
+            const img = document.createElement('img');
+            img.src = logo.src;
+            img.alt = logo.name;
+            img.className = 'sponsor-logo';
+            img.onerror = () => { img.style.opacity = '0.4'; };
+            track.appendChild(img);
+        });
+        // 确保动画宽度适应: CSS 动画基于 translateX(-50%) 实现无缝
+        // 已经在样式中定义 keyframes，复制两份内容后刚好滚动一半再重置视觉无跳跃
+    }
+
+    // 3. 滚动动态效果 (透明logo缩放与虚化)
+    const volleyImg = document.getElementById('dynamicVolleyImg');
+    if (volleyImg) {
+        function updateVolleyball() {
+            const scrollY = window.scrollY;
+            const maxScroll = 500;
+            let progress = Math.min(scrollY / maxScroll, 1);
+            const scaleVal = 1 + (progress * 1.0); // 平滑缩放
+            const opacityVal = 1 - progress;
+            const blurVal = progress * 12;
+            volleyImg.style.transform = `scale(${scaleVal})`;
+            volleyImg.style.opacity = opacityVal;
+            volleyImg.style.filter = `blur(${blurVal}px) drop-shadow(0 8px 18px rgba(139,0,139,0.1))`;
+            if (scrollY > maxScroll) volleyImg.style.opacity = 0;
+        }
+        window.addEventListener('scroll', updateVolleyball);
+        updateVolleyball();
+    }
+
+    // 4. 微信视频号弹窗 (移除原有赞助商入口逻辑)
+    const wechatBtn = document.getElementById('wechatVideoBtn');
+    const modal = document.getElementById('qrcodeModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    if (wechatBtn) {
+        wechatBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+
+    // 5. 加入我们按钮预留跳转 (可后续自定义)
+    const joinBtn = document.getElementById('joinKCVAButton');
+    if (joinBtn) {
+        joinBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // 预留 URL 跳转，目前可替换为实际表单链接
+            alert('申请加入功能即将开放，敬请关注 KCVA 官方通知。');
+            // window.location.href = "https://your-join-url.com";
+        });
+    }
+
+    // 6. 平滑滚动导航
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const hash = this.getAttribute('href');
+            if (hash && hash !== '#') {
+                const target = document.querySelector(hash);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+
+    // 初始化加载
+    loadEvents();
+    initSponsorsCarousel();
+</script>
+</body>
+</html>
