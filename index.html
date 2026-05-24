@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
     <title>KCVA | 康桥排球协会</title>
-    <!-- Tab 图标 使用透明PNG -->
+    <!-- Tab 图标 -->
     <link rel="icon" type="image/png" href="assets/KCVA_Transparent.png">
     <link rel="apple-touch-icon" href="assets/KCVA_Transparent.png">
     <!-- 字体与图标库 -->
@@ -168,7 +168,7 @@
         }
         .floating-volleyball img {
             width: 100%;
-            max-width: 420px;  /* 缩小 logo 尺寸 */
+            max-width: 380px;
             filter: drop-shadow(0 20px 25px rgba(139,0,139,0.1));
             transition: all 0.2s;
         }
@@ -198,20 +198,24 @@
             border-radius: 4px;
         }
 
-        /* 近期事件卡片 - 横向滚动，无图标 */
+        /* 近期事件 (赛事报名) 横向滑动，最新在右 */
         .events-wrapper {
             overflow-x: auto;
             overflow-y: visible;
             padding-bottom: 12px;
             margin: 0 -8px;
             scrollbar-width: thin;
+            direction: ltr;
+            /* 确保内容区支持从右向左滚动展示最新 */
         }
         .card-grid {
             display: flex;
+            flex-direction: row;
             flex-wrap: nowrap;
             gap: 28px;
             padding: 8px 8px 16px 8px;
             min-width: min-content;
+            /* 默认滚动到最右侧显示最新事件 */
         }
         .event-card {
             background: #FFFFFF;
@@ -222,6 +226,8 @@
             box-shadow: var(--card-shadow);
             flex: 0 0 300px;
             width: 300px;
+            display: flex;
+            flex-direction: column;
         }
         .event-card:hover {
             transform: translateY(-4px);
@@ -238,6 +244,34 @@
             margin-bottom: 8px;
             font-size: 0.85rem;
         }
+        .event-location {
+            color: #5C6F91;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+        .event-btn {
+            display: inline-block;
+            background: var(--kc-teal);
+            color: white;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            transition: 0.2s;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+        .event-btn.closed {
+            background: #B0B8C8;
+            cursor: default;
+            pointer-events: none;
+        }
+        .event-btn:hover {
+            background: var(--teal-dark);
+            transform: translateY(-2px);
+        }
 
         /* 合作伙伴无限自动滚动 */
         .sponsors-scroll-container {
@@ -250,7 +284,7 @@
             display: flex;
             width: max-content;
             will-change: transform;
-            animation: scrollSponsors 24s linear infinite;
+            animation: scrollSponsors 28s linear infinite;
         }
         .sponsor-logo {
             height: 80px;
@@ -267,7 +301,6 @@
             transform: scale(1.05);
             animation-play-state: paused;
         }
-        /* 鼠标悬停时暂停滚动 */
         .sponsors-scroll-container:hover .sponsors-track {
             animation-play-state: paused;
         }
@@ -276,7 +309,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* 加入我们区块 */
+        /* 加入我们 */
         .join-section {
             text-align: center;
             padding: 60px 0;
@@ -299,7 +332,7 @@
             transform: translateY(-3px);
         }
 
-        /* 模态框 (微信视频号二维码) */
+        /* 微信视频号模态窗 (优化间距与图片大小) */
         .qrcode-modal {
             display: none;
             position: fixed;
@@ -312,23 +345,28 @@
         }
         .qrcode-content {
             background: white;
-            padding: 28px;
+            padding: 32px 28px 28px 28px;
             border-radius: 40px;
             text-align: center;
-            max-width: 300px;
+            max-width: 340px;
             width: 80%;
         }
         .qrcode-content img {
             width: 100%;
-            max-width: 220px;
-            border-radius: 16px;
-            margin-bottom: 16px;
+            max-width: 260px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+        .qr-text {
+            margin-bottom: 28px;
+            color: #1F2A44;
+            font-weight: 500;
         }
         .close-modal {
             background: var(--kc-teal);
             color: white;
             border: none;
-            padding: 8px 24px;
+            padding: 8px 28px;
             border-radius: 40px;
             cursor: pointer;
             font-weight: 600;
@@ -370,20 +408,22 @@
         }
         .contact-email {
             font-family: monospace;
-            color: #2D3A5E;
+            color: #6C7E9E;
         }
         .social-icons {
             display: flex;
-            gap: 24px;
+            gap: 16px;
             flex-wrap: wrap;
             align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
         }
         .social-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: #F0F3F9;
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 40px;
             color: #2D3A5E;
             font-size: 0.85rem;
@@ -405,28 +445,30 @@
             border-top: 1px solid #E9EEF5;
         }
 
-        /* 移动端优化 (445*748 适配) */
+        /* 移动端优化 */
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
             .hero { padding: 40px 0 60px; }
             .hero-title { font-size: 2rem; }
-            .hero-text p { font-size: 0.9rem; }
-            .hero-visual img { max-width: 280px; }
+            .hero-text p { font-size: 0.92rem; }
+            .hero-visual img { max-width: 260px; }
             .navbar { flex-direction: column; align-items: flex-start; }
             .nav-links { width: 100%; justify-content: flex-start; gap: 1.2rem; flex-wrap: wrap; }
             .hero-grid { flex-direction: column; }
             .hero-visual { order: -1; margin-bottom: 20px; }
             .event-card { flex: 0 0 260px; width: 260px; padding: 22px; }
-            .sponsor-logo { height: 60px; margin: 0 20px; }
+            .sponsor-logo { height: 56px; margin: 0 20px; }
             .join-btn { font-size: 1rem; padding: 12px 36px; }
             .footer-grid { gap: 32px; }
+            .social-icons { gap: 12px; flex-direction: row; flex-wrap: wrap; }
+            .social-link { padding: 4px 14px; font-size: 0.8rem; }
         }
         @media (max-width: 480px) {
             .hero-title { font-size: 1.7rem; }
             .hero-text p { font-size: 0.85rem; }
             .section-title { font-size: 1.6rem; }
             .event-card h3 { font-size: 1.2rem; }
-            .sponsor-logo { height: 50px; margin: 0 16px; }
+            .event-btn { padding: 6px 14px; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -444,9 +486,10 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#home">首页</a></li>
-                <li><a href="#events">近期事件</a></li>
+                <li><a href="#events">赛事报名</a></li>
                 <li><a href="#sponsors">合作伙伴</a></li>
                 <li><a href="#contact">联络</a></li>
+                <li><a id="sponsorChannelBtn" class="btn-nav" style="cursor:pointer;">赞助商通道</a></li>
             </ul>
         </div>
     </div>
@@ -462,11 +505,11 @@
                         <span class="teal-part">Volleyball </span>
                         <span class="purple-part">Association</span>
                     </div>
-                    <p>我们是 KCVA，一群把排球当成热爱的国际高中生。我们聚在一起，不只是为了随便打打球，而是想为所有热爱排球的国际学校同学们，搭建一个真正标准、好玩且充满仪式感的精英联赛平台。从赛规制定、裁判对接，到每一场比赛的现场组织和后勤保障，我们全部做到规范化管理。我们希望用最热血的赛场对抗、最硬核的团队协作，让每一位上场的球员都能拼出全力、不留遗憾。在这里，我们不仅在组织排球赛，更在为属于我们的青春，定格每一个不可复制的高光时刻！</p>
+                    <p>我们是 KCVA ，一群把排球当成热爱的国际高中生。我们聚在一起，不只是为了随便打打球，而是想为所有热爱排球的国际学校同学们，搭建一个真正标准、好玩且充满仪式感的精英联赛平台。从赛制制定、裁判对接，到每一场比赛的现场组织和后勤保障，我们全部做到规范化管理。我们希望用最热血的赛场对抗、最硬核的团队协作，让每一位上场的球员都能拼出全力、不留遗憾。在这里，我们不仅在组织排球赛，更在为属于我们的青春，定格每一个不可复制的高光时刻！</p>
                 </div>
                 <div class="hero-visual">
                     <div class="floating-volleyball" id="volleyballAnim">
-                        <img src="assets/KCVA_Transparent.png" alt="KCVA" id="dynamicVolleyImg" style="width:100%; max-width:420px;">
+                        <img src="assets/KCVA_Transparent.png" alt="KCVA" id="dynamicVolleyImg" style="width:100%; max-width:380px;">
                     </div>
                 </div>
             </div>
@@ -474,12 +517,12 @@
     </section>
 
     <div class="container">
-        <!-- 近期事件：无图标，基于 CSV -->
+        <!-- 赛事报名 (近期事件) 横向滚动，最新在右侧 -->
         <section id="events">
             <div class="title-accent"></div>
-            <h2 class="section-title">近期事件</h2>
-            <p class="section-sub">KCVA 官方确认的赛事与活动，热血场次 · 真实对抗。</p>
-            <div class="events-wrapper">
+            <h2 class="section-title">赛事报名</h2>
+            <p class="section-sub">KCVA 官方确认的赛事与活动，按时间排序，最新场次从右侧开始展示。</p>
+            <div class="events-wrapper" id="eventsWrapper">
                 <div id="eventsContainer" class="card-grid">
                     <div class="event-card"><h3>加载赛事数据...</h3><div class="event-date">请稍后</div></div>
                 </div>
@@ -496,12 +539,12 @@
             </div>
         </section>
 
-        <!-- 加入我们 -->
+        <!-- 加入我们 (KCVA招募问卷) -->
         <div class="join-section">
             <div class="title-accent" style="margin: 0 auto 20px;"></div>
             <h2 class="section-title" style="margin-bottom: 16px;">加入我们</h2>
             <p style="color: #5C6F91; max-width: 500px; margin: 0 auto 20px;">成为 KCVA 一员，共同塑造国际高中排球新篇章。</p>
-            <a href="#" id="joinKCVAButton" class="join-btn">申请加入 KCVA →</a>
+            <a href="https://v.wjx.cn/vm/OtZGLn5.aspx#" target="_blank" id="joinKCVAButton" class="join-btn">申请加入 KCVA →</a>
         </div>
     </div>
 </main>
@@ -510,14 +553,13 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>KCVA 康桥排球协会</h4>
-                <p>Kang Chiao Volleyball Association</p>
-                <div class="footer-address">江苏省昆山市花桥经济开发区西环路500号<br>邮编：215332</div>
+                <h4>组织地址</h4>
+                <div class="footer-address">地址：江苏省昆山市花桥经济开发区西环路500号<br>邮编：215332</div>
             </div>
             <div class="footer-col">
                 <h4>联络支持</h4>
                 <div><strong>技术支持</strong><br><a href="mailto:support@ksvg.com.cn" class="contact-email">support@ksvg.com.cn</a></div>
-                <div style="margin-top: 12px;"><strong>组委会支持</strong><br><a href="mailto:b1nzew44@gmail.com" class="contact-email">b1nzew44@gmail.com</a><br><span style="font-family: monospace; color: #2D3A5E;">15858204360</span></div>
+                <div style="margin-top: 12px;"><strong>组委会支持</strong><br><a href="mailto:b1nzew44@gmail.com" class="contact-email">b1nzew44@gmail.com</a><span style="font-family: monospace; color: #6C7E9E; margin-top: 4px; display: inline-block;">15858204360</span></div>
             </div>
             <div class="footer-col">
                 <h4>友情链接</h4>
@@ -534,7 +576,7 @@
             </div>
         </div>
         <div class="copyright">
-            © 2026 KCVA (Kang Chiao Volleyball Association) 康桥排球协会 — 热血赛场 · 校际联结
+            Copyright © 2026 KCVA. All Rights Reserved.
         </div>
     </div>
 </footer>
@@ -543,61 +585,116 @@
 <div id="qrcodeModal" class="qrcode-modal">
     <div class="qrcode-content">
         <img src="assets/wechat_op_qr_code.jpg" alt="微信视频号二维码" id="wxQrImg" onerror="this.src='https://placehold.co/200x200?text=QR+Code'">
-        <p>扫描关注 KCVA 微信视频号</p>
+        <div class="qr-text">扫描关注 KCVA 微信视频号</div>
         <button class="close-modal" id="closeModalBtn">关闭</button>
     </div>
 </div>
 
 <script>
-    // 1. 增强型 CSV 解析 (无 description 字段，仅需名称、日期、地点)
+    // 1. 增强 CSV 解析 (含 Event_Name, Description, Date, Location, URL)
+    // 同时实现时间判断: 若事件日期在当前日期之前则标记为「赛事结束」，且按钮不可用。
     async function loadEvents() {
         try {
             const response = await fetch('assets/events.csv');
             const text = await response.text();
             const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
             if (lines.length < 2) throw new Error('no data');
-            // 第一行是标题：Event_Name,Description,Date,Location 但我们忽略description
+            // 检测 CSV 列名 (忽略大小写)
+            const headerLine = lines[0];
+            const headers = parseCSVLine(headerLine);
+            // 预期列名映射: Name, Date, Location, URL
+            let nameIdx = -1, dateIdx = -1, locationIdx = -1, urlIdx = -1;
+            headers.forEach((h, idx) => {
+                const lower = h.toLowerCase();
+                if (lower.includes('name') || lower === 'event_name') nameIdx = idx;
+                if (lower.includes('date')) dateIdx = idx;
+                if (lower.includes('location')) locationIdx = idx;
+                if (lower.includes('url')) urlIdx = idx;
+            });
             const events = [];
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            
             for (let i = 1; i < lines.length; i++) {
-                let line = lines[i].trim();
-                // 简易解析，处理可能的引号
-                let row = [];
-                let inQuote = false;
-                let current = '';
-                for (let ch of line) {
-                    if (ch === '"') inQuote = !inQuote;
-                    else if (ch === ',' && !inQuote) {
-                        row.push(current.trim());
-                        current = '';
-                    } else {
-                        current += ch;
+                const row = parseCSVLine(lines[i]);
+                if (row.length < 2) continue;
+                const name = nameIdx !== -1 ? (row[nameIdx] || 'KCVA Event') : (row[0] || 'KCVA Event');
+                let dateRaw = dateIdx !== -1 ? (row[dateIdx] || '') : (row[1] || '');
+                let location = locationIdx !== -1 ? (row[locationIdx] || '') : (row[2] || '');
+                let url = urlIdx !== -1 ? (row[urlIdx] || '') : (row[3] || '');
+                // 清理引号
+                dateRaw = dateRaw.replace(/^"|"$/g, '').trim();
+                location = location.replace(/^"|"$/g, '').trim();
+                url = url.replace(/^"|"$/g, '').trim();
+                // 解析日期（支持多种格式：YYYY-MM-DD, MMM DD, YYYY, 或 "JUN 13, 2026"）
+                let eventDateObj = null;
+                try {
+                    // 尝试标准解析
+                    if (dateRaw.includes(',')) {
+                        eventDateObj = new Date(dateRaw);
+                    } else if (dateRaw.includes('-')) {
+                        eventDateObj = new Date(dateRaw);
+                    } else if (dateRaw.length > 0) {
+                        eventDateObj = new Date(dateRaw);
                     }
+                    if (eventDateObj && isNaN(eventDateObj.getTime())) eventDateObj = null;
+                } catch(e) { eventDateObj = null; }
+                
+                let isPast = false;
+                if (eventDateObj) {
+                    const compareDate = new Date(eventDateObj);
+                    compareDate.setHours(0,0,0,0);
+                    isPast = compareDate < today;
                 }
-                row.push(current.trim());
-                if (row.length >= 3) {
-                    let name = row[0] || 'KCVA Event';
-                    let dateRaw = row[2] || 'TBD';
-                    let location = (row[3] || '').replace(/^"|"$/g, '');
-                    events.push({ name, date: dateRaw, location });
-                }
+                events.push({ name, date: dateRaw, location, url, isPast, rawDateObj: eventDateObj });
             }
             if (events.length === 0) throw new Error('empty');
-            // 简单排序: 使最新日期靠前 (JUN 13, 2026 等)
+            // 按日期排序 (最新在前，以便右侧优先展示最新)
             events.sort((a,b) => {
-                const aDate = a.date.includes('JUN') ? '2026-06' : '2026-12';
-                const bDate = b.date.includes('JUN') ? '2026-06' : '2026-12';
-                return bDate.localeCompare(aDate);
+                const aTime = a.rawDateObj ? a.rawDateObj.getTime() : 0;
+                const bTime = b.rawDateObj ? b.rawDateObj.getTime() : 0;
+                return bTime - aTime;
             });
             renderEvents(events);
+            // 滚动到最右侧（最新事件可见）
+            const wrapper = document.getElementById('eventsWrapper');
+            if (wrapper && events.length > 0) {
+                setTimeout(() => {
+                    wrapper.scrollLeft = wrapper.scrollWidth;
+                }, 100);
+            }
         } catch (err) {
-            console.warn('CSV备用数据', err);
+            console.warn('CSV加载备用数据', err);
             const fallback = [
-                { name: 'KCVA X WLSA Tournament', date: 'JUN 13, 2026', location: 'WLSA, Shanghai, China' }
+                { name: 'KCVA X WLSA Tournament', date: 'JUN 13, 2026', location: 'WLSA, Shanghai, China', url: '', isPast: false },
+                { name: 'KCVA 秋季锦标赛', date: '2026-10-15', location: '昆山康桥体育馆', url: 'https://v.wjx.cn/vm/example.aspx', isPast: false }
             ];
             renderEvents(fallback);
+            const wrapper = document.getElementById('eventsWrapper');
+            if (wrapper && fallback.length > 0) {
+                setTimeout(() => { wrapper.scrollLeft = wrapper.scrollWidth; }, 100);
+            }
         }
     }
-
+    
+    function parseCSVLine(line) {
+        const result = [];
+        let inQuote = false;
+        let current = '';
+        for (let ch of line) {
+            if (ch === '"') {
+                inQuote = !inQuote;
+            } else if (ch === ',' && !inQuote) {
+                result.push(current.trim());
+                current = '';
+            } else {
+                current += ch;
+            }
+        }
+        result.push(current.trim());
+        return result;
+    }
+    
     function renderEvents(events) {
         const container = document.getElementById('eventsContainer');
         if (!container) return;
@@ -609,15 +706,26 @@
         events.forEach(ev => {
             const card = document.createElement('div');
             card.className = 'event-card';
+            const isPast = ev.isPast;
+            const btnText = isPast ? '赛事结束' : (ev.url ? '报名赛事' : '未开放报名');
+            const btnUrl = (!isPast && ev.url) ? ev.url : '#';
+            const btnDisabledClass = (isPast || !ev.url) ? 'closed' : '';
+            const clickHandler = (!isPast && ev.url) ? `onclick="window.open('${ev.url}', '_blank')"` : '';
             card.innerHTML = `
                 <div class="event-date">${escapeHtml(ev.date)}</div>
                 <h3>${escapeHtml(ev.name)}</h3>
-                <p style="color:#5C6F91; margin-top:8px;">${escapeHtml(ev.location) || 'KCVA 官方场地'}</p>
+                <div class="event-location">${escapeHtml(ev.location) || 'KCVA 官方场地'}</div>
+                <a href="${btnUrl}" class="event-btn ${btnDisabledClass}" ${!isPast && ev.url ? 'target="_blank"' : ''} ${clickHandler}>${btnText}</a>
             `;
+            // 如果按钮为 closed 且无链接，阻止默认跳转
+            if (isPast || !ev.url) {
+                const btn = card.querySelector('.event-btn');
+                if (btn) btn.addEventListener('click', (e) => e.preventDefault());
+            }
             container.appendChild(card);
         });
     }
-
+    
     function escapeHtml(str) {
         if (!str) return '';
         return str.replace(/[&<>]/g, function(m) {
@@ -627,8 +735,8 @@
             return m;
         });
     }
-
-    // 2. 合作伙伴无限滚动 (自动循环)
+    
+    // 2. 合作伙伴无限滚动列表
     const partnerLogos = [
         { src: 'assets/kcisLogo.jpg', name: 'Kang Chiao International School' },
         { src: 'assets/ksvgLogo.png', name: 'KSVG' },
@@ -638,12 +746,11 @@
         { src: 'assets/aprjsa.png', name: 'Aprjsa' },
         { src: 'assets/boya.png', name: 'Boya' }
     ];
-
+    
     function initSponsorsCarousel() {
         const track = document.getElementById('sponsorsTrack');
         if (!track) return;
         track.innerHTML = '';
-        // 构建两份 logo 列表以实现无缝循环
         const allLogos = [...partnerLogos, ...partnerLogos];
         allLogos.forEach(logo => {
             const img = document.createElement('img');
@@ -653,10 +760,8 @@
             img.onerror = () => { img.style.opacity = '0.4'; };
             track.appendChild(img);
         });
-        // 确保动画宽度适应: CSS 动画基于 translateX(-50%) 实现无缝
-        // 已经在样式中定义 keyframes，复制两份内容后刚好滚动一半再重置视觉无跳跃
     }
-
+    
     // 3. 滚动动态效果 (透明logo缩放与虚化)
     const volleyImg = document.getElementById('dynamicVolleyImg');
     if (volleyImg) {
@@ -664,9 +769,9 @@
             const scrollY = window.scrollY;
             const maxScroll = 500;
             let progress = Math.min(scrollY / maxScroll, 1);
-            const scaleVal = 1 + (progress * 1.0); // 平滑缩放
+            const scaleVal = 1 + (progress * 0.9);
             const opacityVal = 1 - progress;
-            const blurVal = progress * 12;
+            const blurVal = progress * 10;
             volleyImg.style.transform = `scale(${scaleVal})`;
             volleyImg.style.opacity = opacityVal;
             volleyImg.style.filter = `blur(${blurVal}px) drop-shadow(0 8px 18px rgba(139,0,139,0.1))`;
@@ -675,8 +780,8 @@
         window.addEventListener('scroll', updateVolleyball);
         updateVolleyball();
     }
-
-    // 4. 微信视频号弹窗 (移除原有赞助商入口逻辑)
+    
+    // 4. 微信视频号弹窗
     const wechatBtn = document.getElementById('wechatVideoBtn');
     const modal = document.getElementById('qrcodeModal');
     const closeBtn = document.getElementById('closeModalBtn');
@@ -694,18 +799,15 @@
     window.addEventListener('click', (e) => {
         if (e.target === modal) modal.style.display = 'none';
     });
-
-    // 5. 加入我们按钮预留跳转 (可后续自定义)
-    const joinBtn = document.getElementById('joinKCVAButton');
-    if (joinBtn) {
-        joinBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            // 预留 URL 跳转，目前可替换为实际表单链接
-            alert('申请加入功能即将开放，敬请关注 KCVA 官方通知。');
-            // window.location.href = "https://your-join-url.com";
+    
+    // 5. 赞助商通道 (新URL)
+    const sponsorChannelBtn = document.getElementById('sponsorChannelBtn');
+    if (sponsorChannelBtn) {
+        sponsorChannelBtn.addEventListener('click', () => {
+            window.open('https://v.wjx.cn/vm/PF6YwiM.aspx#', '_blank');
         });
     }
-
+    
     // 6. 平滑滚动导航
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -719,8 +821,8 @@
             }
         });
     });
-
-    // 初始化加载
+    
+    // 初始化
     loadEvents();
     initSponsorsCarousel();
 </script>
