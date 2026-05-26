@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>KCVA | 康桥排球协会</title>
-    <!-- Tab 图标 -->
+    <title>KCVA | Kang Chiao Volleyball Association</title>
     <link rel="icon" type="image/png" href="assets/KCVA_Transparent.png">
     <link rel="apple-touch-icon" href="assets/KCVA_Transparent.png">
     
-    <!-- 引入正文字体及硬核运动风标题字体 Bebas Neue -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,513 +17,186 @@
             --kc-bg-dark: #111111;
             --kc-bg-light: #FFFFFF;
             --kc-bg-gray: #F5F5F5;
-            --kc-accent: #FF4D4D;
+            --kc-accent: #FFB800; 
             --kc-text-main: #111111;
             --kc-text-muted: #999999;
-            --font-heading: 'Bebas Neue', sans-serif;
+            --font-heading: 'Bebas Neue', 'Inter', sans-serif;
             --font-body: 'Inter', system-ui, sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: var(--font-body); background: var(--kc-bg-light); color: var(--kc-text-main); line-height: 1.6; overflow-x: hidden; }
 
-        body {
-            font-family: var(--font-body);
-            background: var(--kc-bg-light);
-            color: var(--kc-text-main);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        /* 滚动条美化 */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--kc-bg-dark); }
         ::-webkit-scrollbar-thumb { background: var(--kc-accent); }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
 
-        /* 斜纹装饰模式 */
-        .stripe-pattern {
-            background: repeating-linear-gradient( 45deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px );
-        }
         .stripe-pattern-dark {
             background: repeating-linear-gradient( 45deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px );
         }
 
-        /* 通用按钮 */
         .btn {
-            display: inline-block;
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            padding: 12px 32px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
+            display: inline-block; font-family: var(--font-heading); font-size: 1.2rem; letter-spacing: 1px;
+            padding: 12px 32px; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease;
+            cursor: pointer; border: 2px solid transparent; font-weight: 700;
         }
-        .btn-accent {
-            background: var(--kc-accent);
-            color: #FFF;
-        }
-        .btn-accent:hover {
-            background: #111;
-            color: #FFF;
-        }
-        .btn-outline {
-            background: transparent;
-            color: #FFF;
-            border-color: #FFF;
-        }
-        .btn-outline:hover {
-            background: #FFF;
-            color: #111;
-        }
+        .btn-accent { background: var(--kc-accent); color: #111; }
+        .btn-accent:hover { background: #111; color: var(--kc-accent); transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: #FFF; border-color: #FFF; }
+        .btn-outline:hover { background: #FFF; color: #111; transform: translateY(-2px); }
 
-        /* Header - 浅色适配 */
+        /* Header */
         .site-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 999;
-            border-bottom: 1px solid #EAEAEA;
-            padding: 15px 0;
-            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0;
+            z-index: 999; border-bottom: 1px solid #EAEAEA; padding: 15px 0; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo-text {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        /* Logo 图片放大 */
-        .nav-logo-img {
-            height: 65px; /* 调大了Logo的尺寸 */
-            width: auto;
-            object-fit: contain;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
+        .site-header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.06); border-bottom: 1px solid transparent; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo-img { height: 65px; width: auto; object-fit: contain; transition: transform 0.3s; }
+        .nav-logo-img:hover { transform: scale(1.05); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
         .nav-links a {
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            color: #111;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.2s;
+            font-family: var(--font-heading); font-size: 1.4rem; color: #111; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; position: relative;
         }
-        .nav-links a:hover {
-            color: var(--kc-accent);
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
+            background-color: var(--kc-accent); transition: width 0.3s ease;
         }
-        .nav-actions .btn {
-            padding: 8px 24px;
-            font-size: 1.1rem;
+        .nav-links a:hover { color: var(--kc-accent); }
+        .nav-links a:hover::after { width: 100%; }
+        
+        .nav-actions { display: flex; align-items: center; gap: 25px; }
+        .nav-actions .btn { padding: 8px 24px; font-size: 1.1rem; }
+        .lang-switch {
+            font-family: var(--font-heading); font-size: 1.3rem; color: #111; text-decoration: none;
+            display: flex; align-items: center; gap: 6px; transition: color 0.2s; cursor: pointer; letter-spacing: 1px;
         }
+        .lang-switch:hover { color: var(--kc-accent); }
 
-        /* Hero Section (深色) */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            background: #111;
-            overflow: hidden;
-            padding-top: 80px;
+        /* Hero */
+        .hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: center; background: #111; overflow: hidden; padding-top: 80px; }
+        .hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.5s ease-in-out, transform 8s linear; transform: scale(1.05) translateX(2%); 
         }
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-            opacity: 0.4;
-            transform: scale(1.05);
-            animation: slowZoom 20s infinite alternate linear;
-        }
-        @keyframes slowZoom {
-            0% { transform: scale(1.05); }
-            100% { transform: scale(1.15); }
-        }
-        .hero .container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-        }
-        .hero-box {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
+        .slide.active { opacity: 0.4; transform: scale(1) translateX(0); }
+        .hero .container { position: relative; z-index: 2; width: 100%; }
+        .hero-main-logo { width: 100%; max-width: 500px; margin-bottom: 30px; display: block; }
         .hero-title {
-            font-family: var(--font-heading);
-            font-size: 8rem;
-            color: #FFF;
-            line-height: 0.9;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
-            position: relative;
-            z-index: 3;
+            font-family: var(--font-heading); font-size: 3.5rem; color: #FFF; line-height: 1.1;
+            margin-bottom: 20px; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); position: relative; z-index: 3; letter-spacing: 2px;
         }
-        .hero-desc {
-            color: #DDD;
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 20px;
-        }
+        .hero-desc { color: #DDD; font-size: 1.1rem; max-width: 600px; margin-bottom: 40px; font-weight: 400; line-height: 1.6; }
+        .hero-btns { display: flex; gap: 20px; }
 
-        /* 统一标题区块 */
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 4.5rem;
-            color: #111;
-            text-transform: uppercase;
-            line-height: 1;
-        }
-        .section-title.light {
-            color: #FFF;
-        }
-        .section-subtitle {
-            font-size: 1rem;
-            color: var(--kc-text-muted);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            color: var(--kc-accent);
-        }
+        /* Sections */
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-family: var(--font-heading); font-size: 4.5rem; color: #111; text-transform: uppercase; line-height: 1; }
+        .section-title.light { color: #FFF; }
+        .section-subtitle { font-size: 1rem; color: var(--kc-text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; color: var(--kc-accent); }
 
-        /* 倒计时 (浅色) */
-        .countdown-section {
-            padding: 100px 0;
-            background: var(--kc-bg-light);
-            display: flex;
-            align-items: center;
-        }
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .countdown-timer {
-            display: flex;
-            gap: 20px;
-            margin: 40px 0;
-        }
-        .time-box {
-            display: flex;
-            flex-direction: column;
-        }
-        .time-box span:first-child {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #111;
-        }
-        .time-box .num {
-            font-family: var(--font-heading);
-            font-size: 5rem;
-            line-height: 1;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--kc-accent);
-        }
-        .stadium-img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
+        /* Countdown */
+        .countdown-section { padding: 100px 0; background: var(--kc-bg-light); display: flex; align-items: center; }
+        .countdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .countdown-timer { display: flex; gap: 20px; margin: 40px 0; }
+        .time-box { display: flex; flex-direction: column; }
+        .time-box span:first-child { font-size: 1rem; font-weight: 600; margin-bottom: 5px; color: #111; }
+        .time-box .num { font-family: var(--font-heading); font-size: 5rem; line-height: 1; color: transparent; -webkit-text-stroke: 2px var(--kc-accent); }
+        .stadium-img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-        /* 赛事列表 (深色，宽幅红底样式) */
-        .matches-section {
-            padding: 100px 0;
-            background: var(--kc-bg-dark);
-        }
-        .matches-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        /* Matches */
+        .matches-section { padding: 100px 0; background: var(--kc-bg-dark); }
+        .matches-container { display: flex; flex-direction: column; gap: 20px; }
         .match-row {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            align-items: center;
-            background: var(--kc-accent);
-            padding: 30px 40px;
-            color: #FFF;
-            transition: transform 0.3s;
+            display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; background: var(--kc-accent);
+            padding: 30px 40px; color: #111; transition: transform 0.3s, box-shadow 0.3s; border-radius: 4px;
         }
-        .match-row:hover {
-            transform: scale(1.01);
-            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.3);
-        }
-        .match-row.past-match {
-            background: #222;
-        }
-        .match-date-loc {
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-        }
+        .match-row:hover { transform: scale(1.01) translateY(-2px); box-shadow: 0 15px 30px rgba(255, 184, 0, 0.25); }
+        .match-row .btn-outline { border-color: #111; color: #111; }
+        .match-row .btn-outline:hover { background: #111; color: var(--kc-accent); }
+        .match-row.past-match { background: #222; color: #FFF; }
+        .match-row.past-match .btn-outline { border-color: #FFF; color: #FFF; }
+        .match-row.past-match .btn-outline:hover { background: #FFF; color: #111; }
+        .match-date-loc { font-weight: 600; font-size: 0.95rem; text-transform: uppercase; }
         .match-date-loc span { display: block; }
         .match-date-loc .loc { font-size: 0.8rem; opacity: 0.8; margin-top: 5px; }
-        .match-teams {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            text-align: center;
-            line-height: 1.1;
-        }
-        .match-action {
-            text-align: right;
-        }
+        .match-teams { font-family: var(--font-heading); font-size: 2.5rem; text-align: center; line-height: 1.1; }
+        .match-action { text-align: right; }
 
-        /* 积分榜 (浅色) */
-        .standings-section {
-            padding: 100px 0;
-            background: var(--kc-bg-gray);
-            color: #111;
-        }
+        /* Standings */
+        .standings-section { padding: 100px 0; background: var(--kc-bg-gray); color: #111; }
         .standings-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1.1rem;
-            background: #FFF;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%; border-collapse: collapse; font-size: 1.1rem; background: #FFF;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; 
         }
-        .standings-table th, .standings-table td {
-            padding: 20px;
-            border-bottom: 1px solid #EEE;
-            text-align: left;
-        }
-        .standings-table th {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--kc-accent);
-        }
-        .placeholder-text {
-            text-align: center !important;
-            padding: 60px !important;
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            color: #CCC;
-            letter-spacing: 2px;
-        }
+        .standings-table th, .standings-table td { padding: 20px; border-bottom: 1px solid #EEE; text-align: left; }
+        .standings-table th { font-family: var(--font-heading); font-size: 1.5rem; background: #111; color: var(--kc-accent); }
+        .standings-table tr:hover td { background: #FAFAFA; }
+        .placeholder-text { text-align: center !important; padding: 60px !important; font-family: var(--font-heading); font-size: 2.5rem; color: #CCC; letter-spacing: 2px; }
 
-        /* 最佳球员 (深色) */
-        .player-section {
-            padding: 100px 0;
-            background: var(--kc-bg-dark);
-            color: #FFF;
-            overflow: hidden;
-        }
-        .player-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        .player-name {
-            font-family: var(--font-heading);
-            font-size: 5rem;
-            line-height: 0.9;
-            margin-bottom: 20px;
-            color: #FFF;
-            letter-spacing: 2px;
-        }
-        .player-img-wrapper {
-            position: relative;
-        }
+        /* Top Team */
+        .player-section { padding: 100px 0; background: var(--kc-bg-dark); color: #FFF; overflow: hidden; }
+        .player-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .player-name { font-family: var(--font-heading); font-size: 5rem; line-height: 0.9; margin-bottom: 20px; color: #FFF; letter-spacing: 2px; }
+        .player-img-wrapper { position: relative; border-radius: 8px; z-index: 1; }
+        .player-img-mask { overflow: hidden; border-radius: 8px; position: relative; z-index: 1; }
         .player-img-wrapper::after {
-            content: '';
-            position: absolute;
-            right: -40px;
-            bottom: -40px;
-            width: 80%;
-            height: 80%;
+            content: ''; position: absolute; right: -30px; bottom: -30px; width: 80%; height: 80%;
             background: repeating-linear-gradient( 45deg, transparent, transparent 2px, var(--kc-accent) 2px, var(--kc-accent) 4px );
-            z-index: 0;
+            z-index: -1; border-radius: 8px;
         }
-        .player-img-wrapper img {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-        }
+        .player-img-mask img { width: 100%; height: 600px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+        .player-img-wrapper:hover .player-img-mask img { transform: scale(1.05); }
 
-        /* 合作伙伴 (浅色 - 彩色Logo) */
-        .sponsors-section {
-            padding: 50px 0; /* 调整了外围边距 */
-            background: var(--kc-bg-light);
-            border-top: 1px solid #EEE;
-        }
-        .sponsors-scroll-container {
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            padding: 30px 0; /* 增加内边距防止图片悬停放大时被切边 */
-        }
-        .sponsors-track {
-            display: inline-block;
-            animation: scrollSponsors 30s linear infinite;
-        }
-        .sponsor-logo {
-            height: 60px;
-            margin: 0 40px;
-            transition: transform 0.3s ease;
-            vertical-align: middle;
-            transform-origin: center center;
-        }
-        .sponsor-logo:hover {
-            transform: scale(1.15); /* 放大效果更明显且不会被裁剪 */
-        }
-        @keyframes scrollSponsors {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        /* Sponsors */
+        .sponsors-section { padding: 50px 0; background: var(--kc-bg-light); border-top: 1px solid #EEE; }
+        .sponsors-scroll-container { overflow: hidden; white-space: nowrap; position: relative; padding: 30px 0; }
+        .sponsors-track { display: inline-block; animation: scrollSponsors 35s linear infinite; }
+        .sponsors-track:hover { animation-play-state: paused; }
+        .sponsor-logo { height: 60px; margin: 0 40px; transition: transform 0.3s ease; vertical-align: middle; transform-origin: center center; }
+        .sponsor-logo:hover { transform: scale(1.15); }
+        @keyframes scrollSponsors { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Footer (深色) */
-        .footer {
-            background: #0A0A0A;
-            color: #FFF;
-            padding: 100px 0 40px;
-            text-align: center;
-        }
-        .footer-cta {
-            font-family: var(--font-heading);
-            font-size: 5rem;
-            text-transform: uppercase;
-            margin-bottom: 60px;
-            color: #FFF;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        .footer-links a {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: #FFF;
-            text-decoration: none;
-        }
-        .footer-links a:hover {
-            color: var(--kc-accent);
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            color: var(--kc-text-muted);
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .social-icons a {
-            color: #FFF;
-            font-size: 1.2rem;
-            margin-left: 15px;
-            transition: 0.2s;
-        }
-        .social-icons a:hover {
-            color: var(--kc-accent);
-        }
+        /* Footer */
+        .footer { background: #0A0A0A; color: #FFF; padding: 100px 0 40px; text-align: center; }
+        .footer-cta { font-family: var(--font-heading); font-size: 5rem; text-transform: uppercase; margin-bottom: 60px; line-height: 1.1; }
+        .footer-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; flex-wrap: wrap; }
+        .footer-links a { font-family: var(--font-heading); font-size: 1.5rem; color: #FFF; text-decoration: none; }
+        .footer-links a:hover { color: var(--kc-accent); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: var(--kc-text-muted); flex-wrap: wrap; gap: 20px; }
+        .social-icons a { color: #FFF; font-size: 1.2rem; margin-left: 15px; transition: 0.2s; }
+        .social-icons a:hover { color: var(--kc-accent); transform: translateY(-2px); display: inline-block; }
 
-        /* 模态窗 */
-        .qrcode-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+        /* Elements */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px; background: var(--kc-accent); color: #111; width: 50px; height: 50px;
+            border-radius: 50%; border: none; cursor: pointer; opacity: 0; pointer-events: none; 
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s; z-index: 998; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
         }
-        .qrcode-content {
-            background: #FFF;
-            padding: 40px;
-            text-align: center;
-            width: 90%;
-            max-width: 360px;
-        }
-        .qrcode-content img {
-            width: 100%;
-            margin-bottom: 20px;
-        }
+        .back-to-top.visible { opacity: 1; pointer-events: auto; }
+        .back-to-top:hover { background: #111; color: var(--kc-accent); transform: translateY(-5px); }
+        .qrcode-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px); }
+        .qrcode-content { background: #FFF; padding: 40px; text-align: center; width: 90%; max-width: 360px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .qrcode-content img { width: 100%; margin-bottom: 20px; border-radius: 8px; }
+        .fade-in-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* 滚动浮现动画 */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 移动端适配 */
         @media (max-width: 992px) {
-            .hero-title { font-size: 6rem; }
-            .countdown-grid, .player-grid { grid-template-columns: 1fr; gap: 40px; }
-            .stadium-img, .player-img-wrapper img { height: 400px; }
-            .match-row {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                text-align: center;
-                padding: 30px 20px;
-            }
-            .match-action { text-align: center; }
-            .nav-links { display: none; }
+            .hero-title { font-size: 3rem; } .hero-main-logo { max-width: 400px; } .countdown-grid, .player-grid { grid-template-columns: 1fr; gap: 40px; }
+            .stadium-img, .player-img-mask img { height: 400px; } .match-row { grid-template-columns: 1fr; gap: 20px; text-align: center; padding: 30px 20px; }
+            .match-action { text-align: center; } .nav-links { display: none; } 
         }
         @media (max-width: 768px) {
-            .container { padding: 0 20px; }
-            .hero-title { font-size: 4.5rem; }
-            .hero-desc { font-size: 1rem; }
-            .section-title { font-size: 3rem; }
-            .footer-cta { font-size: 3.5rem; }
-            .time-box .num { font-size: 3.5rem; }
-            .match-teams { font-size: 1.8rem; }
-            .player-name { font-size: 3.5rem; }
-            .footer-bottom { justify-content: center; flex-direction: column; }
+            .container { padding: 0 20px; } .hero-title { font-size: 2.5rem; } .hero-main-logo { max-width: 300px; }
+            .section-title { font-size: 3rem; } .footer-cta { font-size: 3.5rem; } .time-box .num { font-size: 3.5rem; }
+            .match-teams { font-size: 1.8rem; } .player-name { font-size: 3.5rem; } .footer-bottom { justify-content: center; flex-direction: column; }
+            .back-to-top { bottom: 20px; right: 20px; } .nav-actions { gap: 10px; }
         }
     </style>
 </head>
@@ -533,131 +204,125 @@
 
 <header class="site-header" id="header">
     <div class="container navbar">
-        <a href="#" class="logo-text">
-            <!-- 替换为图片Logo，移除了后方文字，加大了尺寸 -->
+        <a href="#home" class="logo-text" aria-label="KCVA Home">
             <img src="assets/KCVA_1.png" alt="KCVA Logo" class="nav-logo-img" onerror="this.style.display='none';">
         </a>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#matches">Matches</a></li>
-            <li><a href="#standings">Standings</a></li>
-            <li><a href="#player">Top Player</a></li>
+            <li><a href="#home" data-i18n="nav_home">Home</a></li>
+            <li><a href="#matches" data-i18n="nav_matches">Matches</a></li>
+            <li><a href="#standings" data-i18n="nav_standings">Standings</a></li>
+            <li><a href="#top-team" data-i18n="nav_team">Top Team</a></li>
+            <li><a href="#sponsors" data-i18n="nav_sponsors">Sponsors</a></li>
         </ul>
         <div class="nav-actions">
-            <a id="sponsorChannelBtn" class="btn btn-accent" style="cursor:pointer;">Sponsor Us</a>
+            <!-- 语言切换按钮 (默认显示中文选项，因为当前页面是英文) -->
+            <a id="langSwitch" class="lang-switch" aria-label="Switch Language">
+                <i class="fas fa-globe"></i> <span id="langText">中文</span>
+            </a>
+            <a id="sponsorChannelBtn" class="btn btn-accent" style="cursor:pointer;" data-i18n="nav_sponsor_btn">Sponsor Us</a>
         </div>
     </div>
 </header>
 
 <main>
-    <!-- Hero 区块 -->
     <section id="home" class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-box stripe-pattern"></div>
+        <div class="hero-slider" id="heroSlider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=2000&auto=format&fit=crop');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=2000&auto=format&fit=crop');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1588492069485-d05b56b2831d?q=80&w=1742&auto=format&fit=crop');"></div>
+        </div>
+
         <div class="container">
-            <h1 class="hero-title fade-in-up">
-                Turning Every<br>Jump Into<br>A Highlight.
-            </h1>
-            <p class="hero-desc fade-in-up">
-                我们是一群把热爱死磕到底的国际高中生。不办随便打打的野球局，只为江浙沪最顶尖的球员搭建硬核赛场。
+            <img src="assets/KCVA_3_White.png" alt="KCVA Big Logo" class="hero-main-logo fade-in-up" onerror="this.style.display='none';">
+            <h1 class="hero-title fade-in-up" style="transition-delay: 0.1s;" data-i18n="hero_title">Turning Every Jump Into A Highlight.</h1>
+            <p class="hero-desc fade-in-up" style="transition-delay: 0.15s;" data-i18n="hero_desc">
+                We are a group of international high school students fueled by pure passion. No casual pick-up games here—only hardcore arenas built for the elite players in the region.
             </p>
-            <div class="hero-btns fade-in-up">
-                <a href="#matches" class="btn btn-accent">View Schedule</a>
-                <a href="https://v.wjx.cn/vm/OtZGLn5.aspx#" target="_blank" class="btn btn-outline">Join the Team</a>
+            <div class="hero-btns fade-in-up" style="transition-delay: 0.2s;">
+                <a href="#matches" class="btn btn-accent" data-i18n="hero_btn_schedule">View Schedule</a>
+                <a href="https://v.wjx.cn/vm/OtZGLn5.aspx#" target="_blank" class="btn btn-outline" data-i18n="hero_btn_join">Join the Team</a>
             </div>
         </div>
     </section>
 
-    <!-- 倒计时 (浅色) -->
     <section class="countdown-section stripe-pattern-dark">
         <div class="container countdown-grid">
             <div class="countdown-text fade-in-up">
-                <div class="section-subtitle">Next Match</div>
-                <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">READY FOR BATTLE</h2>
-                <p style="color: #666;">Our overriding mentality is our winning spirit. Watch KCVA's finest clash in the upcoming tournament.</p>
-                
+                <div class="section-subtitle" data-i18n="cd_subtitle">Next Match</div>
+                <h2 class="section-title" id="next-match-title" style="text-align: left; margin-bottom: 20px;" data-i18n="cd_title">READY FOR BATTLE</h2>
+                <p style="color: #666;" data-i18n="cd_desc">Our overriding mentality is our winning spirit. Watch KCVA's finest clash in the upcoming tournament.</p>
                 <div class="countdown-timer">
-                    <div class="time-box"><span>MONTHS</span><div class="num" id="d-month">00</div></div>
-                    <div class="time-box"><span>DAYS</span><div class="num" id="d-day">00</div></div>
-                    <div class="time-box"><span>HOURS</span><div class="num" id="d-hour">00</div></div>
+                    <div class="time-box"><span data-i18n="cd_month">MONTHS</span><div class="num" id="d-month">00</div></div>
+                    <div class="time-box"><span data-i18n="cd_day">DAYS</span><div class="num" id="d-day">00</div></div>
+                    <div class="time-box"><span data-i18n="cd_hour">HOURS</span><div class="num" id="d-hour">00</div></div>
                 </div>
-                
-                <a href="#matches" class="btn btn-accent">VIEW DETAILS</a>
+                <a href="#matches" class="btn btn-accent" data-i18n="cd_btn">VIEW DETAILS</a>
             </div>
             <div class="countdown-visual fade-in-up">
-                <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=1000&auto=format&fit=crop" alt="Volleyball Match" class="stadium-img">
+                <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=1000&auto=format&fit=crop" alt="Volleyball Match" class="stadium-img" loading="lazy">
             </div>
         </div>
     </section>
 
-    <!-- 赛事列表 (深色) -->
     <section id="matches" class="matches-section">
         <div class="container">
             <div class="section-header fade-in-up">
-                <h2 class="section-title light">FUTURE MATCHES</h2>
+                <h2 class="section-title light" data-i18n="match_subtitle">FUTURE MATCHES</h2>
             </div>
             <div class="matches-container" id="eventsContainer">
                 <div class="match-row fade-in-up">
-                    <div class="match-date-loc"><span>Loading...</span></div>
-                    <div class="match-teams">FETCHING DATA...</div>
+                    <div class="match-date-loc"><span data-i18n="match_loading">Loading...</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 积分榜预留位 (浅色) -->
     <section id="standings" class="standings-section">
         <div class="container">
             <div class="section-header fade-in-up">
-                <div class="section-subtitle">Current Season</div>
-                <h2 class="section-title">LEAGUE STANDINGS</h2>
+                <div class="section-subtitle" data-i18n="st_subtitle">Current Season</div>
+                <h2 class="section-title" data-i18n="st_title">LEAGUE STANDINGS</h2>
             </div>
             <div style="overflow-x: auto;" class="fade-in-up">
                 <table class="standings-table">
                     <thead>
                         <tr>
-                            <th>POS</th>
-                            <th>TEAM</th>
-                            <th>PLAYED</th>
-                            <th>WON</th>
-                            <th>PTS</th>
+                            <th data-i18n="st_th_pos">POS</th>
+                            <th data-i18n="st_th_team">TEAM</th>
+                            <th data-i18n="st_th_played">PLAYED</th>
+                            <th data-i18n="st_th_won">WON</th>
+                            <th data-i18n="st_th_pts">PTS</th>
                         </tr>
                     </thead>
                     <tbody id="standingsBody">
-                        <tr>
-                            <td colspan="5" class="placeholder-text">STAY TUNED...</td>
-                        </tr>
+                        <tr><td colspan="5" class="placeholder-text" data-i18n="st_placeholder">STAY TUNED...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
 
-    <!-- 最佳球员预留位 (深色) -->
-    <section id="player" class="player-section">
+    <section id="top-team" class="player-section">
         <div class="container player-grid">
             <div class="player-info fade-in-up">
-                <div class="section-subtitle">OUR TOP #1 PLAYER</div>
-                <!-- 纯英文 STAY TUNED -->
-                <h2 class="player-name">
-                    STAY TUNED
-                </h2>
-                <p style="color: #999; margin-bottom: 30px; font-size: 1.1rem;">
-                    赛季最强 MVP 即将揭晓，谁将凭借最具统治力的网前表现和无解的防守摘得桂冠？悬念即将揭开。
+                <div class="section-subtitle" data-i18n="top_subtitle">OUR TOP #1 TEAM</div>
+                <h2 class="player-name" id="top-team-name" data-i18n="top_name_placeholder">STAY TUNED</h2>
+                <p style="color: #999; margin-bottom: 30px; font-size: 1.1rem;" data-i18n="top_desc">
+                    The ultimate team of the season is about to emerge. Who will claim the crown with a dominant net presence and an unbreakable defense? The suspense unfolds soon.
                 </p>
-                <a href="#standings" class="btn btn-outline">VIEW LEAGUE</a>
+                <a href="#standings" class="btn btn-outline" data-i18n="top_btn">VIEW LEAGUE</a>
             </div>
             <div class="player-visual fade-in-up">
                 <div class="player-img-wrapper">
-                    <!-- 更新为稳定有效的高清排球背影图 -->
-                    <img src="https://media.istockphoto.com/id/501511234/photo/beach-volleyball-server.jpg?s=612x612&w=0&k=20&c=FiTWye1y3N7Yb3jSp0PsUoBiZJXXN9gP4_WG3Cz__nc=" alt="Top Player Suspense">
+                    <div class="player-img-mask">
+                        <img src="https://images.unsplash.com/photo-1544098485-2a2ed6da40ba?q=80&w=800&auto=format&fit=crop" alt="Top Team" loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 合作伙伴无限滚动 (浅色) -->
-    <section class="sponsors-section">
+    <section id="sponsors" class="sponsors-section">
         <div class="container sponsors-scroll-container">
             <div class="sponsors-track" id="sponsorsTrack"></div>
         </div>
@@ -666,47 +331,115 @@
 
 <footer class="footer">
     <div class="container fade-in-up">
-        <div class="section-subtitle">WE ARE TOP #1 TEAM</div>
-        <h2 class="footer-cta">WITH KC VOLLEYBALL ASSOCIATION</h2>
-        
-        <!-- 更新链接文案 -->
+        <h2 class="footer-cta">
+            <span style="color: var(--kc-accent); display: block; font-size: 0.65em; margin-bottom: 10px;" data-i18n="ft_partner">PARTNERS WORK WITH</span>
+            <span style="color: #FFF;" data-i18n="ft_kcva">KC VOLLEYBALL ASSOCIATION</span>
+        </h2>
         <div class="footer-links">
-            <a href="https://kcisec.site" target="_blank">KCISEC NAVIGATOR</a>
-            <a href="https://ksvg.com.cn" target="_blank">KSVG MEDIA</a>
-            <a href="https://bankofkangchiao.com" target="_blank">BANK OF KANG CHIAO</a>
-            <a href="mailto:b1nzew44@gmail.com">CONTACT US</a>
+            <a href="https://kcisec.site" target="_blank" data-i18n="ft_nav_1">KCISEC NAVIGATOR</a>
+            <a href="https://ksvg.com.cn" target="_blank" data-i18n="ft_nav_2">KSVG MEDIA</a>
+            <a href="https://bankofkangchiao.com" target="_blank" data-i18n="ft_nav_3">BANK OF KANG CHIAO</a>
+            <a href="mailto:b1nzew44@gmail.com" data-i18n="ft_nav_4">CONTACT US</a>
         </div>
-        
         <div class="footer-bottom">
             <div class="copyright">
-                © 2026 Kang Chiao Volleyball Association. All Rights Reserved.
+                © <span id="currentYear">2026</span> Kang Chiao Volleyball Association. All Rights Reserved.
             </div>
             <div class="social-icons">
-                <a href="https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="#" id="wechatVideoBtn"><i class="fab fa-weixin"></i></a>
-                <!-- 更新底部小信封的邮箱地址 -->
-                <a href="mailto:b1nzew44@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" id="wechatVideoBtn" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+                <a href="mailto:b1nzew44@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </div>
 </footer>
 
-<!-- 微信视频号二维码模态窗 -->
+<button id="backToTop" class="back-to-top" aria-label="Back to Top"><i class="fas fa-chevron-up"></i></button>
+
 <div id="qrcodeModal" class="qrcode-modal">
     <div class="qrcode-content">
-        <img src="assets/wechat_op_qr_code.jpg" alt="WeChat QR" onerror="this.src='https://placehold.co/300x300?text=WeChat+QR'">
-        <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px; color: #111;">SCAN TO FOLLOW</h3>
-        <button class="btn btn-outline" style="color: #111; border-color: #111;" id="closeModalBtn">CLOSE</button>
+        <img src="assets/wechat_op_qr_code.jpg" alt="WeChat QR" loading="lazy" onerror="this.src='https://placehold.co/300x300?text=WeChat+QR'">
+        <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px; color: #111;" data-i18n="qr_title">SCAN TO FOLLOW</h3>
+        <button class="btn btn-outline" style="color: #111; border-color: #111;" id="closeModalBtn" data-i18n="qr_close">CLOSE</button>
     </div>
 </div>
 
 <script>
     // ------------------------------------
-    // 1. CSV解析与赛事渲染 + 动态倒计时
+    // 0. Language / i18n Logic
     // ------------------------------------
+    let currentLang = localStorage.getItem('kcva_lang') || 'en';
+    let translations = {};
+    const fallbackTranslations = {
+        "nav_home": "首页", "nav_matches": "赛程", "nav_standings": "积分榜", "nav_team": "最佳战队", "nav_sponsors": "赞助商", "nav_sponsor_btn": "赞助我们",
+        "hero_title": "每一跃，皆为高光。", "hero_desc": "我们是一群把热爱死磕到底的国际高中生。不办随便打打的野球局，只为江浙沪最顶尖的球员搭建硬核赛场。",
+        "hero_btn_schedule": "查看赛程", "hero_btn_join": "加入球队", "cd_subtitle": "下一场比赛", "cd_title": "蓄势待发",
+        "cd_desc": "胜利精神是我们坚定不移的信念。见证顶尖战队在即将到来的锦标赛中的激烈碰撞。", "cd_month": "月", "cd_day": "天", "cd_hour": "时",
+        "cd_btn": "查看详情", "match_subtitle": "未来赛程", "match_loading": "加载中...", "match_fetching": "获取数据中...",
+        "match_btn_signup": "报名", "match_btn_ended": "比赛结束", "match_btn_tba": "待定", "st_subtitle": "当前赛季", "st_title": "联赛积分榜",
+        "st_th_pos": "排名", "st_th_team": "队伍", "st_th_played": "场次", "st_th_won": "胜场", "st_th_pts": "积分", "st_placeholder": "敬请期待...",
+        "top_subtitle": "赛季最佳战队", "top_name_placeholder": "敬请期待", "top_desc": "经过漫长赛季的角逐，最强战队即将脱颖而出。谁将凭借最具统治力的网前表现和无解的防守摘得桂冠？悬念即将揭开。",
+        "top_btn": "查看联赛", "ft_partner": "合作伙伴", "ft_kcva": "康桥排球协会", "ft_nav_1": "KCISEC 导航", "ft_nav_2": "KSVG 媒体",
+        "ft_nav_3": "康桥银行", "ft_nav_4": "联系我们", "qr_title": "扫码关注", "qr_close": "关闭"
+    };
+
+    function initLang() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            if(!el.getAttribute('data-en-text')) el.setAttribute('data-en-text', el.innerText || el.innerHTML);
+        });
+        document.getElementById('langSwitch').addEventListener('click', (e) => {
+            e.preventDefault();
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            applyLanguage();
+        });
+        applyLanguage();
+    }
+
+    async function applyLanguage() {
+        localStorage.setItem('kcva_lang', currentLang);
+        const switchBtnText = document.getElementById('langText');
+        
+        if (currentLang === 'zh') {
+            switchBtnText.innerText = "EN";
+            if(Object.keys(translations).length === 0) {
+                try {
+                    const res = await fetch('zh-cn.json');
+                    translations = await res.json();
+                } catch(e) {
+                    translations = fallbackTranslations;
+                }
+            }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[key]) el.innerHTML = translations[key];
+            });
+        } else {
+            switchBtnText.innerText = "中文";
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.innerHTML = el.getAttribute('data-en-text');
+            });
+        }
+        renderEvents(globalEventsCache);
+    }
+
+    // ------------------------------------
+    // 1. Data Logic (Events & Standings)
+    // ------------------------------------
+    let globalEventsCache = [];
+    
+    function parseCSVLine(line) {
+        const result = []; let inQuote = false, current = '';
+        for (let ch of line) {
+            if (ch === '"') inQuote = !inQuote;
+            else if (ch === ',' && !inQuote) { result.push(current.trim()); current = ''; }
+            else current += ch;
+        }
+        result.push(current.trim()); return result;
+    }
+
     async function loadEvents() {
         try {
-            const response = await fetch('assets/events.csv');
+            const response = await fetch('assets/data/events.csv');
             const text = await response.text();
             const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
             if (lines.length < 2) throw new Error('no data');
@@ -714,106 +447,120 @@
             const headers = parseCSVLine(lines[0]);
             let nameIdx = -1, dateIdx = -1, locationIdx = -1, urlIdx = -1;
             headers.forEach((h, idx) => {
-                const lower = h.toLowerCase();
+                const lower = h.toLowerCase().replace(/^\ufeff/g, '').trim();
                 if (lower.includes('name') || lower === 'event_name') nameIdx = idx;
                 if (lower.includes('date')) dateIdx = idx;
                 if (lower.includes('location')) locationIdx = idx;
                 if (lower.includes('url')) urlIdx = idx;
             });
             
-            const events = [];
-            const today = new Date();
-            today.setHours(0,0,0,0);
-            
+            const today = new Date(); today.setHours(0,0,0,0);
             for (let i = 1; i < lines.length; i++) {
-                const row = parseCSVLine(lines[i]);
-                if (row.length < 2) continue;
-                const name = nameIdx !== -1 ? (row[nameIdx] || 'KCVA MATCH') : (row[0] || 'KCVA MATCH');
+                const row = parseCSVLine(lines[i]); if (row.length < 2) continue;
                 let dateRaw = dateIdx !== -1 ? (row[dateIdx] || '') : (row[1] || '');
-                let location = locationIdx !== -1 ? (row[locationIdx] || '') : (row[2] || '');
-                let url = urlIdx !== -1 ? (row[urlIdx] || '') : (row[3] || '');
-                
-                dateRaw = dateRaw.replace(/^"|"$/g, '').trim();
-                location = location.replace(/^"|"$/g, '').trim();
-                url = url.replace(/^"|"$/g, '').trim();
-                
                 let eventDateObj = null;
                 try {
                     if (dateRaw.length > 0) eventDateObj = new Date(dateRaw);
                     if (eventDateObj && isNaN(eventDateObj.getTime())) eventDateObj = null;
                 } catch(e) { eventDateObj = null; }
                 
-                let isPast = false;
-                if (eventDateObj) {
-                    const compareDate = new Date(eventDateObj);
-                    compareDate.setHours(0,0,0,0);
-                    isPast = compareDate < today;
-                }
-                
-                events.push({ name, date: dateRaw, location, url, isPast, rawDateObj: eventDateObj });
+                globalEventsCache.push({ 
+                    name: nameIdx !== -1 ? (row[nameIdx] || 'KCVA MATCH') : (row[0] || 'KCVA MATCH'), 
+                    date: dateRaw.replace(/^"|"$/g, '').trim(), 
+                    location: (locationIdx !== -1 ? (row[locationIdx] || '') : (row[2] || '')).replace(/^"|"$/g, '').trim(), 
+                    url: (urlIdx !== -1 ? (row[urlIdx] || '') : (row[3] || '')).replace(/^"|"$/g, '').trim(), 
+                    isPast: eventDateObj ? (new Date(eventDateObj).setHours(0,0,0,0) < today) : false, 
+                    rawDateObj: eventDateObj 
+                });
             }
-            
-            if (events.length === 0) throw new Error('empty');
-            
-            // 为倒计时准备：挑选出未来的比赛，并按时间递增排序，寻找"最近的一场"
-            updateCountdown(events);
-
-            // 列表渲染：按时间递减排序
-            events.sort((a,b) => {
-                const aTime = a.rawDateObj ? a.rawDateObj.getTime() : 0;
-                const bTime = b.rawDateObj ? b.rawDateObj.getTime() : 0;
-                return bTime - aTime;
-            });
-            renderEvents(events);
-            
+            updateCountdown(globalEventsCache);
+            globalEventsCache.sort((a,b) => (b.rawDateObj ? b.rawDateObj.getTime() : 0) - (a.rawDateObj ? a.rawDateObj.getTime() : 0));
+            renderEvents(globalEventsCache);
         } catch (err) {
-            // 解析失败时的Fallback数据
-            const fallback = [
-                { name: 'KCVA VS WLSA', date: 'JUN 13, 2026', location: 'Shanghai Arena', url: '', isPast: false, rawDateObj: new Date('2026-06-13') },
-                { name: 'AUTUMN CHAMPIONSHIP', date: 'OCT 15, 2026', location: 'KCIS Gym', url: 'https://v.wjx.cn/', isPast: false, rawDateObj: new Date('2026-10-15') },
-                { name: 'SUMMER CLASSIC', date: 'AUG 10, 2023', location: 'Suzhou Center', url: '', isPast: true, rawDateObj: new Date('2023-08-10') }
+            console.warn("Using fallback events data.");
+        }
+    }
+
+    async function loadStandings() {
+        let standings = [];
+        try {
+            const response = await fetch('assets/data/season.csv');
+            const text = await response.text();
+            const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+            if (lines.length < 2) throw new Error('no data');
+
+            const headers = parseCSVLine(lines[0]);
+            let tIdx = -1, pIdx = -1, wIdx = -1, ptsIdx = -1;
+            headers.forEach((h, idx) => {
+                // 清除隐藏的 BOM 字符，防止解析失败
+                const lower = h.toLowerCase().replace(/^\ufeff/g, '').trim();
+                if (lower.includes('team')) tIdx = idx;
+                if (lower.includes('played')) pIdx = idx;
+                if (lower.includes('won')) wIdx = idx;
+                if (lower.includes('pts') || lower.includes('points')) ptsIdx = idx;
+            });
+
+            for (let i = 1; i < lines.length; i++) {
+                const row = parseCSVLine(lines[i]); if(row.length < 2) continue;
+                standings.push({
+                    team: row[tIdx !== -1 ? tIdx : 0] || 'Unknown',
+                    played: parseInt(row[pIdx !== -1 ? pIdx : 1]) || 0,
+                    won: parseInt(row[wIdx !== -1 ? wIdx : 2]) || 0,
+                    pts: parseInt(row[ptsIdx !== -1 ? ptsIdx : 3]) || 0
+                });
+            }
+        } catch(e) {
+            console.warn("Standings CSV load failed. Showing hardcoded fallback to ensure visibility.");
+            // 确保双击本地HTML即使遇到CORS也能看到排版效果
+            standings = [
+                { team: "AAA", played: 7, won: 2, pts: 80 },
+                { team: "BB", played: 5, won: 4, pts: 77 },
+                { team: "CCCC", played: 6, won: 5, pts: 81 }
             ];
-            updateCountdown(fallback);
-            renderEvents(fallback);
+        }
+
+        // 排序：积分高优先，胜场多优先
+        standings.sort((a, b) => b.pts - a.pts || b.won - a.won);
+
+        // 渲染表格
+        const tbody = document.getElementById('standingsBody');
+        tbody.innerHTML = '';
+        standings.forEach((team, idx) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${idx + 1}</td><td><strong>${escapeHtml(team.team)}</strong></td><td>${team.played}</td><td>${team.won}</td><td><strong>${team.pts}</strong></td>`;
+            tbody.appendChild(tr);
+        });
+
+        // 同步第一名到 "OUR TOP #1 TEAM"
+        if(standings.length > 0) {
+            const topTeamNameEl = document.getElementById('top-team-name');
+            if(topTeamNameEl) {
+                topTeamNameEl.innerText = standings[0].team;
+                topTeamNameEl.removeAttribute('data-i18n'); // 队名不作翻译
+            }
         }
     }
-    
-    function parseCSVLine(line) {
-        const result = [];
-        let inQuote = false, current = '';
-        for (let ch of line) {
-            if (ch === '"') inQuote = !inQuote;
-            else if (ch === ',' && !inQuote) { result.push(current.trim()); current = ''; }
-            else current += ch;
-        }
-        result.push(current.trim());
-        return result;
-    }
-    
-    // 更新倒计时的逻辑
+
     function updateCountdown(allEvents) {
         const now = new Date();
-        // 过滤出所有未来的比赛（拥有合法日期且未结束）
         const futureEvents = allEvents.filter(ev => !ev.isPast && ev.rawDateObj);
-        
+        const titleEl = document.getElementById('next-match-title');
+
         if (futureEvents.length > 0) {
-            // 升序排列，找最近的一场
             futureEvents.sort((a, b) => a.rawDateObj.getTime() - b.rawDateObj.getTime());
             const nextMatch = futureEvents[0];
             
+            if(titleEl) {
+                titleEl.innerText = nextMatch.name;
+                titleEl.removeAttribute('data-i18n');
+            }
+
             const diff = nextMatch.rawDateObj.getTime() - now.getTime();
-            
-            // 近似计算（按 30 天算 1 个月）
             const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const months = Math.floor(totalDays / 30);
-            const remainDays = totalDays % 30;
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            
-            document.getElementById('d-month').innerText = months.toString().padStart(2, '0');
-            document.getElementById('d-day').innerText = remainDays.toString().padStart(2, '0');
-            document.getElementById('d-hour').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('d-month').innerText = Math.floor(totalDays / 30).toString().padStart(2, '0');
+            document.getElementById('d-day').innerText = (totalDays % 30).toString().padStart(2, '0');
+            document.getElementById('d-hour').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
         } else {
-            // 如果没有未来比赛
             document.getElementById('d-month').innerText = '00';
             document.getElementById('d-day').innerText = '00';
             document.getElementById('d-hour').innerText = '00';
@@ -822,106 +569,79 @@
 
     function renderEvents(events) {
         const container = document.getElementById('eventsContainer');
-        if (!container) return;
+        if (!container || events.length === 0) return;
         container.innerHTML = '';
+        
+        const textSignUp = currentLang === 'zh' ? (translations['match_btn_signup'] || '报名') : 'SIGN UP';
+        const textEnded = currentLang === 'zh' ? (translations['match_btn_ended'] || '比赛结束') : 'MATCH ENDED';
+        const textTba = currentLang === 'zh' ? (translations['match_btn_tba'] || '待定') : 'TBA';
+
         events.forEach((ev, index) => {
-            const isPast = ev.isPast;
-            const btnText = isPast ? 'MATCH ENDED' : (ev.url ? 'SIGN UP' : 'TBA');
-            const rowClass = isPast ? 'match-row past-match fade-in-up' : 'match-row fade-in-up';
-            const btnClass = "btn btn-outline"; 
-            
+            const btnText = ev.isPast ? textEnded : (ev.url ? textSignUp : textTba);
+            const rowClass = ev.isPast ? 'match-row past-match fade-in-up' : 'match-row fade-in-up';
             const html = `
                 <div class="${rowClass}" style="transition-delay: ${index * 0.1}s">
-                    <div class="match-date-loc">
-                        <span>${escapeHtml(ev.date)}</span>
-                        <span class="loc">${escapeHtml(ev.location) || 'TBA'}</span>
-                    </div>
+                    <div class="match-date-loc"><span>${escapeHtml(ev.date)}</span><span class="loc">${escapeHtml(ev.location) || 'TBA'}</span></div>
                     <div class="match-teams">${escapeHtml(ev.name)}</div>
                     <div class="match-action">
-                        <a href="${!isPast && ev.url ? ev.url : '#'}" class="${btnClass}" ${!isPast && ev.url ? 'target="_blank"' : ''} ${isPast || !ev.url ? 'style="opacity:0.5; cursor:default;" onclick="event.preventDefault()"' : ''}>
-                            ${btnText}
-                        </a>
+                        <a href="${!ev.isPast && ev.url ? ev.url : '#'}" class="btn btn-outline" ${!ev.isPast && ev.url ? 'target="_blank"' : ''} ${ev.isPast || !ev.url ? 'style="opacity:0.5; cursor:default;" onclick="event.preventDefault()"' : ''}>${btnText}</a>
                     </div>
-                </div>
-            `;
+                </div>`;
             container.insertAdjacentHTML('beforeend', html);
         });
         observeElements();
     }
-    function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+    function escapeHtml(str) { return str ? str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])) : ''; }
 
     // ------------------------------------
-    // 2. 合作伙伴滚动加载
+    // 2. UI Features
     // ------------------------------------
-    const partnerLogos = [
-        { src: 'assets/kcisLogo.jpg', name: 'KCIS' },
-        { src: 'assets/ksvgLogo.png', name: 'KSVG' },
-        { src: 'assets/Handsome.png', name: 'Handsome' },
-        { src: 'assets/JF_Corp.png', name: 'JF' },
-        { src: 'assets/KCVA_3.png', name: 'KCVA' },
-        { src: 'assets/aprjsa.png', name: 'Aprjsa' },
-        { src: 'assets/boya.png', name: 'Boya' }
-    ];
+    function initHeroSlider() {
+        const slides = document.querySelectorAll('.hero-slider .slide');
+        if (slides.length <= 1) return; let currentSlide = 0;
+        setInterval(() => { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }, 5000); 
+    }
+
     function initSponsorsCarousel() {
-        const track = document.getElementById('sponsorsTrack');
-        if (!track) return;
-        let html = '';
-        [...partnerLogos, ...partnerLogos, ...partnerLogos].forEach(logo => {
-            html += `<img src="${logo.src}" alt="${logo.name}" class="sponsor-logo" onerror="this.style.display='none'">`;
-        });
+        const track = document.getElementById('sponsorsTrack'); if (!track) return;
+        const logos = [ { src: 'assets/sponsor/kcisLogo.jpg', name: 'KCIS' }, { src: 'assets/sponsor/ksvgLogo.png', name: 'KSVG' }, { src: 'assets/sponsor/Handsome.png', name: 'Handsome' }, { src: 'assets/sponsor/JF_Corp.png', name: 'JF' }, { src: 'assets/sponsor/KCVA_3.png', name: 'KCVA' }, { src: 'assets/sponsor/aprjsa.png', name: 'Aprjsa' }, { src: 'assets/sponsor/boya.png', name: 'Boya' } ];
+        let html = ''; [...logos, ...logos, ...logos].forEach(l => { html += `<img src="${l.src}" alt="${l.name}" class="sponsor-logo" loading="lazy" onerror="this.style.display='none'">`; });
         track.innerHTML = html;
     }
 
-    // ------------------------------------
-    // 3. 滚动浮现动画
-    // ------------------------------------
     function observeElements() {
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        
         document.querySelectorAll('.fade-in-up:not(.visible)').forEach(el => observer.observe(el));
     }
 
-    // ------------------------------------
-    // 4. Header 滚动隐藏/显示逻辑
-    // ------------------------------------
-    let lastScrollTop = 0;
-    const header = document.getElementById('header');
+    // Scroll Logic
+    let lastScrollTop = 0; const header = document.getElementById('header'), backToTopBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > 100) {
-            if (scrollTop > lastScrollTop) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-        }
-        lastScrollTop = scrollTop;
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > 10) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+        if (st > 100) { if (st > lastScrollTop) header.style.transform = 'translateY(-100%)'; else header.style.transform = 'translateY(0)'; }
+        if (st > 400) backToTopBtn.classList.add('visible'); else backToTopBtn.classList.remove('visible');
+        lastScrollTop = st;
     });
+    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // ------------------------------------
-    // 5. 其他交互 (模态窗、链接)
-    // ------------------------------------
-    const wechatBtn = document.getElementById('wechatVideoBtn');
-    const modal = document.getElementById('qrcodeModal');
-    const closeBtn = document.getElementById('closeModalBtn');
-    
-    if (wechatBtn) wechatBtn.addEventListener('click', (e) => { e.preventDefault(); modal.style.display = 'flex'; });
-    if (closeBtn) closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
-    window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
-
+    // Modals & Misc
+    document.getElementById('wechatVideoBtn')?.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('qrcodeModal').style.display = 'flex'; });
+    document.getElementById('closeModalBtn')?.addEventListener('click', () => document.getElementById('qrcodeModal').style.display = 'none');
+    window.addEventListener('click', (e) => { if (e.target === document.getElementById('qrcodeModal')) document.getElementById('qrcodeModal').style.display = 'none'; });
     document.getElementById('sponsorChannelBtn')?.addEventListener('click', () => window.open('https://v.wjx.cn/vm/PF6YwiM.aspx#', '_blank'));
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
 
-    // 初始化执行
-    loadEvents();
+    // ------------------------------------
+    // Execute
+    // ------------------------------------
+    initLang();
+    initHeroSlider();
     initSponsorsCarousel();
-    observeElements();
+    loadEvents();
+    loadStandings();
 </script>
 </body>
 </html>
