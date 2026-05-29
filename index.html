@@ -215,7 +215,7 @@
             <li><a href="#sponsors" data-i18n="nav_sponsors">Sponsors</a></li>
         </ul>
         <div class="nav-actions">
-            <!-- 语言切换按钮 (默认显示中文选项，因为当前页面是英文) -->
+            <!-- Language Switcher -->
             <a id="langSwitch" class="lang-switch" aria-label="Switch Language">
                 <i class="fas fa-globe"></i> <span id="langText">中文</span>
             </a>
@@ -440,6 +440,7 @@
     async function loadEvents() {
         try {
             const response = await fetch('assets/data/events.csv');
+            if(!response.ok) throw new Error("HTTP error");
             const text = await response.text();
             const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
             if (lines.length < 2) throw new Error('no data');
@@ -477,7 +478,7 @@
             globalEventsCache.sort((a,b) => (b.rawDateObj ? b.rawDateObj.getTime() : 0) - (a.rawDateObj ? a.rawDateObj.getTime() : 0));
             renderEvents(globalEventsCache);
         } catch (err) {
-            console.warn("Using fallback events data.");
+            console.warn("Using empty events layout. Error:", err.message);
         }
     }
 
@@ -485,6 +486,7 @@
         let standings = [];
         try {
             const response = await fetch('assets/data/season.csv');
+            if(!response.ok) throw new Error("HTTP Error");
             const text = await response.text();
             const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
             if (lines.length < 2) throw new Error('no data');
@@ -492,7 +494,6 @@
             const headers = parseCSVLine(lines[0]);
             let tIdx = -1, pIdx = -1, wIdx = -1, ptsIdx = -1;
             headers.forEach((h, idx) => {
-                // 清除隐藏的 BOM 字符，防止解析失败
                 const lower = h.toLowerCase().replace(/^\ufeff/g, '').trim();
                 if (lower.includes('team')) tIdx = idx;
                 if (lower.includes('played')) pIdx = idx;
@@ -510,33 +511,36 @@
                 });
             }
         } catch(e) {
-            console.warn("Standings CSV load failed. Showing hardcoded fallback to ensure visibility.");
-            // 确保双击本地HTML即使遇到CORS也能看到排版效果
-            standings = [
-                { team: "AAA", played: 7, won: 2, pts: 80 },
-                { team: "BB", played: 5, won: 4, pts: 77 },
-                { team: "CCCC", played: 6, won: 5, pts: 81 }
-            ];
+            console.warn("Standings CSV empty or load failed. Showing STAY TUNED.");
+            standings = []; // Ensure empty
         }
 
-        // 排序：积分高优先，胜场多优先
-        standings.sort((a, b) => b.pts - a.pts || b.won - a.won);
-
-        // 渲染表格
         const tbody = document.getElementById('standingsBody');
-        tbody.innerHTML = '';
-        standings.forEach((team, idx) => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${idx + 1}</td><td><strong>${escapeHtml(team.team)}</strong></td><td>${team.played}</td><td>${team.won}</td><td><strong>${team.pts}</strong></td>`;
-            tbody.appendChild(tr);
-        });
+        const topTeamNameEl = document.getElementById('top-team-name');
 
-        // 同步第一名到 "OUR TOP #1 TEAM"
         if(standings.length > 0) {
-            const topTeamNameEl = document.getElementById('top-team-name');
+            standings.sort((a, b) => b.pts - a.pts || b.won - a.won);
+
+            tbody.innerHTML = '';
+            standings.forEach((team, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${idx + 1}</td><td><strong>${escapeHtml(team.team)}</strong></td><td>${team.played}</td><td>${team.won}</td><td><strong>${team.pts}</strong></td>`;
+                tbody.appendChild(tr);
+            });
+
             if(topTeamNameEl) {
                 topTeamNameEl.innerText = standings[0].team;
-                topTeamNameEl.removeAttribute('data-i18n'); // 队名不作翻译
+                topTeamNameEl.removeAttribute('data-i18n'); 
+            }
+        } else {
+            // Fill placeholders with data-i18n attributes so language toggle works
+            const tbodyPlaceholder = currentLang === 'zh' ? (translations['st_placeholder'] || '敬请期待...') : 'STAY TUNED...';
+            tbody.innerHTML = `<tr><td colspan="5" class="placeholder-text" data-i18n="st_placeholder">${tbodyPlaceholder}</td></tr>`;
+            
+            if(topTeamNameEl) {
+                const topPlaceholder = currentLang === 'zh' ? (translations['top_name_placeholder'] || '敬请期待') : 'STAY TUNED';
+                topTeamNameEl.innerText = topPlaceholder;
+                topTeamNameEl.setAttribute('data-i18n', 'top_name_placeholder');
             }
         }
     }
@@ -561,6 +565,11 @@
             document.getElementById('d-day').innerText = (totalDays % 30).toString().padStart(2, '0');
             document.getElementById('d-hour').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
         } else {
+            if(titleEl) {
+                const emptyTitleText = currentLang === 'zh' ? (translations['top_name_placeholder'] || '敬请期待') : 'STAY TUNED';
+                titleEl.innerText = emptyTitleText;
+                titleEl.setAttribute('data-i18n', 'top_name_placeholder');
+            }
             document.getElementById('d-month').innerText = '00';
             document.getElementById('d-day').innerText = '00';
             document.getElementById('d-hour').innerText = '00';
@@ -569,9 +578,13 @@
 
     function renderEvents(events) {
         const container = document.getElementById('eventsContainer');
-        if (!container || events.length === 0) return;
-        container.innerHTML = '';
+        if (!container || events.length === 0) {
+            const emptyEventText = currentLang === 'zh' ? (translations['top_name_placeholder'] || '敬请期待') : 'STAY TUNED';
+            container.innerHTML = `<div class="match-row fade-in-up"><div class="match-teams" data-i18n="top_name_placeholder">${emptyEventText}</div></div>`;
+            return;
+        }
         
+        container.innerHTML = '';
         const textSignUp = currentLang === 'zh' ? (translations['match_btn_signup'] || '报名') : 'SIGN UP';
         const textEnded = currentLang === 'zh' ? (translations['match_btn_ended'] || '比赛结束') : 'MATCH ENDED';
         const textTba = currentLang === 'zh' ? (translations['match_btn_tba'] || '待定') : 'TBA';
