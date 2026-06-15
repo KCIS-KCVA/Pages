@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* 完整复制主页样式，并添加 staff 卡片样式 */
         :root {
             --kc-bg-dark: #111111;
             --kc-bg-light: #FFFFFF;
@@ -46,24 +45,14 @@
             overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--kc-bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--kc-accent);
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--kc-bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--kc-accent); }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
-        }
-
-        .stripe-pattern-dark {
-            background: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px);
         }
 
         .btn {
@@ -139,43 +128,13 @@
         }
         .lang-switch:hover { color: var(--kc-accent); }
 
-        /* 移动端菜单 */
+        /* Mobile Menu */
         .mobile-menu-toggle { display: none; }
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-        }
+        .hamburger { display: flex; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; background: transparent; border: none; cursor: pointer; padding: 0; }
         .hamburger span { width: 100%; height: 2px; background: #111; transition: all 0.2s; }
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.96);
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0.3s, opacity 0.3s;
-        }
+        .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); backdrop-filter: blur(10px); z-index: 10000; visibility: hidden; opacity: 0; transition: visibility 0.3s, opacity 0.3s; }
         .mobile-menu-overlay.open { visibility: visible; opacity: 1; }
-        .mobile-menu-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 24px 24px 40px;
-            color: white;
-            overflow-y: auto;
-        }
+        .mobile-menu-container { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 24px 24px 40px; color: white; overflow-y: auto; }
         .mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 30px; }
         .close-menu-btn { background: none; border: none; font-size: 2.2rem; color: white; cursor: pointer; line-height: 1; }
         .mobile-nav-links { list-style: none; padding: 0; margin: 0; flex: 1; }
@@ -183,30 +142,8 @@
         .mobile-nav-links a { color: white; text-decoration: none; font-family: var(--font-heading); font-size: 2rem; font-weight: 600; transition: color 0.2s; }
         .mobile-nav-links a:hover { color: var(--kc-accent); }
         .mobile-lang-item { margin: 30px 0 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); }
-        .mobile-lang-switch {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 40px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            color: white;
-        }
-        .mobile-sponsor-btn {
-            background: var(--kc-accent);
-            color: #111;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            font-weight: 700;
-        }
+        .mobile-lang-switch { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 40px; padding: 10px 20px; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: white; }
+        .mobile-sponsor-btn { background: var(--kc-accent); color: #111; padding: 12px 28px; border-radius: 40px; font-family: var(--font-heading); font-size: 1.2rem; display: inline-block; margin-top: 10px; text-decoration: none; font-weight: 700; }
 
         @media (max-width: 992px) {
             .nav-links { display: none; }
@@ -216,57 +153,67 @@
             .container { padding: 0 20px; }
         }
 
-        /* Staff 专用样式 */
+        /* 瞬间加载动画 (取代滚动的延迟感) */
+        @keyframes popIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Staff 优化样式 */
         .staff-section {
             padding: 140px 0 80px;
             background: var(--kc-bg-light);
+            animation: popIn 0.6s ease-out; /* 头部直接加载 */
         }
-        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
         .section-title { font-family: var(--font-heading); font-size: 4.5rem; color: #111; text-transform: uppercase; line-height: 1; }
         .section-subtitle { font-size: 1rem; color: var(--kc-text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; color: var(--kc-accent); }
 
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 50px;
+            /* 缩小了卡片尺寸，原先是 320px */
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
             margin-top: 40px;
         }
         .staff-card {
             background: #FFF;
-            border-radius: 28px;
+            border-radius: 20px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
             border: 1px solid #EFF3F9;
         }
         .staff-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -10px rgba(0,0,0,0.1);
             border-color: var(--kc-accent);
         }
         .staff-photo {
             width: 100%;
-            aspect-ratio: 3 / 4;
+            /* 改为正方形，大幅减少占用的竖向空间，同时保持居上以看清人脸 */
+            aspect-ratio: 1 / 1;
             object-fit: cover;
+            object-position: center top; 
             display: block;
             background: #F0F0F0;
         }
         .staff-info {
-            padding: 24px 20px 28px;
+            padding: 20px 18px 24px;
             text-align: center;
         }
         .staff-name {
             font-family: var(--font-heading);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--kc-text-main);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .staff-role {
             font-family: var(--font-heading);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--kc-accent);
             letter-spacing: 1px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
         .staff-bio {
             font-size: 0.9rem;
@@ -274,7 +221,105 @@
             line-height: 1.5;
         }
 
-        /* Footer 完整复制主页 */
+        /* 移动端横向排版优化 */
+        @media (max-width: 768px) {
+            .staff-section { padding: 110px 0 50px; }
+            .section-title { font-size: 3rem; }
+            .staff-grid { 
+                grid-template-columns: 1fr; /* 单列模式 */
+                gap: 20px; 
+            }
+            .staff-card {
+                display: flex; /* 改为左右横向排版 */
+                align-items: stretch;
+                border-radius: 16px;
+            }
+            .staff-photo {
+                width: 120px; /* 固定图片宽度 */
+                height: auto;
+                aspect-ratio: auto;
+                min-height: 150px;
+            }
+            .staff-info {
+                padding: 15px;
+                text-align: left; /* 左对齐 */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex: 1;
+            }
+            .staff-name { font-size: 1.4rem; margin-bottom: 4px; }
+            .staff-role { font-size: 1rem; margin-bottom: 8px; }
+            .staff-bio { 
+                font-size: 0.85rem; 
+                /* 移动端文本超出3行显示省略号 */
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+
+        /* Social Section (与Homepage保持完全一致) */
+        .social-section {
+            background: #0A0A0A;
+            padding: 70px 0 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .social-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            color: var(--kc-accent);
+            margin-bottom: 20px;
+        }
+        .social-brand {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .social-brand a {
+            color: #FFF;
+            text-decoration: none;
+            border-bottom: 3px solid var(--kc-accent);
+            transition: color 0.2s;
+        }
+        .social-brand a:hover { color: var(--kc-accent); }
+        .social-desc {
+            color: #AAA;
+            font-size: 1rem;
+            max-width: 550px;
+            margin: 0 auto 25px;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: #DDD;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .social-links a:hover { color: var(--kc-accent); }
+        @media (max-width: 768px) {
+            .social-title { font-size: 1.8rem; }
+            .social-brand { font-size: 2.2rem; }
+        }
+
+        /* Footer */
         .footer {
             background: #050505;
             color: #FFF;
@@ -293,45 +338,13 @@
             padding-top: 30px;
             margin-top: 0;
         }
-        .footer-left {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            align-items: flex-start;
-        }
-        .service-credit {
-            font-size: 0.7rem;
-        }
-        .service-credit a {
-            color: var(--kc-accent);
-            text-decoration: none;
-        }
-        .social-icons a {
-            color: #FFF;
-            font-size: 1.2rem;
-            margin-left: 15px;
-            transition: 0.2s;
-        }
-        .social-icons a:hover {
-            color: var(--kc-accent);
-            transform: translateY(-2px);
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .footer-left { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+        .service-credit { font-size: 0.7rem; }
+        .service-credit a { color: var(--kc-accent); text-decoration: none; }
+        .social-icons a { color: #FFF; font-size: 1.2rem; margin-left: 15px; transition: 0.2s; }
+        .social-icons a:hover { color: var(--kc-accent); transform: translateY(-2px); }
 
         @media (max-width: 768px) {
-            .staff-section { padding: 120px 0 60px; }
-            .section-title { font-size: 3rem; }
-            .staff-grid { gap: 30px; }
-            .staff-name { font-size: 1.5rem; }
             .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
             .footer-left { align-items: center; }
         }
@@ -395,15 +408,30 @@
     <main>
         <section class="staff-section">
             <div class="container">
-                <div class="section-header fade-in-up">
+                <!-- 移除了 fade-in-up，页面打开瞬间即显示 -->
+                <div class="section-header">
                     <div class="section-subtitle" data-i18n="staff_subtitle">MEET THE TEAM</div>
                     <h1 class="section-title" data-i18n="staff_title">KCVA STAFF</h1>
                     <p style="color: #5C6F91; max-width: 600px; margin: 20px auto 0;" data-i18n="staff_desc">
                         The people behind the scenes — making every spike, save, and serve count.
                     </p>
                 </div>
-                <div class="staff-grid fade-in-up" id="staffGrid">
+                <div class="staff-grid" id="staffGrid">
                     <!-- 动态加载 staff 卡片 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 添加：与 Homepage 保持一致的社交媒体模块 -->
+        <section id="social" class="social-section">
+            <div class="social-container">
+                <div class="social-title" data-i18n="social_title">FOLLOW OUR SOCIAL MEDIA</div>
+                <div class="social-brand"><a href="https://kcva.com.cn" target="_blank" data-i18n="social_link">KCVA.COM.CN</a></div>
+                <div class="social-desc" data-i18n="social_desc">Follow the KCVA Social Media for More Updates About Our Tournaments</div>
+                <div class="social-links">
+                    <a href="https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu" target="_blank"><i class="fab fa-tiktok"></i> Douyin</a>
+                    <a href="#" id="wechatSocialBtn"><i class="fab fa-weixin"></i> WeChat</a>
+                    <a href="mailto:b1nzew44@gmail.com"><i class="fas fa-envelope"></i> Email</a>
                 </div>
             </div>
         </section>
@@ -413,10 +441,8 @@
         <div class="container">
             <div class="footer-bottom">
                 <div class="footer-left">
-                    <div class="copyright">© <span id="currentYear">2026</span> Kang Chiao Volleyball Association. All
-                        Rights Reserved.</div>
-                    <div class="service-credit">Internet Service and Photography provided by <a href="https://ksvg.com.cn"
-                            target="_blank">KSVG</a></div>
+                    <div class="copyright">© <span id="currentYear">2026</span> Kang Chiao Volleyball Association. All Rights Reserved.</div>
+                    <div class="service-credit">Internet Service and Photography provided by <a href="https://ksvg.com.cn" target="_blank">KSVG</a></div>
                 </div>
                 <div class="social-icons">
                     <a href="https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -428,6 +454,7 @@
     </footer>
 
     <button id="backToTop" class="back-to-top" style="position: fixed; bottom: 30px; right: 30px; background: var(--kc-accent); color: #111; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; z-index: 998; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;"><i class="fas fa-chevron-up"></i></button>
+    
     <div id="qrcodeModal" class="qrcode-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px);">
         <div class="qrcode-content" style="background: #FFF; padding: 40px; text-align: center; width: 90%; max-width: 360px; border-radius: 12px;">
             <img src="../assets/images/wechat_op_qr_code.jpg" alt="WeChat QR" onerror="this.src='https://placehold.co/300x300?text=WeChat+QR'">
@@ -449,6 +476,9 @@
             "staff_subtitle": "我们的团队",
             "staff_title": "KCVA 成员",
             "staff_desc": "幕后工作者 — 让每一次扣球、救球和发球都算数。",
+            "social_title": "关注社交媒体",
+            "social_link": "KCVA.COM.CN",
+            "social_desc": "关注 KCVA 社交媒体获取更多赛事动态",
             "qr_title": "扫码关注",
             "qr_close": "关闭"
         };
@@ -554,13 +584,14 @@
                 return;
             }
             let html = '';
-            staffData.forEach(member => {
+            staffData.forEach((member, index) => {
                 const name = currentLang === 'zh' ? member.name_zh : member.name_en;
                 const role = currentLang === 'zh' ? member.role_zh : member.role_en;
                 const bio = currentLang === 'zh' ? member.bio_zh : member.bio_en;
+                // 添加内联动画属性，实现瞬间顺次滑入，取代依赖滚动条的 IntersectionObserver
                 html += `
-                    <div class="staff-card">
-                        <img src="images/${member.photo}" alt="${name}" class="staff-photo" onerror="this.src='https://placehold.co/600x800?text=Photo'">
+                    <div class="staff-card" style="animation: popIn 0.5s ease backwards; animation-delay: ${index * 0.08}s;">
+                        <img src="images/${member.photo}" alt="${name}" class="staff-photo" onerror="this.src='https://placehold.co/600x600?text=Photo'">
                         <div class="staff-info">
                             <div class="staff-name">${escapeHtml(name)}</div>
                             <div class="staff-role">${escapeHtml(role)}</div>
@@ -570,7 +601,6 @@
                 `;
             });
             container.innerHTML = html;
-            observeFadeIn();
         }
 
         function escapeHtml(str) { return str ? str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])) : ''; }
@@ -587,28 +617,24 @@
         });
         backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // 微信二维码弹窗
-        const wechatBtn = document.getElementById('wechatVideoBtn');
+        // 微信二维码弹窗 (同时绑定社交模块内的WeChat按钮和底部Footer的WeChat按钮)
+        const wechatVideoBtn = document.getElementById('wechatVideoBtn');
+        const wechatSocialBtn = document.getElementById('wechatSocialBtn');
         const qrModal = document.getElementById('qrcodeModal');
         const closeModalBtn = document.getElementById('closeModalBtn');
-        if (wechatBtn && qrModal) {
-            wechatBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                qrModal.style.display = 'flex';
-            });
-            if (closeModalBtn) closeModalBtn.addEventListener('click', () => qrModal.style.display = 'none');
-            window.addEventListener('click', (e) => { if (e.target === qrModal) qrModal.style.display = 'none'; });
+        
+        function openQrModal(e) {
+            e.preventDefault();
+            qrModal.style.display = 'flex';
         }
+
+        if (wechatVideoBtn) wechatVideoBtn.addEventListener('click', openQrModal);
+        if (wechatSocialBtn) wechatSocialBtn.addEventListener('click', openQrModal);
+        if (closeModalBtn) closeModalBtn.addEventListener('click', () => qrModal.style.display = 'none');
+        window.addEventListener('click', (e) => { if (e.target === qrModal) qrModal.style.display = 'none'; });
 
         document.getElementById('sponsorChannelBtn')?.addEventListener('click', () => window.open('https://v.wjx.cn/vm/PF6YwiM.aspx#', '_blank'));
         document.getElementById('currentYear').innerText = new Date().getFullYear();
-
-        function observeFadeIn() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.fade-in-up:not(.visible)').forEach(el => observer.observe(el));
-        }
 
         initLang();
         loadStaffData();
