@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>KCVA STAFF | Kang Chiao Volleyball Association</title>
+    <title>KCVA | 组委会成员</title>
     <link rel="icon" type="image/png" href="../assets/logo/KCVA_2.png">
     <link rel="apple-touch-icon" href="../assets/logo/KCVA_2.png">
 
@@ -153,114 +153,350 @@
             .container { padding: 0 20px; }
         }
 
-        /* 瞬间加载动画 (取代滚动的延迟感) */
+        /* 加载动画 */
         @keyframes popIn {
-            0% { opacity: 0; transform: translateY(20px); }
+            0% { opacity: 0; transform: translateY(15px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Staff 优化样式 */
+        /* Staff Section */
         .staff-section {
             padding: 140px 0 80px;
             background: var(--kc-bg-light);
-            animation: popIn 0.6s ease-out; /* 头部直接加载 */
+            animation: popIn 0.6s ease-out;
         }
-        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header { text-align: center; margin-bottom: 35px; }
         .section-title { font-family: var(--font-heading); font-size: 4.5rem; color: #111; text-transform: uppercase; line-height: 1; }
         .section-subtitle { font-size: 1rem; color: var(--kc-text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; color: var(--kc-accent); }
 
+        /* 极简搜索框 */
+        .search-area {
+            max-width: 480px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+        .search-box {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            border: 2px solid #EAEAEA;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+        .search-box:focus {
+            border-color: var(--kc-accent);
+            box-shadow: 0 6px 15px rgba(255, 184, 0, 0.15);
+        }
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.1rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        .search-box:focus + .search-icon {
+            color: var(--kc-accent);
+        }
+
+        /* 成员卡片网格 */
         .staff-grid {
             display: grid;
-            /* 缩小了卡片尺寸，原先是 320px */
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 20px;
         }
         .staff-card {
             background: #FFF;
             border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
             border: 1px solid #EFF3F9;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
         .staff-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -10px rgba(0,0,0,0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
             border-color: var(--kc-accent);
+        }
+        .staff-photo-container {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #F8F9FA;
+            border-bottom: 1px solid #EFF3F9;
+            position: relative;
         }
         .staff-photo {
             width: 100%;
-            /* 改为正方形，大幅减少占用的竖向空间，同时保持居上以看清人脸 */
-            aspect-ratio: 1 / 1;
+            height: 100%;
             object-fit: cover;
             object-position: center top; 
             display: block;
-            background: #F0F0F0;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
+        .staff-card:hover .staff-photo {
+            transform: scale(1.05);
+        }
+        
+        /* 悬停时的遮罩查看提示 */
+        .staff-photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 17, 17, 0.4);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            color: #FFF;
+            font-size: 1.8rem;
+        }
+        .staff-card:hover .staff-photo-overlay {
+            opacity: 1;
+        }
+
         .staff-info {
-            padding: 20px 18px 24px;
+            padding: 24px 20px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
         .staff-name {
             font-family: var(--font-heading);
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--kc-text-main);
             margin-bottom: 6px;
+            letter-spacing: 0.5px;
         }
-        .staff-role {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            color: var(--kc-accent);
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+        .staff-role-badge {
+            display: inline-block;
+            background: rgba(255, 184, 0, 0.08);
+            color: #C18B00;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
         }
         .staff-bio {
             font-size: 0.9rem;
-            color: #4F6F8F;
-            line-height: 1.5;
+            color: #5C6F91;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* 卡片预览限制3行 */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+        .staff-action-link {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--kc-accent);
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: color 0.2s, transform 0.2s;
+            margin-top: auto;
+        }
+        .staff-card:hover .staff-action-link {
+            color: #111;
+            transform: translateX(3px);
         }
 
-        /* 移动端横向排版优化 */
+        /* 移动端横向排版 */
         @media (max-width: 768px) {
             .staff-section { padding: 110px 0 50px; }
             .section-title { font-size: 3rem; }
+            .search-area { margin-bottom: 30px; padding: 0 10px; }
             .staff-grid { 
-                grid-template-columns: 1fr; /* 单列模式 */
+                grid-template-columns: 1fr;
                 gap: 20px; 
             }
             .staff-card {
-                display: flex; /* 改为左右横向排版 */
+                display: flex;
+                flex-direction: row;
                 align-items: stretch;
                 border-radius: 16px;
             }
-            .staff-photo {
-                width: 120px; /* 固定图片宽度 */
+            .staff-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .staff-photo-container {
+                width: 130px;
+                min-width: 130px;
                 height: auto;
                 aspect-ratio: auto;
-                min-height: 150px;
+                border-bottom: none;
+                border-right: 1px solid #EFF3F9;
+            }
+            .staff-card:hover .staff-photo {
+                transform: none;
+            }
+            .staff-photo-overlay {
+                display: none; /* 移动端屏蔽遮罩 */
             }
             .staff-info {
-                padding: 15px;
-                text-align: left; /* 左对齐 */
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                flex: 1;
+                padding: 18px 15px;
+                text-align: left;
+                align-items: flex-start;
             }
-            .staff-name { font-size: 1.4rem; margin-bottom: 4px; }
-            .staff-role { font-size: 1rem; margin-bottom: 8px; }
+            .staff-name { font-size: 1.5rem; margin-bottom: 4px; }
+            .staff-role-badge { 
+                align-self: flex-start;
+                font-size: 0.75rem; 
+                padding: 3px 10px;
+                margin-bottom: 10px; 
+            }
             .staff-bio { 
                 font-size: 0.85rem; 
-                /* 移动端文本超出3行显示省略号 */
-                display: -webkit-box;
-                -webkit-line-clamp: 4;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                -webkit-line-clamp: 3;
+            }
+            .staff-action-link {
+                align-self: flex-start;
+                margin-top: 4px;
+                font-size: 1rem;
             }
         }
 
-        /* Social Section (与Homepage保持完全一致) */
+        /* Modern 详情模态弹窗 */
+        .bio-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .bio-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(8px);
+            transition: opacity 0.3s ease;
+        }
+        .bio-modal-content {
+            position: relative;
+            background: #FFF;
+            width: 100%;
+            max-width: 780px;
+            border-radius: 24px;
+            overflow: hidden;
+            z-index: 10002;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+        }
+        .bio-modal.open .bio-modal-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .bio-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(17, 17, 17, 0.05);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            transition: background 0.2s, transform 0.2s, color 0.2s;
+            z-index: 10;
+        }
+        .bio-modal-close:hover {
+            background: var(--kc-accent);
+            color: #111;
+            transform: rotate(90deg);
+        }
+        .bio-modal-body {
+            display: flex;
+            flex-direction: row;
+        }
+        .bio-modal-left {
+            width: 38%;
+            background: #F8F9FA;
+            border-right: 1px solid #EFF3F9;
+        }
+        .bio-modal-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            aspect-ratio: 1 / 1.1;
+        }
+        .bio-modal-right {
+            width: 62%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bio-modal-name {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--kc-text-main);
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+        .bio-modal-bio {
+            color: #4A5568;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-top: 15px;
+            overflow-y: auto;
+            max-height: 250px;
+            padding-right: 5px;
+        }
+        /* 自定义美化模态弹窗内滚动条 */
+        .bio-modal-bio::-webkit-scrollbar { width: 4px; }
+        .bio-modal-bio::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+
+        @media (max-width: 768px) {
+            .bio-modal { padding: 16px; }
+            .bio-modal-body { flex-direction: column; }
+            .bio-modal-left { width: 100%; border-right: none; border-bottom: 1px solid #EFF3F9; }
+            .bio-modal-photo { aspect-ratio: 1 / 1; max-height: 240px; }
+            .bio-modal-right { width: 100%; padding: 24px 20px; }
+            .bio-modal-name { font-size: 2rem; }
+            .bio-modal-bio { max-height: 200px; }
+        }
+
+        /* Social Section */
         .social-section {
             background: #0A0A0A;
             padding: 70px 0 50px;
@@ -348,6 +584,38 @@
             .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
             .footer-left { align-items: center; }
         }
+
+        /* 回到顶部 */
+        .back-to-top {
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+        .back-to-top.visible {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            transform: scale(1);
+        }
+        .back-to-top:hover {
+            background: #111 !important;
+            color: var(--kc-accent) !important;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* 微信二维码弹窗动效 */
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes cardPop {
+            from { transform: scale(0.9) translateY(20px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .qrcode-modal {
+            animation: modalFadeIn 0.3s ease forwards;
+        }
+        .qrcode-content {
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            animation: cardPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
     </style>
 </head>
 
@@ -408,7 +676,6 @@
     <main>
         <section class="staff-section">
             <div class="container">
-                <!-- 移除了 fade-in-up，页面打开瞬间即显示 -->
                 <div class="section-header">
                     <div class="section-subtitle" data-i18n="staff_subtitle">MEET THE TEAM</div>
                     <h1 class="section-title" data-i18n="staff_title">KCVA STAFF</h1>
@@ -416,13 +683,20 @@
                         The people behind the scenes — making every spike, save, and serve count.
                     </p>
                 </div>
+
+                <!-- 组委会成员检索区 -->
+                <div class="search-area">
+                    <input type="text" id="staffSearch" class="search-box" placeholder="Search staff..." data-placeholder-en="Search staff..." data-placeholder-zh="搜索成员姓名、职位...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+
                 <div class="staff-grid" id="staffGrid">
                     <!-- 动态加载 staff 卡片 -->
                 </div>
             </div>
         </section>
 
-        <!-- 添加：与 Homepage 保持一致的社交媒体模块 -->
+        <!-- 社交媒体模块 -->
         <section id="social" class="social-section">
             <div class="social-container">
                 <div class="social-title" data-i18n="social_title">FOLLOW OUR SOCIAL MEDIA</div>
@@ -453,12 +727,32 @@
         </div>
     </footer>
 
-    <button id="backToTop" class="back-to-top" style="position: fixed; bottom: 30px; right: 30px; background: var(--kc-accent); color: #111; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; z-index: 998; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;"><i class="fas fa-chevron-up"></i></button>
+    <!-- 新增：组委会成员详情模态弹窗 -->
+    <div id="bioModal" class="bio-modal">
+        <div class="bio-modal-overlay" id="bioModalOverlay"></div>
+        <div class="bio-modal-content">
+            <button class="bio-modal-close" id="closeBioModalBtn" aria-label="Close details">&times;</button>
+            <div class="bio-modal-body">
+                <div class="bio-modal-left">
+                    <img id="modalPhoto" src="" alt="Staff Photo" class="bio-modal-photo" onerror="this.src='https://placehold.co/600x600?text=Photo'">
+                </div>
+                <div class="bio-modal-right">
+                    <div>
+                        <span id="modalRole" class="staff-role-badge"></span>
+                    </div>
+                    <h2 id="modalName" class="bio-modal-name"></h2>
+                    <p id="modalBio" class="bio-modal-bio"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="backToTop" class="back-to-top" style="position: fixed; bottom: 30px; right: 30px; background: var(--kc-accent); color: #111; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; opacity: 0; pointer-events: none; z-index: 998; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; transform: scale(0.8);"><i class="fas fa-chevron-up"></i></button>
     
     <div id="qrcodeModal" class="qrcode-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px);">
-        <div class="qrcode-content" style="background: #FFF; padding: 40px; text-align: center; width: 90%; max-width: 360px; border-radius: 12px;">
-            <img src="../assets/images/wechat_op_qr_code.jpg" alt="WeChat QR" onerror="this.src='https://placehold.co/300x300?text=WeChat+QR'">
-            <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px; color: #111;" data-i18n="qr_title">SCAN TO FOLLOW</h3>
+        <div class="qrcode-content" style="background: #FFF; padding: 40px; text-align: center; width: 90%; max-width: 360px; border-radius: 20px;">
+            <img src="../assets/images/wechat_op_qr_code.jpg" alt="WeChat QR" onerror="this.src='https://placehold.co/300x300?text=WeChat+QR'" style="max-width: 100%; height: auto; border-radius: 8px;">
+            <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-top: 15px; margin-bottom: 20px; color: #111;" data-i18n="qr_title">SCAN TO FOLLOW</h3>
             <button class="btn btn-outline" style="color: #111; border-color: #111;" id="closeModalBtn" data-i18n="qr_close">CLOSE</button>
         </div>
     </div>
@@ -508,6 +802,17 @@
             localStorage.setItem('kcva_lang', currentLang);
             const switchBtnText = document.getElementById('langText');
             const mobileLangText = document.getElementById('mobileLangText');
+            const searchInput = document.getElementById('staffSearch');
+
+            // 更新搜索占位符
+            if (searchInput) {
+                if (currentLang === 'zh') {
+                    searchInput.placeholder = searchInput.getAttribute('data-placeholder-zh');
+                } else {
+                    searchInput.placeholder = searchInput.getAttribute('data-placeholder-en');
+                }
+            }
+
             if (currentLang === 'zh') {
                 if (switchBtnText) switchBtnText.innerText = "EN";
                 if (mobileLangText) mobileLangText.innerText = "EN";
@@ -584,23 +889,125 @@
                 return;
             }
             let html = '';
+            const actionText = currentLang === 'zh' ? '查看简介' : 'Read Bio';
+            
             staffData.forEach((member, index) => {
                 const name = currentLang === 'zh' ? member.name_zh : member.name_en;
                 const role = currentLang === 'zh' ? member.role_zh : member.role_en;
                 const bio = currentLang === 'zh' ? member.bio_zh : member.bio_en;
-                // 添加内联动画属性，实现瞬间顺次滑入，取代依赖滚动条的 IntersectionObserver
                 html += `
-                    <div class="staff-card" style="animation: popIn 0.5s ease backwards; animation-delay: ${index * 0.08}s;">
-                        <img src="images/${member.photo}" alt="${name}" class="staff-photo" onerror="this.src='https://placehold.co/600x600?text=Photo'">
+                    <div class="staff-card" data-index="${index}" style="animation: popIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) backwards; animation-delay: ${index * 0.05}s;">
+                        <div class="staff-photo-container">
+                            <img src="images/${member.photo}" alt="${name}" class="staff-photo" onerror="this.src='https://placehold.co/600x600?text=Photo'">
+                            <div class="staff-photo-overlay">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
                         <div class="staff-info">
                             <div class="staff-name">${escapeHtml(name)}</div>
-                            <div class="staff-role">${escapeHtml(role)}</div>
+                            <div>
+                                <span class="staff-role-badge">${escapeHtml(role)}</span>
+                            </div>
                             <div class="staff-bio">${escapeHtml(bio)}</div>
+                            <div class="staff-action-link">${actionText} <i class="fas fa-arrow-right"></i></div>
                         </div>
                     </div>
                 `;
             });
             container.innerHTML = html;
+            bindCardClicks();
+            bindSearchFilter();
+        }
+
+        // 新增：绑定成员详情弹窗触发
+        function bindCardClicks() {
+            const grid = document.getElementById('staffGrid');
+            if (!grid) return;
+
+            grid.addEventListener('click', (e) => {
+                const card = e.target.closest('.staff-card');
+                if (!card) return;
+
+                const index = card.getAttribute('data-index');
+                const member = staffData[index];
+                if (member) {
+                    openBioModal(member);
+                }
+            });
+        }
+
+        const bioModal = document.getElementById('bioModal');
+        const modalPhoto = document.getElementById('modalPhoto');
+        const modalRole = document.getElementById('modalRole');
+        const modalName = document.getElementById('modalName');
+        const modalBio = document.getElementById('modalBio');
+
+        function openBioModal(member) {
+            if (!bioModal) return;
+            const name = currentLang === 'zh' ? member.name_zh : member.name_en;
+            const role = currentLang === 'zh' ? member.role_zh : member.role_en;
+            const bio = currentLang === 'zh' ? member.bio_zh : member.bio_en;
+
+            modalPhoto.src = `images/${member.photo}`;
+            modalPhoto.alt = name;
+            modalRole.innerText = role;
+            modalName.innerText = name;
+            modalBio.innerHTML = escapeHtml(bio).replace(/\n/g, '<br>');
+
+            bioModal.style.display = 'flex';
+            // 稍作延迟触发 CSS 过渡
+            setTimeout(() => {
+                bioModal.classList.add('open');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // 锁定背景层滚动
+        }
+
+        function closeBioModal() {
+            if (!bioModal) return;
+            bioModal.classList.remove('open');
+            setTimeout(() => {
+                bioModal.style.display = 'none';
+            }, 300); // 配合 CSS transition 延迟
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('closeBioModalBtn')?.addEventListener('click', closeBioModal);
+        document.getElementById('bioModalOverlay')?.addEventListener('click', closeBioModal);
+
+        // 绑定键盘 ESC 键关闭详情弹窗
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBioModal();
+            }
+        });
+
+        // 搜索过滤
+        function bindSearchFilter() {
+            const searchInput = document.getElementById('staffSearch');
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                const cards = document.querySelectorAll('.staff-card');
+
+                cards.forEach((card, index) => {
+                    const member = staffData[index];
+                    if (!member) return;
+
+                    const matchNameEn = member.name_en.toLowerCase().includes(query);
+                    const matchNameZh = member.name_zh.toLowerCase().includes(query);
+                    const matchRoleEn = member.role_en.toLowerCase().includes(query);
+                    const matchRoleZh = member.role_zh.toLowerCase().includes(query);
+                    const matchBioEn = member.bio_en.toLowerCase().includes(query);
+                    const matchBioZh = member.bio_zh.toLowerCase().includes(query);
+
+                    if (matchNameEn || matchNameZh || matchRoleEn || matchRoleZh || matchBioEn || matchBioZh) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
         }
 
         function escapeHtml(str) { return str ? str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])) : ''; }
