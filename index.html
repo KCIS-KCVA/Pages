@@ -72,7 +72,9 @@
                UTILITY & BUTTONS (Hard-Core style)
                ============================================================ */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             font-family: var(--kc-font-heading);
             font-size: 1.1rem;
             letter-spacing: 2px;
@@ -85,6 +87,7 @@
             font-weight: 600;
             border-radius: var(--kc-border-radius);
             position: relative;
+            text-align: center;
         }
 
         .btn:active {
@@ -161,7 +164,7 @@
         }
 
         .nav-logo-img {
-            height: 48px;
+            height: 60px;
             width: auto;
             object-fit: contain;
             filter: brightness(0) invert(1);
@@ -197,7 +200,7 @@
             border-bottom-color: var(--kc-yellow);
         }
 
-        /* Home link always highlighted */
+        /* 仅 Home 链接高亮 */
         .nav-links a[href="#home"] {
             color: var(--kc-yellow);
             border-bottom-color: var(--kc-yellow);
@@ -264,7 +267,7 @@
             background: var(--kc-yellow);
         }
 
-        /* Mobile Full Menu */
+        /* Mobile Full Menu — optimized for small screens */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -277,6 +280,7 @@
             visibility: hidden;
             opacity: 0;
             transition: visibility 0.3s ease, opacity 0.3s ease;
+            overflow-y: auto;
         }
 
         .mobile-menu-overlay.open {
@@ -285,26 +289,36 @@
         }
 
         .mobile-menu-container {
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            min-height: 100%;
+            padding: 60px 20px 40px;
             text-align: center;
         }
 
         .mobile-menu-header {
             position: absolute;
-            top: 24px;
-            right: 24px;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 32px);
+        }
+
+        .mobile-menu-header .nav-logo-img {
+            height: 60px; /* 与导航栏 Logo 同大小 */
+            width: auto;
+            filter: brightness(0) invert(1);
         }
 
         .close-menu-btn {
             background: none;
             border: none;
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             color: var(--kc-white);
             cursor: pointer;
             line-height: 1;
@@ -318,22 +332,26 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            width: 100%;
+            max-width: 300px;
         }
 
         .mobile-nav-links li {
-            margin-bottom: 28px;
+            margin-bottom: 20px;
         }
 
         .mobile-nav-links a {
             color: var(--kc-white);
             text-decoration: none;
             font-family: var(--kc-font-heading);
-            font-size: 2.8rem;
+            font-size: 1.8rem;
             font-weight: 600;
             letter-spacing: 2px;
             transition: color 0.2s;
             text-transform: uppercase;
             border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            display: inline-block;
         }
 
         .mobile-nav-links a:hover {
@@ -341,21 +359,24 @@
             border-bottom-color: var(--kc-yellow);
         }
 
+        /* 移动端也仅 Home 高亮 */
         .mobile-nav-links a[href="#home"] {
             color: var(--kc-yellow);
             border-bottom-color: var(--kc-yellow);
         }
 
         .mobile-lang-item {
-            margin-top: 40px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.15);
+            width: 100%;
+            max-width: 300px;
         }
 
         .mobile-lang-switch {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 28px;
+            padding: 10px 24px;
             font-size: 1rem;
             display: inline-flex;
             align-items: center;
@@ -375,12 +396,12 @@
 
         .mobile-sponsor-btn {
             display: inline-block;
-            margin-top: 24px;
-            padding: 14px 40px;
+            margin-top: 20px;
+            padding: 12px 32px;
             background: var(--kc-yellow);
             color: var(--kc-black);
             font-family: var(--kc-font-heading);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-decoration: none;
             font-weight: 600;
             letter-spacing: 1px;
@@ -411,6 +432,10 @@
             }
             :root {
                 --kc-header-height: 70px;
+            }
+            /* 移动端 Logo 与桌面端一致大小 */
+            .nav-logo-img {
+                height: 60px;
             }
         }
 
@@ -458,7 +483,6 @@
             pointer-events: none;
         }
 
-        /* Right side: pure black with yellow punch */
         .hero-content {
             flex: 0 0 40%;
             background: var(--kc-black);
@@ -509,6 +533,34 @@
             flex-wrap: wrap;
         }
 
+        .hero-content .hero-btns .btn-schedule {
+            flex: 2;
+            min-width: 200px;
+            text-align: center;
+            font-size: 1.4rem;
+            padding: 18px 40px;
+            background: var(--kc-yellow);
+            color: var(--kc-black);
+            border-color: var(--kc-yellow);
+            box-shadow: 0 0 0 2px var(--kc-yellow), 0 8px 20px rgba(255, 184, 0, 0.3);
+            transition: all 0.15s ease;
+        }
+
+        .hero-content .hero-btns .btn-schedule:hover {
+            background: var(--kc-yellow-dark);
+            border-color: var(--kc-yellow-dark);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 0 4px var(--kc-yellow), 0 12px 30px rgba(255, 184, 0, 0.4);
+        }
+
+        .hero-content .hero-btns .btn-join {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
         /* Diagonal line accent on right side */
         .hero-content::before {
             content: '';
@@ -528,7 +580,6 @@
                 flex-direction: column;
                 min-height: auto;
             }
-            /* 移动端图片高度减小，弱化视觉 */
             .hero-image {
                 flex: 0 0 auto;
                 height: 30vh;
@@ -547,13 +598,17 @@
             .hero-content .hero-main-logo {
                 max-width: 180px;
             }
-            /* 渐变覆盖更暗，使图片更不显眼 */
             .hero-image .fade-overlay {
                 width: 100%;
-                background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%);
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.9) 100%);
             }
             .hero-content::before {
                 display: none;
+            }
+            .hero-content .hero-btns .btn-schedule {
+                font-size: 1.2rem;
+                padding: 16px 32px;
+                min-width: 160px;
             }
         }
 
@@ -572,7 +627,11 @@
                 width: 100%;
                 text-align: center;
             }
-            /* 移动端小屏进一步降低图片高度 */
+            .hero-content .hero-btns .btn-schedule {
+                font-size: 1.2rem;
+                padding: 16px 20px;
+                min-width: auto;
+            }
             .hero-image {
                 height: 20vh;
                 min-height: 120px;
@@ -626,7 +685,107 @@
         }
 
         /* ============================================================
-               COUNTDOWN
+               MATCHES (赛程) — 现在放在第一位
+               ============================================================ */
+        .matches-section {
+            background: var(--kc-black);
+            border-top: 4px solid var(--kc-yellow);
+            border-bottom: 4px solid var(--kc-yellow);
+        }
+
+        .matches-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 2px solid var(--kc-gray-border);
+        }
+
+        .match-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: center;
+            background: var(--kc-black);
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--kc-gray-border);
+            transition: all 0.2s ease;
+        }
+
+        .match-row:last-child {
+            border-bottom: none;
+        }
+
+        .match-row:hover {
+            background: var(--kc-gray);
+            border-left: 4px solid var(--kc-yellow);
+        }
+
+        .match-row.past-match {
+            opacity: 0.5;
+        }
+
+        .match-row .btn-outline-yellow {
+            padding: 6px 18px;
+            font-size: 0.75rem;
+        }
+
+        .match-date-loc {
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 1px;
+        }
+
+        .match-date-loc .loc {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            margin-top: 2px;
+            display: block;
+        }
+
+        .match-teams {
+            font-family: var(--kc-font-heading);
+            font-size: 2rem;
+            text-align: center;
+            line-height: 1.1;
+            color: var(--kc-white);
+            letter-spacing: 1px;
+        }
+
+        .match-action {
+            text-align: right;
+        }
+
+        .match-row .btn-outline-yellow {
+            font-size: 0.9rem;
+            padding: 8px 24px;
+            border-width: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .match-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                text-align: center;
+                padding: 20px;
+                border-left: 2px solid transparent;
+            }
+            .match-row:hover {
+                border-left: 2px solid var(--kc-yellow);
+            }
+            .match-action {
+                text-align: center;
+            }
+            .match-teams {
+                font-size: 1.4rem;
+            }
+            .matches-container {
+                border: 1px solid var(--kc-gray-border);
+            }
+        }
+
+        /* ============================================================
+               COUNTDOWN (倒计时) — 现在放在第二位
                ============================================================ */
         .countdown-section {
             background: var(--kc-black-light);
@@ -718,98 +877,6 @@
             .time-box {
                 min-width: 60px;
                 padding: 12px 14px;
-            }
-        }
-
-        /* ============================================================
-               MATCHES (Hard Rows)
-               ============================================================ */
-        .matches-section {
-            background: var(--kc-black);
-        }
-
-        .matches-container {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            border: 2px solid var(--kc-gray-border);
-        }
-
-        .match-row {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            align-items: center;
-            background: var(--kc-black);
-            padding: 20px 28px;
-            border-bottom: 1px solid var(--kc-gray-border);
-            transition: all 0.2s ease;
-        }
-
-        .match-row:last-child {
-            border-bottom: none;
-        }
-
-        .match-row:hover {
-            background: var(--kc-gray);
-            border-left: 4px solid var(--kc-yellow);
-        }
-
-        .match-row.past-match {
-            opacity: 0.5;
-        }
-
-        .match-row .btn-outline-yellow {
-            padding: 6px 18px;
-            font-size: 0.75rem;
-        }
-
-        .match-date-loc {
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.6);
-            letter-spacing: 1px;
-        }
-
-        .match-date-loc .loc {
-            font-size: 0.7rem;
-            opacity: 0.6;
-            margin-top: 2px;
-            display: block;
-        }
-
-        .match-teams {
-            font-family: var(--kc-font-heading);
-            font-size: 2rem;
-            text-align: center;
-            line-height: 1.1;
-            color: var(--kc-white);
-            letter-spacing: 1px;
-        }
-
-        .match-action {
-            text-align: right;
-        }
-
-        @media (max-width: 768px) {
-            .match-row {
-                grid-template-columns: 1fr;
-                gap: 10px;
-                text-align: center;
-                padding: 20px;
-                border-left: 2px solid transparent;
-            }
-            .match-row:hover {
-                border-left: 2px solid var(--kc-yellow);
-            }
-            .match-action {
-                text-align: center;
-            }
-            .match-teams {
-                font-size: 1.4rem;
-            }
-            .matches-container {
-                border: 1px solid var(--kc-gray-border);
             }
         }
 
@@ -1119,25 +1186,25 @@
             font-size: 2.8rem;
             letter-spacing: 3px;
             color: var(--kc-white);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             font-weight: 700;
         }
 
         .social-title .highlight {
-            color: var(--kc-yellow);
-            border-bottom: 4px solid var(--kc-yellow);
-            padding-bottom: 4px;
+            color: var(--kc-white);
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .social-brand {
             font-family: var(--kc-font-heading);
             font-size: 3.2rem;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             font-weight: 700;
         }
 
         .social-brand a {
-            color: var(--kc-white);
+            color: var(--kc-yellow);
             text-decoration: none;
             border-bottom: 4px solid var(--kc-yellow);
             transition: color 0.2s;
@@ -1145,7 +1212,7 @@
         }
 
         .social-brand a:hover {
-            color: var(--kc-yellow);
+            color: var(--kc-white);
         }
 
         .social-desc {
@@ -1184,9 +1251,11 @@
         @media (max-width: 768px) {
             .social-title {
                 font-size: 2rem;
+                margin-bottom: 8px;
             }
             .social-brand {
                 font-size: 2.2rem;
+                margin-bottom: 16px;
             }
         }
 
@@ -1380,12 +1449,14 @@
         </div>
     </header>
 
-    <!-- ===== MOBILE FULL MENU ===== -->
+    <!-- ===== MOBILE FULL MENU (optimized) ===== -->
     <div id="mobileFullMenu" class="mobile-menu-overlay">
-        <div class="mobile-menu-header">
-            <button id="closeMobileMenuBtn" class="close-menu-btn">&times;</button>
-        </div>
         <div class="mobile-menu-container">
+            <div class="mobile-menu-header">
+                <!-- Logo 添加在左上角 -->
+                <img src="assets/logo/KCVA_1.png" alt="KCVA Logo" class="nav-logo-img" onerror="this.style.display='none';">
+                <button id="closeMobileMenuBtn" class="close-menu-btn">&times;</button>
+            </div>
             <ul class="mobile-nav-links">
                 <li><a href="#home" data-i18n="nav_home">Home</a></li>
                 <li><a href="#matches" data-i18n="nav_matches">Matches</a></li>
@@ -1426,14 +1497,30 @@
                         here—only hardcore arenas built for the elite players in the region.
                     </p>
                     <div class="hero-btns">
-                        <a href="#matches" class="btn btn-yellow" data-i18n="hero_btn_schedule">View Schedule</a>
-                        <a href="https://v.wjx.cn/vm/OtZGLn5.aspx#" target="_blank" class="btn btn-outline-yellow" data-i18n="hero_btn_join">Join KCVA</a>
+                        <a href="#matches" class="btn btn-yellow btn-schedule" data-i18n="hero_btn_schedule">View Schedule</a>
+                        <a href="https://v.wjx.cn/vm/OtZGLn5.aspx#" target="_blank" class="btn btn-outline-yellow btn-join" data-i18n="hero_btn_join">Join KCVA</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== COUNTDOWN ===== -->
+        <!-- ===== MATCHES (第一顺位) ===== -->
+        <section id="matches" class="matches-section">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <div class="section-subtitle" data-i18n="match_subtitle">Upcoming Battles</div>
+                    <h2 class="section-title" data-i18n="match_title">FUTURE MATCHES</h2>
+                    <p class="section-desc" data-i18n="match_desc">Check the schedule and register for the next match. Click the button to sign up.</p>
+                </div>
+                <div class="matches-container" id="eventsContainer">
+                    <div class="match-row fade-in-up">
+                        <div class="match-date-loc"><span data-i18n="match_loading">Loading...</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COUNTDOWN (第二顺位) ===== -->
         <section class="countdown-section">
             <div class="container countdown-grid">
                 <div class="countdown-text fade-in-up">
@@ -1451,21 +1538,6 @@
                     <div class="stadium-img-wrapper">
                         <img src="assets/images/Jun4_Promo03.jpeg" alt="Next Match Preview" class="stadium-img" loading="lazy">
                         <div class="stadium-overlay"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== MATCHES ===== -->
-        <section id="matches" class="matches-section">
-            <div class="container">
-                <div class="section-header fade-in-up">
-                    <div class="section-subtitle" data-i18n="match_subtitle">Upcoming Battles</div>
-                    <h2 class="section-title" data-i18n="match_title">FUTURE MATCHES</h2>
-                </div>
-                <div class="matches-container" id="eventsContainer">
-                    <div class="match-row fade-in-up">
-                        <div class="match-date-loc"><span data-i18n="match_loading">Loading...</span></div>
                     </div>
                 </div>
             </div>
@@ -1601,6 +1673,7 @@
             "cd_btn": "查看详情",
             "match_subtitle": "未来赛事",
             "match_title": "赛程",
+            "match_desc": "查看赛程并报名参加下一场比赛。点击按钮即可注册。",
             "match_loading": "加载中...",
             "match_btn_signup": "报名",
             "match_btn_ended": "比赛结束",

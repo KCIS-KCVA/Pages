@@ -3,7 +3,7 @@
     "photo": "wang_zihan.jpeg",
     "name_en": "Benz",
     "name_zh": "王子涵",
-    "role_en": "Founder & CEO",
+    "role_en": "FOUNDER & CEO",
     "role_zh": "创始人 & 首席执行官",
     "bio_en": "Hello, I'm Benze, Founder and CEO of KCVA. I specialize in tournament operations and strategic partnerships, bringing an avant-garde vision to the international school sports scene. As a decisive leader and referee, I thrive in managing high-stakes coordination and ensuring seamless execution from the boardroom to the court.",
     "bio_zh": "大家好，我是 Benze，KCVA 创始人兼 CEO。我负责赛事运营与战略合作，为国际学校体育场景带来前卫视野。作为果断的领导者与裁判，我擅长高压协调，确保从会议室到赛场的每一个环节无缝执行。"
@@ -12,35 +12,35 @@
     "photo": "jian_zhixuan.jpeg",
     "name_en": "Tony",
     "name_zh": "简帜轩",
-    "role_en": "Media Technical Engineer (KSVG)",
-    "role_zh": "媒体技术工程师 (KSVG)",
-    "bio_en": "I am a media technology engineer from KSVG, responsible for ensuring the smooth operation of the official website and on-site media at events. I also lead other media technology partners to provide media support for every KCVA event.",
-    "bio_zh": "我是来自KSVG组织的媒体技术工程师，负责确保官方网站维护和活动现场媒体的正常运行。我同时带动其他媒体技术伙伴，为KCVA的每场比赛提供媒体支援保障。"
+    "role_en": "MEDIA TECH LEAD",
+    "role_zh": "媒体技术负责人",
+    "bio_en": "As a Media Technology Lead collaborating closely with KCVA, I oversee reliable operation of the official website and manage on-site media delivery for KCVA events. I also coordinate a team of media technology professionals to deliver comprehensive end-to-end technical and media support for all KCVA engagements.",
+    "bio_zh": "作为与 KCVA 紧密协作的媒体技术负责人，我负责保障官方网站稳定运行，统筹 KCVA 各类活动的现场媒体落地工作。同时协调媒体技术专业团队，为 KCVA 全部项目提供一站式综合媒体与技术保障支持。"
+  },
+    {
+    "photo": "yang_jiazhen.jpeg",
+    "name_en": "Katherine",
+    "name_zh": "杨珈祯",
+    "role_en": "ADMINISTRATION LEAD",
+    "role_zh": "行政负责人",
+    "bio_en": "Hi！I'm Katherine, in charge of business liaison and on-site management, adept at cross-team coordination to secure smooth events. I enjoy frisbee and fencing, which sharpen my quick on-spot judgment.",
+    "bio_zh": "嗨！我是 Katherine，负责商务联络与现场管理，擅长跨团队协调确保活动顺畅。我喜欢飞盘和击剑，这些运动磨练了我的快速判断力。"
   },
   {
     "photo": "zheng_chenyan.jpeg",
     "name_en": "Ivory",
     "name_zh": "郑辰妍",
-    "role_en": "Event Managementn",
-    "role_zh": "活动管理",
+    "role_en": "LIAISON LEAD",
+    "role_zh": "外联负责人",
     "bio_en": "Hello! I'm Ivory. I’m good at coordinating with schools, managing event venues and communicating with school staff to make activities go well. I love playing volleyball and badminton, and I also enjoy playing the drums. No matter when I need to handle on-site management or school follow-ups, I can get used to new tasks quickly and bring solid communication skills to team cooperation.",
     "bio_zh": "大家好！我是 Ivory。我擅长与学校协调、管理活动场地以及与校方人员沟通，使活动顺利进行。我喜欢打排球和羽毛球，也喜欢打架子鼓。无论是现场管理还是学校跟进，我都能快速适应新任务，并为团队合作带来扎实的沟通能力。"
-  },
-  {
-    "photo": "yang_jiazhen.jpeg",
-    "name_en": "Katherine",
-    "name_zh": "杨珈祯",
-    "role_en": "Business Liaison",
-    "role_zh": "商务联络",
-    "bio_en": "Hi！I'm Katherine, in charge of business liaison and on-site management, adept at cross-team coordination to secure smooth events. I enjoy frisbee and fencing, which sharpen my quick on-spot judgment.",
-    "bio_zh": "嗨！我是 Katherine，负责商务联络与现场管理，擅长跨团队协调确保活动顺畅。我喜欢飞盘和击剑，这些运动磨练了我的快速判断力。"
   },
   {
     "photo": "ding_yuchen.jpeg",
     "name_en": "Chris",
     "name_zh": "丁于辰",
-    "role_en": "Event Management",
-    "role_zh": "活动管理",
+    "role_en": "BUSINESS LEAD",
+    "role_zh": "商务负责人",
     "bio_en": "Hi！ I am Chris. I am responsible for event management and on-site layout. Contacting the sponsor. I've been conducting sports through secondary and high school. Therefore, I am aware for different situations and circumstances and deal with them calmly.",
     "bio_zh": "嗨！我是 Chris。我负责活动管理与现场布置，联系赞助商。我在中学和高中一直参与体育活动，因此能够了解不同情况并冷静处理。"
   },
@@ -48,7 +48,7 @@
     "photo": "abby.jpeg",
     "name_en": "Abby",
     "name_zh": "Abby",
-    "role_en": "On‑site Consultant",
+    "role_en": "ON-SITE CONSULTANT",
     "role_zh": "现场顾问",
     "bio_en": "As our go-to volleyball coordinator, I linked up partnering schools beforehand. Also, working as host and on-site consultant for the tourney, I share insights from managing my school’s volleyball team and participating clubs to polish event details.",
     "bio_zh": "作为我们首选的排球协调员，我提前联络了合作学校。同时，作为赛事主持人和现场顾问，我分享管理学校排球队和参与社团的经验，以打磨活动细节。"
@@ -57,7 +57,7 @@
     "photo": "caelina.jpeg",
     "name_en": "Caelina",
     "name_zh": "Caelina",
-    "role_en": "On‑site Consultant",
+    "role_en": "ON-SITE CONSULTANT",
     "role_zh": "现场顾问",
     "bio_en": "I excel in event management, handling venue coordination and school liaison to ensure everything runs smoothly. With 7 years of sports experience, I also serve as a fair and efficient referee. Whether handling on-field officiating or behind-the-scenes control, I adapt quickly and bring strong communication and collaboration skills.",
     "bio_zh": "我擅长活动管理，负责场地协调与学校联络，确保一切顺利进行。凭借 7 年的运动经验，我也担任公正高效的裁判。无论是场上执法还是幕后调度，我都能快速适应，并具备优秀的沟通与协作能力。"

@@ -4,26 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>KCVA | 组委会成员</title>
+    <title>KCVA | Staff</title>
     <link rel="icon" type="image/png" href="../assets/logo/KCVA_2.png">
     <link rel="apple-touch-icon" href="../assets/logo/KCVA_2.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        /* ============================================================
+               HARD-CORE DESIGN SYSTEM (与首页完全一致)
+               ============================================================ */
         :root {
-            --kc-bg-dark: #111111;
-            --kc-bg-light: #FFFFFF;
-            --kc-bg-gray: #F5F5F5;
-            --kc-accent: #FFB800;
-            --kc-text-main: #111111;
-            --kc-text-muted: #999999;
-            --font-heading: 'Bebas Neue', 'Inter', sans-serif;
-            --font-body: 'Inter', system-ui, sans-serif;
+            --kc-black: #000000;
+            --kc-black-light: #0E0E0E;
+            --kc-gray: #1A1A1A;
+            --kc-gray-border: #2A2A2A;
+            --kc-white: #FFFFFF;
+            --kc-yellow: #FFB800;
+            --kc-yellow-dark: #D9A000;
+            --kc-text-muted: #888888;
+            --kc-font-heading: 'Oswald', 'Inter', sans-serif;
+            --kc-font-body: 'Inter', system-ui, sans-serif;
+            --kc-header-height: 80px;
+            --kc-border-radius: 0px;
         }
 
         * {
@@ -34,20 +41,26 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+            scroll-padding-top: var(--kc-header-height);
         }
 
         body {
-            font-family: var(--font-body);
-            background: var(--kc-bg-light);
-            color: var(--kc-text-main);
+            font-family: var(--kc-font-body);
+            background: var(--kc-black);
+            color: var(--kc-white);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--kc-bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--kc-accent); }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--kc-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--kc-yellow);
+        }
 
         .container {
             max-width: 1400px;
@@ -55,215 +68,529 @@
             padding: 0 40px;
         }
 
+        /* ============================================================
+               BUTTONS
+               ============================================================ */
         .btn {
-            display: inline-block;
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            padding: 12px 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--kc-font-heading);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            padding: 14px 36px;
             text-transform: uppercase;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.15s ease;
             cursor: pointer;
             border: 2px solid transparent;
-            font-weight: 700;
+            font-weight: 600;
+            border-radius: var(--kc-border-radius);
+            position: relative;
+            text-align: center;
         }
-        .btn-accent { background: var(--kc-accent); color: #111; }
-        .btn-accent:hover { background: #111; color: var(--kc-accent); transform: translateY(-2px); }
-        .btn-outline { background: transparent; color: #FFF; border-color: #FFF; }
-        .btn-outline:hover { background: #FFF; color: #111; transform: translateY(-2px); }
 
-        /* Header */
-        .site-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 999;
-            border-bottom: 1px solid #EAEAEA;
-            padding: 15px 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .btn:active {
+            transform: scale(0.96);
         }
-        .site-header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); border-bottom: 1px solid transparent; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo-img { height: 65px; width: auto; object-fit: contain; transition: transform 0.3s; }
-        .nav-logo-img:hover { transform: scale(1.05); }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+
+        .btn-yellow {
+            background: var(--kc-yellow);
+            color: var(--kc-black);
+            border-color: var(--kc-yellow);
+        }
+        .btn-yellow:hover {
+            background: var(--kc-yellow-dark);
+            border-color: var(--kc-yellow-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-yellow {
+            background: transparent;
+            color: var(--kc-white);
+            border-color: var(--kc-yellow);
+        }
+        .btn-outline-yellow:hover {
+            background: var(--kc-yellow);
+            color: var(--kc-black);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--kc-white);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        .btn-outline-white:hover {
+            background: var(--kc-white);
+            color: var(--kc-black);
+            transform: translateY(-2px);
+        }
+
+        /* Focus visible for accessibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--kc-yellow);
+            outline-offset: 4px;
+        }
+
+        /* ============================================================
+               HEADER / NAVIGATION (与首页完全一致)
+               ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--kc-gray-border);
+            height: var(--kc-header-height);
+            transition: all 0.2s ease;
+        }
+
+        .site-header.scrolled {
+            background: rgba(0, 0, 0, 0.99);
+            border-bottom-color: var(--kc-yellow);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--kc-header-height);
+            width: 100%;
+        }
+
+        .nav-logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: transform 0.2s;
+        }
+        .nav-logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
         .nav-links a {
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            color: #111;
+            font-family: var(--kc-font-heading);
+            font-size: 1.1rem;
+            color: var(--kc-white);
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             transition: color 0.2s;
             position: relative;
+            font-weight: 500;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
         }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--kc-accent);
-            transition: width 0.3s ease;
+
+        .nav-links a:hover {
+            color: var(--kc-yellow);
+            border-bottom-color: var(--kc-yellow);
         }
-        .nav-links a:hover { color: var(--kc-accent); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-actions { display: flex; align-items: center; gap: 25px; }
-        .nav-actions .btn { padding: 8px 24px; font-size: 1.1rem; }
+
+        /* Home 高亮（在 staff 页面，Home 仍高亮，Staff 自己高亮） */
+        .nav-links a[href="../index.html#home"],
+        .nav-links a[href="./"] {
+            color: var(--kc-yellow);
+            border-bottom-color: var(--kc-yellow);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-actions .btn {
+            padding: 8px 20px;
+            font-size: 0.8rem;
+        }
+
         .lang-switch {
-            font-family: var(--font-heading);
-            font-size: 1.3rem;
-            color: #111;
-            text-decoration: none;
+            font-family: var(--kc-font-heading);
+            font-size: 1rem;
+            color: var(--kc-white);
             display: flex;
             align-items: center;
             gap: 6px;
             transition: color 0.2s;
             cursor: pointer;
             letter-spacing: 1px;
+            background: none;
+            border: none;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
-        .lang-switch:hover { color: var(--kc-accent); }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle { display: none; }
-        .hamburger { display: flex; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; background: transparent; border: none; cursor: pointer; padding: 0; }
-        .hamburger span { width: 100%; height: 2px; background: #111; transition: all 0.2s; }
-        .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.96); backdrop-filter: blur(10px); z-index: 10000; visibility: hidden; opacity: 0; transition: visibility 0.3s, opacity 0.3s; }
-        .mobile-menu-overlay.open { visibility: visible; opacity: 1; }
-        .mobile-menu-container { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 24px 24px 40px; color: white; overflow-y: auto; }
-        .mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 30px; }
-        .close-menu-btn { background: none; border: none; font-size: 2.2rem; color: white; cursor: pointer; line-height: 1; }
-        .mobile-nav-links { list-style: none; padding: 0; margin: 0; flex: 1; }
-        .mobile-nav-links li { margin-bottom: 32px; }
-        .mobile-nav-links a { color: white; text-decoration: none; font-family: var(--font-heading); font-size: 2rem; font-weight: 600; transition: color 0.2s; }
-        .mobile-nav-links a:hover { color: var(--kc-accent); }
-        .mobile-lang-item { margin: 30px 0 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); }
-        .mobile-lang-switch { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 40px; padding: 10px 20px; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; color: white; }
-        .mobile-sponsor-btn { background: var(--kc-accent); color: #111; padding: 12px 28px; border-radius: 40px; font-family: var(--font-heading); font-size: 1.2rem; display: inline-block; margin-top: 10px; text-decoration: none; font-weight: 700; }
+        .lang-switch:hover {
+            color: var(--kc-yellow);
+            border-color: var(--kc-yellow);
+        }
+
+        /* Mobile Toggle */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--kc-white);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger:hover span {
+            background: var(--kc-yellow);
+        }
+
+        /* Mobile Full Menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(12px);
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s ease, opacity 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu-overlay.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .mobile-menu-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100%;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .mobile-menu-header {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 32px);
+        }
+
+        .mobile-menu-header .nav-logo-img {
+            height: 60px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .close-menu-btn {
+            background: none;
+            border: none;
+            font-size: 2.2rem;
+            color: var(--kc-white);
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .close-menu-btn:hover {
+            color: var(--kc-yellow);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--kc-white);
+            text-decoration: none;
+            font-family: var(--kc-font-heading);
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            display: inline-block;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--kc-yellow);
+            border-bottom-color: var(--kc-yellow);
+        }
+
+        .mobile-nav-links a[href="../index.html#home"],
+        .mobile-nav-links a[href="./"] {
+            color: var(--kc-yellow);
+            border-bottom-color: var(--kc-yellow);
+        }
+
+        .mobile-lang-item {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .mobile-lang-switch {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 24px;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            color: var(--kc-white);
+            font-family: var(--kc-font-heading);
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .mobile-lang-switch:hover {
+            background: var(--kc-yellow);
+            color: var(--kc-black);
+            border-color: var(--kc-yellow);
+        }
+
+        .mobile-sponsor-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 32px;
+            background: var(--kc-yellow);
+            color: var(--kc-black);
+            font-family: var(--kc-font-heading);
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+            border: 2px solid var(--kc-yellow);
+        }
+
+        .mobile-sponsor-btn:hover {
+            background: transparent;
+            color: var(--kc-yellow);
+        }
 
         @media (max-width: 992px) {
-            .nav-links { display: none; }
-            .lang-switch { display: none; }
-            .nav-actions .btn { display: none; }
-            .mobile-menu-toggle { display: block; }
-            .container { padding: 0 20px; }
+            .nav-links {
+                display: none;
+            }
+            .lang-switch {
+                display: none;
+            }
+            .nav-actions .btn {
+                display: none;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            :root {
+                --kc-header-height: 70px;
+            }
+            .nav-logo-img {
+                height: 60px;
+            }
         }
 
-        /* 加载动画 */
-        @keyframes popIn {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Staff Section */
+        /* ============================================================
+               STAFF PAGE SPECIFIC
+               ============================================================ */
         .staff-section {
             padding: 140px 0 80px;
-            background: var(--kc-bg-light);
-            animation: popIn 0.6s ease-out;
+            background: var(--kc-black);
+            border-bottom: 1px solid var(--kc-gray-border);
         }
-        .section-header { text-align: center; margin-bottom: 35px; }
-        .section-title { font-family: var(--font-heading); font-size: 4.5rem; color: #111; text-transform: uppercase; line-height: 1; }
-        .section-subtitle { font-size: 1rem; color: var(--kc-text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; color: var(--kc-accent); }
 
-        /* 极简搜索框 */
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: var(--kc-font-heading);
+            font-size: 3.8rem;
+            color: var(--kc-white);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .section-title .highlight {
+            color: var(--kc-yellow);
+            border-bottom: 4px solid var(--kc-yellow);
+            padding-bottom: 4px;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--kc-yellow);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .section-desc {
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            margin: 16px auto 0;
+            font-size: 1rem;
+        }
+
+        /* Search */
         .search-area {
             max-width: 480px;
             margin: 0 auto 50px;
             position: relative;
+            border: 2px solid var(--kc-gray-border);
         }
+
         .search-box {
             width: 100%;
             padding: 14px 20px 14px 50px;
-            border: 2px solid #EAEAEA;
-            border-radius: 50px;
-            font-family: var(--font-body);
+            background: transparent;
+            border: none;
+            font-family: var(--kc-font-body);
             font-size: 0.95rem;
+            color: var(--kc-white);
             outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
         }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
         .search-box:focus {
-            border-color: var(--kc-accent);
-            box-shadow: 0 6px 15px rgba(255, 184, 0, 0.15);
+            outline: none;
         }
+
+        .search-area:focus-within {
+            border-color: var(--kc-yellow);
+        }
+
         .search-icon {
             position: absolute;
             left: 20px;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
+            color: rgba(255, 255, 255, 0.3);
             font-size: 1.1rem;
             pointer-events: none;
-            transition: color 0.3s ease;
-        }
-        .search-box:focus + .search-icon {
-            color: var(--kc-accent);
         }
 
-        /* 成员卡片网格 */
+        .search-area:focus-within .search-icon {
+            color: var(--kc-yellow);
+        }
+
+        /* Staff Grid */
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 20px;
         }
+
         .staff-card {
-            background: #FFF;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
-            border: 1px solid #EFF3F9;
-            cursor: pointer;
+            background: var(--kc-black-light);
+            border: 2px solid var(--kc-gray-border);
+            transition: all 0.25s ease;
             display: flex;
             flex-direction: column;
             position: relative;
         }
+
         .staff-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.08);
-            border-color: var(--kc-accent);
+            border-color: var(--kc-yellow);
+            transform: translateY(-4px);
+            background: var(--kc-black);
         }
+
         .staff-photo-container {
             width: 100%;
             aspect-ratio: 1 / 1;
             overflow: hidden;
-            background: #F8F9FA;
-            border-bottom: 1px solid #EFF3F9;
+            background: var(--kc-gray);
+            border-bottom: 2px solid var(--kc-gray-border);
             position: relative;
         }
+
         .staff-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top; 
+            object-position: center top;
             display: block;
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.4s ease;
         }
+
         .staff-card:hover .staff-photo {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
-        
-        /* 悬停时的遮罩查看提示 */
+
         .staff-photo-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(17, 17, 17, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             opacity: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: opacity 0.3s ease;
-            color: #FFF;
+            color: var(--kc-yellow);
             font-size: 1.8rem;
         }
+
         .staff-card:hover .staff-photo-overlay {
             opacity: 1;
         }
@@ -275,40 +602,45 @@
             flex-direction: column;
             flex: 1;
         }
+
         .staff-name {
-            font-family: var(--font-heading);
+            font-family: var(--kc-font-heading);
             font-size: 1.8rem;
-            color: var(--kc-text-main);
+            color: var(--kc-white);
             margin-bottom: 6px;
             letter-spacing: 0.5px;
         }
+
         .staff-role-badge {
             display: inline-block;
-            background: rgba(255, 184, 0, 0.08);
-            color: #C18B00;
-            font-size: 0.8rem;
+            background: rgba(255, 184, 0, 0.12);
+            color: var(--kc-yellow);
+            font-size: 0.75rem;
             font-weight: 700;
             padding: 4px 14px;
-            border-radius: 30px;
+            border: 1px solid rgba(255, 184, 0, 0.2);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 14px;
+            align-self: center;
         }
+
         .staff-bio {
             font-size: 0.9rem;
-            color: #5C6F91;
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
             margin-bottom: 15px;
             display: -webkit-box;
-            -webkit-line-clamp: 3; /* 卡片预览限制3行 */
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             flex-grow: 1;
         }
+
         .staff-action-link {
-            font-family: var(--font-heading);
+            font-family: var(--kc-font-heading);
             font-size: 1.1rem;
-            color: var(--kc-accent);
+            color: var(--kc-yellow);
             text-decoration: none;
             letter-spacing: 1px;
             display: inline-flex;
@@ -317,59 +649,70 @@
             gap: 6px;
             transition: color 0.2s, transform 0.2s;
             margin-top: auto;
-        }
-        .staff-card:hover .staff-action-link {
-            color: #111;
-            transform: translateX(3px);
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
         }
 
-        /* 移动端横向排版 */
+        .staff-card:hover .staff-action-link {
+            color: var(--kc-white);
+            transform: translateX(4px);
+            border-bottom-color: var(--kc-yellow);
+        }
+
+        /* 移动端横向卡片 (类似首页硬朗风格) */
         @media (max-width: 768px) {
-            .staff-section { padding: 110px 0 50px; }
-            .section-title { font-size: 3rem; }
-            .search-area { margin-bottom: 30px; padding: 0 10px; }
-            .staff-grid { 
+            .staff-section {
+                padding: 110px 0 50px;
+            }
+            .section-title {
+                font-size: 2.8rem;
+            }
+            .search-area {
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+            .staff-grid {
                 grid-template-columns: 1fr;
-                gap: 20px; 
+                gap: 16px;
             }
             .staff-card {
-                display: flex;
                 flex-direction: row;
                 align-items: stretch;
-                border-radius: 16px;
+                border: 2px solid var(--kc-gray-border);
             }
             .staff-card:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             }
             .staff-photo-container {
-                width: 130px;
-                min-width: 130px;
-                height: auto;
+                width: 120px;
+                min-width: 120px;
                 aspect-ratio: auto;
                 border-bottom: none;
-                border-right: 1px solid #EFF3F9;
+                border-right: 2px solid var(--kc-gray-border);
             }
             .staff-card:hover .staff-photo {
                 transform: none;
             }
             .staff-photo-overlay {
-                display: none; /* 移动端屏蔽遮罩 */
+                display: none;
             }
             .staff-info {
-                padding: 18px 15px;
+                padding: 16px 15px;
                 text-align: left;
                 align-items: flex-start;
             }
-            .staff-name { font-size: 1.5rem; margin-bottom: 4px; }
-            .staff-role-badge { 
-                align-self: flex-start;
-                font-size: 0.75rem; 
-                padding: 3px 10px;
-                margin-bottom: 10px; 
+            .staff-name {
+                font-size: 1.5rem;
+                margin-bottom: 4px;
             }
-            .staff-bio { 
-                font-size: 0.85rem; 
+            .staff-role-badge {
+                align-self: flex-start;
+                font-size: 0.7rem;
+                padding: 3px 10px;
+                margin-bottom: 10px;
+            }
+            .staff-bio {
+                font-size: 0.85rem;
                 -webkit-line-clamp: 3;
             }
             .staff-action-link {
@@ -379,7 +722,7 @@
             }
         }
 
-        /* Modern 详情模态弹窗 */
+        /* 模态弹窗 (黑金) */
         .bio-modal {
             position: fixed;
             top: 0;
@@ -392,65 +735,75 @@
             justify-content: center;
             padding: 24px;
         }
+
         .bio-modal-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(17, 17, 17, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             transition: opacity 0.3s ease;
         }
+
         .bio-modal-content {
             position: relative;
-            background: #FFF;
+            background: var(--kc-black-light);
             width: 100%;
             max-width: 780px;
-            border-radius: 24px;
+            border-radius: 0;
             overflow: hidden;
             z-index: 10002;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--kc-yellow);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             opacity: 0;
             transform: scale(0.95);
             transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
         }
+
         .bio-modal.open .bio-modal-content {
             opacity: 1;
             transform: scale(1);
         }
+
         .bio-modal-close {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(17, 17, 17, 0.05);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 0;
+            font-size: 1.4rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #111;
-            transition: background 0.2s, transform 0.2s, color 0.2s;
+            color: var(--kc-white);
+            transition: background 0.2s, transform 0.2s, border-color 0.2s;
             z-index: 10;
         }
+
         .bio-modal-close:hover {
-            background: var(--kc-accent);
-            color: #111;
+            background: var(--kc-yellow);
+            color: var(--kc-black);
+            border-color: var(--kc-yellow);
             transform: rotate(90deg);
         }
+
         .bio-modal-body {
             display: flex;
             flex-direction: row;
         }
+
         .bio-modal-left {
             width: 38%;
-            background: #F8F9FA;
-            border-right: 1px solid #EFF3F9;
+            background: var(--kc-gray);
+            border-right: 2px solid var(--kc-gray-border);
         }
+
         .bio-modal-photo {
             width: 100%;
             height: 100%;
@@ -459,6 +812,7 @@
             display: block;
             aspect-ratio: 1 / 1.1;
         }
+
         .bio-modal-right {
             width: 62%;
             padding: 40px;
@@ -466,161 +820,317 @@
             flex-direction: column;
             justify-content: center;
         }
+
         .bio-modal-name {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            color: var(--kc-text-main);
+            font-family: var(--kc-font-heading);
+            font-size: 2.8rem;
+            color: var(--kc-white);
             margin-bottom: 8px;
             line-height: 1.1;
         }
+
+        .bio-modal-role {
+            display: inline-block;
+            background: rgba(255, 184, 0, 0.12);
+            color: var(--kc-yellow);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            align-self: flex-start;
+        }
+
         .bio-modal-bio {
-            color: #4A5568;
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.95rem;
             line-height: 1.7;
-            margin-top: 15px;
+            margin-top: 10px;
             overflow-y: auto;
             max-height: 250px;
             padding-right: 5px;
         }
-        /* 自定义美化模态弹窗内滚动条 */
-        .bio-modal-bio::-webkit-scrollbar { width: 4px; }
-        .bio-modal-bio::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+
+        .bio-modal-bio::-webkit-scrollbar {
+            width: 4px;
+        }
+        .bio-modal-bio::-webkit-scrollbar-thumb {
+            background: var(--kc-yellow);
+            border-radius: 0;
+        }
 
         @media (max-width: 768px) {
-            .bio-modal { padding: 16px; }
-            .bio-modal-body { flex-direction: column; }
-            .bio-modal-left { width: 100%; border-right: none; border-bottom: 1px solid #EFF3F9; }
-            .bio-modal-photo { aspect-ratio: 1 / 1; max-height: 240px; }
-            .bio-modal-right { width: 100%; padding: 24px 20px; }
-            .bio-modal-name { font-size: 2rem; }
-            .bio-modal-bio { max-height: 200px; }
+            .bio-modal {
+                padding: 16px;
+            }
+            .bio-modal-body {
+                flex-direction: column;
+            }
+            .bio-modal-left {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid var(--kc-gray-border);
+            }
+            .bio-modal-photo {
+                aspect-ratio: 1 / 1;
+                max-height: 240px;
+            }
+            .bio-modal-right {
+                width: 100%;
+                padding: 24px 20px;
+            }
+            .bio-modal-name {
+                font-size: 2.2rem;
+            }
+            .bio-modal-bio {
+                max-height: 200px;
+            }
         }
 
-        /* Social Section */
+        /* ============================================================
+               SOCIAL MEDIA (与首页一致)
+               ============================================================ */
         .social-section {
-            background: #0A0A0A;
+            background: var(--kc-black);
             padding: 70px 0 50px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--kc-yellow);
         }
+
         .social-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 0 24px;
         }
+
         .social-title {
-            font-family: var(--font-heading);
-            font-size: 2.2rem;
-            letter-spacing: 2px;
-            color: var(--kc-accent);
-            margin-bottom: 20px;
+            font-family: var(--kc-font-heading);
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            color: var(--kc-white);
+            margin-bottom: 12px;
+            font-weight: 700;
         }
+
+        .social-title .highlight {
+            color: var(--kc-white);
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
         .social-brand {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-family: var(--kc-font-heading);
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
+
         .social-brand a {
-            color: #FFF;
+            color: var(--kc-yellow);
             text-decoration: none;
-            border-bottom: 3px solid var(--kc-accent);
+            border-bottom: 4px solid var(--kc-yellow);
             transition: color 0.2s;
+            padding-bottom: 4px;
         }
-        .social-brand a:hover { color: var(--kc-accent); }
+
+        .social-brand a:hover {
+            color: var(--kc-white);
+        }
+
         .social-desc {
-            color: #AAA;
+            color: rgba(255, 255, 255, 0.4);
             font-size: 1rem;
             max-width: 550px;
             margin: 0 auto 25px;
         }
+
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 28px;
+            gap: 32px;
             flex-wrap: wrap;
             margin-top: 20px;
         }
+
         .social-links a {
-            color: #DDD;
+            color: rgba(255, 255, 255, 0.5);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-        }
-        .social-links a:hover { color: var(--kc-accent); }
-        @media (max-width: 768px) {
-            .social-title { font-size: 1.8rem; }
-            .social-brand { font-size: 2.2rem; }
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
         }
 
-        /* Footer */
-        .footer {
-            background: #050505;
-            color: #FFF;
-            padding: 30px 0 30px;
-            text-align: center;
+        .social-links a:hover {
+            color: var(--kc-yellow);
+            border-bottom-color: var(--kc-yellow);
         }
+
+        @media (max-width: 768px) {
+            .social-title {
+                font-size: 2rem;
+                margin-bottom: 8px;
+            }
+            .social-brand {
+                font-size: 2.2rem;
+                margin-bottom: 16px;
+            }
+        }
+
+        /* ============================================================
+               FOOTER (与首页一致)
+               ============================================================ */
+        .footer {
+            background: var(--kc-black);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 40px 0 30px;
+            text-align: center;
+            border-top: 2px solid var(--kc-gray-border);
+        }
+
         .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
-            color: var(--kc-text-muted);
+            font-size: 0.8rem;
             flex-wrap: wrap;
             gap: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 30px;
-            margin-top: 0;
         }
-        .footer-left { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
-        .service-credit { font-size: 0.7rem; }
-        .service-credit a { color: var(--kc-accent); text-decoration: none; }
-        .social-icons a { color: #FFF; font-size: 1.2rem; margin-left: 15px; transition: 0.2s; }
-        .social-icons a:hover { color: var(--kc-accent); transform: translateY(-2px); }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-start;
+        }
+
+        .service-credit {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .service-credit a {
+            color: var(--kc-yellow);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .service-credit a:hover {
+            border-bottom-color: var(--kc-yellow);
+        }
+
+        .social-icons a {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.2rem;
+            margin-left: 18px;
+            transition: color 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: var(--kc-yellow);
+        }
 
         @media (max-width: 768px) {
-            .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
-            .footer-left { align-items: center; }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-left {
+                align-items: center;
+            }
         }
 
-        /* 回到顶部 */
+        /* ============================================================
+               BACK TO TOP
+               ============================================================ */
         .back-to-top {
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-        }
-        .back-to-top.visible {
-            opacity: 1 !important;
-            pointer-events: auto !important;
-            transform: scale(1);
-        }
-        .back-to-top:hover {
-            background: #111 !important;
-            color: var(--kc-accent) !important;
-            transform: translateY(-5px) scale(1.05);
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--kc-yellow);
+            color: var(--kc-black);
+            width: 52px;
+            height: 52px;
+            border: 2px solid var(--kc-yellow);
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s ease;
+            z-index: 998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
         }
 
-        /* 微信二维码弹窗动效 */
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
-        @keyframes cardPop {
-            from { transform: scale(0.9) translateY(20px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
+
+        .back-to-top:hover {
+            background: transparent;
+            color: var(--kc-yellow);
+            transform: translateY(-4px);
         }
+
+        /* ============================================================
+               QR MODAL
+               ============================================================ */
         .qrcode-modal {
-            animation: modalFadeIn 0.3s ease forwards;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
         }
+
         .qrcode-content {
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-            animation: cardPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            background: var(--kc-black-light);
+            padding: 40px;
+            text-align: center;
+            width: 90%;
+            max-width: 360px;
+            border: 2px solid var(--kc-gray-border);
+        }
+
+        .qrcode-content img {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 2px solid var(--kc-gray-border);
+        }
+
+        .qrcode-content h3 {
+            font-family: var(--kc-font-heading);
+            font-size: 1.6rem;
+            color: var(--kc-white);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .qrcode-content .btn-outline-yellow {
+            padding: 10px 30px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 
 <body>
 
+    <!-- ===== HEADER (与首页完全一致) ===== -->
     <header class="site-header" id="header">
         <div class="container navbar">
             <a href="../index.html" class="logo-text" aria-label="KCVA Home">
@@ -632,13 +1142,13 @@
                 <li><a href="../index.html#matches" data-i18n="nav_matches">Matches</a></li>
                 <li><a href="../index.html#standings" data-i18n="nav_standings">Standings</a></li>
                 <li><a href="../index.html#social" data-i18n="nav_social">Social</a></li>
-                <li><a href="./" data-i18n="nav_staff" style="color: var(--kc-accent);">KCVA Staff</a></li>
+                <li><a href="./" data-i18n="nav_staff" style="color: var(--kc-yellow);">Crew</a></li>
             </ul>
             <div class="nav-actions">
-                <a id="langSwitch" class="lang-switch" aria-label="Switch Language">
+                <button id="langSwitch" class="lang-switch" aria-label="Switch Language">
                     <i class="fas fa-globe"></i> <span id="langText">中文</span>
-                </a>
-                <a id="sponsorChannelBtn" class="btn btn-accent" style="cursor:pointer;"
+                </button>
+                <a id="sponsorChannelBtn" class="btn btn-yellow" style="cursor:pointer;"
                     data-i18n="nav_sponsor_btn">Sponsor Us</a>
             </div>
             <div class="mobile-menu-toggle">
@@ -649,23 +1159,24 @@
         </div>
     </header>
 
-    <!-- 全屏移动菜单 -->
+    <!-- ===== MOBILE FULL MENU (与首页完全一致) ===== -->
     <div id="mobileFullMenu" class="mobile-menu-overlay">
         <div class="mobile-menu-container">
             <div class="mobile-menu-header">
-                <button id="closeMobileMenuBtn" class="close-menu-btn" aria-label="Close menu">&times;</button>
+                <img src="../assets/logo/KCVA_1.png" alt="KCVA Logo" class="nav-logo-img" onerror="this.style.display='none';">
+                <button id="closeMobileMenuBtn" class="close-menu-btn">&times;</button>
             </div>
             <ul class="mobile-nav-links">
                 <li><a href="../index.html#home" data-i18n="nav_home">Home</a></li>
                 <li><a href="../index.html#matches" data-i18n="nav_matches">Matches</a></li>
                 <li><a href="../index.html#standings" data-i18n="nav_standings">Standings</a></li>
                 <li><a href="../index.html#social" data-i18n="nav_social">Social</a></li>
-                <li><a href="./" data-i18n="nav_staff">KCVA Staff</a></li>
+                <li><a href="./" data-i18n="nav_staff">Crew</a></li>
             </ul>
             <div class="mobile-lang-item">
-                <div id="mobileLangSwitch" class="mobile-lang-switch">
+                <button id="mobileLangSwitch" class="mobile-lang-switch">
                     <i class="fas fa-globe"></i> <span id="mobileLangText">中文</span>
-                </div>
+                </button>
             </div>
             <div>
                 <a id="mobileSponsorBtn" class="mobile-sponsor-btn" data-i18n="nav_sponsor_btn">Sponsor Us</a>
@@ -673,18 +1184,20 @@
         </div>
     </div>
 
+    <!-- ===== MAIN ===== -->
     <main>
+
         <section class="staff-section">
             <div class="container">
                 <div class="section-header">
                     <div class="section-subtitle" data-i18n="staff_subtitle">MEET THE TEAM</div>
-                    <h1 class="section-title" data-i18n="staff_title">KCVA STAFF</h1>
-                    <p style="color: #5C6F91; max-width: 600px; margin: 20px auto 0;" data-i18n="staff_desc">
+                    <h1 class="section-title" data-i18n="staff_title">KCVA <span class="highlight">STAFF</span></h1>
+                    <p class="section-desc" data-i18n="staff_desc">
                         The people behind the scenes — making every spike, save, and serve count.
                     </p>
                 </div>
 
-                <!-- 组委会成员检索区 -->
+                <!-- 搜索框 -->
                 <div class="search-area">
                     <input type="text" id="staffSearch" class="search-box" placeholder="Search staff..." data-placeholder-en="Search staff..." data-placeholder-zh="搜索成员姓名、职位...">
                     <i class="fas fa-search search-icon"></i>
@@ -696,11 +1209,15 @@
             </div>
         </section>
 
-        <!-- 社交媒体模块 -->
+        <!-- ===== SOCIAL MEDIA (与首页一致) ===== -->
         <section id="social" class="social-section">
             <div class="social-container">
-                <div class="social-title" data-i18n="social_title">FOLLOW OUR SOCIAL MEDIA</div>
-                <div class="social-brand"><a href="https://kcva.com.cn" target="_blank" data-i18n="social_link">KCVA.COM.CN</a></div>
+                <div class="social-title">
+                    <span class="highlight">FOLLOW</span> OUR SOCIAL MEDIA
+                </div>
+                <div class="social-brand">
+                    <a href="https://kcva.com.cn" target="_blank" data-i18n="social_link">KCVA.COM.CN</a>
+                </div>
                 <div class="social-desc" data-i18n="social_desc">Follow the KCVA Social Media for More Updates About Our Tournaments</div>
                 <div class="social-links">
                     <a href="https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu" target="_blank"><i class="fab fa-tiktok"></i> Douyin</a>
@@ -709,8 +1226,10 @@
                 </div>
             </div>
         </section>
+
     </main>
 
+    <!-- ===== FOOTER (与首页一致) ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-bottom">
@@ -727,19 +1246,29 @@
         </div>
     </footer>
 
-    <!-- 新增：组委会成员详情模态弹窗 -->
+    <!-- ===== BACK TO TOP ===== -->
+    <button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- ===== QR MODAL ===== -->
+    <div id="qrcodeModal" class="qrcode-modal">
+        <div class="qrcode-content">
+            <img src="../assets/images/wechat_op_qr_code.jpg" alt="WeChat QR" onerror="this.src='https://placehold.co/300x300?text=QR+Code'">
+            <h3 data-i18n="qr_title">SCAN TO FOLLOW</h3>
+            <button class="btn btn-outline-yellow" id="closeModalBtn" data-i18n="qr_close">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- ===== STAFF DETAIL MODAL ===== -->
     <div id="bioModal" class="bio-modal">
         <div class="bio-modal-overlay" id="bioModalOverlay"></div>
         <div class="bio-modal-content">
-            <button class="bio-modal-close" id="closeBioModalBtn" aria-label="Close details">&times;</button>
+            <button class="bio-modal-close" id="closeBioModalBtn">&times;</button>
             <div class="bio-modal-body">
                 <div class="bio-modal-left">
                     <img id="modalPhoto" src="" alt="Staff Photo" class="bio-modal-photo" onerror="this.src='https://placehold.co/600x600?text=Photo'">
                 </div>
                 <div class="bio-modal-right">
-                    <div>
-                        <span id="modalRole" class="staff-role-badge"></span>
-                    </div>
+                    <span id="modalRole" class="bio-modal-role"></span>
                     <h2 id="modalName" class="bio-modal-name"></h2>
                     <p id="modalBio" class="bio-modal-bio"></p>
                 </div>
@@ -747,17 +1276,10 @@
         </div>
     </div>
 
-    <button id="backToTop" class="back-to-top" style="position: fixed; bottom: 30px; right: 30px; background: var(--kc-accent); color: #111; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; opacity: 0; pointer-events: none; z-index: 998; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; transform: scale(0.8);"><i class="fas fa-chevron-up"></i></button>
-    
-    <div id="qrcodeModal" class="qrcode-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px);">
-        <div class="qrcode-content" style="background: #FFF; padding: 40px; text-align: center; width: 90%; max-width: 360px; border-radius: 20px;">
-            <img src="../assets/images/wechat_op_qr_code.jpg" alt="WeChat QR" onerror="this.src='https://placehold.co/300x300?text=WeChat+QR'" style="max-width: 100%; height: auto; border-radius: 8px;">
-            <h3 style="font-family: var(--font-heading); font-size: 2rem; margin-top: 15px; margin-bottom: 20px; color: #111;" data-i18n="qr_title">SCAN TO FOLLOW</h3>
-            <button class="btn btn-outline" style="color: #111; border-color: #111;" id="closeModalBtn" data-i18n="qr_close">CLOSE</button>
-        </div>
-    </div>
-
     <script>
+        // ============================================================
+        //  LANGUAGE
+        // ============================================================
         let currentLang = localStorage.getItem('kcva_lang') || 'en';
         let translations = {};
         const fallbackTranslations = {
@@ -765,12 +1287,11 @@
             "nav_matches": "赛程",
             "nav_standings": "积分榜",
             "nav_social": "社交",
-            "nav_staff": "组织成员",
+            "nav_staff": "成员",
             "nav_sponsor_btn": "赞助我们",
             "staff_subtitle": "我们的团队",
             "staff_title": "KCVA 成员",
             "staff_desc": "幕后工作者 — 让每一次扣球、救球和发球都算数。",
-            "social_title": "关注社交媒体",
             "social_link": "KCVA.COM.CN",
             "social_desc": "关注 KCVA 社交媒体获取更多赛事动态",
             "qr_title": "扫码关注",
@@ -786,15 +1307,12 @@
                 currentLang = currentLang === 'en' ? 'zh' : 'en';
                 applyLanguage();
             });
-            const mobileLangSwitch = document.getElementById('mobileLangSwitch');
-            if (mobileLangSwitch) {
-                mobileLangSwitch.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    currentLang = currentLang === 'en' ? 'zh' : 'en';
-                    applyLanguage();
-                    closeMobileMenu();
-                });
-            }
+            document.getElementById('mobileLangSwitch').addEventListener('click', (e) => {
+                e.preventDefault();
+                currentLang = currentLang === 'en' ? 'zh' : 'en';
+                applyLanguage();
+                closeMobileMenu();
+            });
             applyLanguage();
         }
 
@@ -804,13 +1322,10 @@
             const mobileLangText = document.getElementById('mobileLangText');
             const searchInput = document.getElementById('staffSearch');
 
-            // 更新搜索占位符
             if (searchInput) {
-                if (currentLang === 'zh') {
-                    searchInput.placeholder = searchInput.getAttribute('data-placeholder-zh');
-                } else {
-                    searchInput.placeholder = searchInput.getAttribute('data-placeholder-en');
-                }
+                searchInput.placeholder = currentLang === 'zh' ?
+                    searchInput.getAttribute('data-placeholder-zh') :
+                    searchInput.getAttribute('data-placeholder-en');
             }
 
             if (currentLang === 'zh') {
@@ -838,7 +1353,9 @@
             renderStaff();
         }
 
-        // 移动端菜单控制
+        // ============================================================
+        //  MOBILE MENU
+        // ============================================================
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileOverlay = document.getElementById('mobileFullMenu');
         const closeMenuBtn = document.getElementById('closeMobileMenuBtn');
@@ -849,10 +1366,12 @@
             mobileOverlay.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
+
         function closeMobileMenu() {
             mobileOverlay.classList.remove('open');
             document.body.style.overflow = '';
         }
+
         if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
         if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
@@ -867,7 +1386,11 @@
             if (e.target === mobileOverlay) closeMobileMenu();
         });
 
+        // ============================================================
+        //  STAFF DATA
+        // ============================================================
         let staffData = [];
+
         async function loadStaffData() {
             try {
                 const response = await fetch('staff.json');
@@ -884,42 +1407,50 @@
         function renderStaff() {
             const container = document.getElementById('staffGrid');
             if (!container) return;
+
             if (staffData.length === 0) {
-                container.innerHTML = '<div class="placeholder-text" style="text-align:center; padding:60px;">STAFF DATA NOT AVAILABLE</div>';
+                container.innerHTML = '<div class="placeholder-text" style="text-align:center; padding:60px; color: rgba(255,255,255,0.2); font-family: var(--kc-font-heading); font-size: 2rem; letter-spacing: 2px;">STAFF DATA NOT AVAILABLE</div>';
                 return;
             }
+
             let html = '';
             const actionText = currentLang === 'zh' ? '查看简介' : 'Read Bio';
-            
+
             staffData.forEach((member, index) => {
                 const name = currentLang === 'zh' ? member.name_zh : member.name_en;
                 const role = currentLang === 'zh' ? member.role_zh : member.role_en;
                 const bio = currentLang === 'zh' ? member.bio_zh : member.bio_en;
+
                 html += `
-                    <div class="staff-card" data-index="${index}" style="animation: popIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) backwards; animation-delay: ${index * 0.05}s;">
-                        <div class="staff-photo-container">
-                            <img src="images/${member.photo}" alt="${name}" class="staff-photo" onerror="this.src='https://placehold.co/600x600?text=Photo'">
-                            <div class="staff-photo-overlay">
-                                <i class="fas fa-eye"></i>
+                        <div class="staff-card" data-index="${index}" style="animation: fadeIn 0.4s ease backwards; animation-delay: ${index * 0.06}s;">
+                            <div class="staff-photo-container">
+                                <img src="images/${member.photo}" alt="${name}" class="staff-photo" onerror="this.src='https://placehold.co/600x600?text=Photo'">
+                                <div class="staff-photo-overlay">
+                                    <i class="fas fa-eye"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="staff-info">
-                            <div class="staff-name">${escapeHtml(name)}</div>
-                            <div>
+                            <div class="staff-info">
+                                <div class="staff-name">${escapeHtml(name)}</div>
                                 <span class="staff-role-badge">${escapeHtml(role)}</span>
+                                <div class="staff-bio">${escapeHtml(bio)}</div>
+                                <div class="staff-action-link">${actionText} <i class="fas fa-arrow-right"></i></div>
                             </div>
-                            <div class="staff-bio">${escapeHtml(bio)}</div>
-                            <div class="staff-action-link">${actionText} <i class="fas fa-arrow-right"></i></div>
                         </div>
-                    </div>
-                `;
+                    `;
             });
+
             container.innerHTML = html;
             bindCardClicks();
             bindSearchFilter();
         }
 
-        // 新增：绑定成员详情弹窗触发
+        function escapeHtml(str) {
+            return str ? str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])) : '';
+        }
+
+        // ============================================================
+        //  CARD CLICK -> MODAL
+        // ============================================================
         function bindCardClicks() {
             const grid = document.getElementById('staffGrid');
             if (!grid) return;
@@ -927,11 +1458,9 @@
             grid.addEventListener('click', (e) => {
                 const card = e.target.closest('.staff-card');
                 if (!card) return;
-
                 const index = card.getAttribute('data-index');
-                const member = staffData[index];
-                if (member) {
-                    openBioModal(member);
+                if (index !== null && staffData[index]) {
+                    openBioModal(staffData[index]);
                 }
             });
         }
@@ -955,11 +1484,10 @@
             modalBio.innerHTML = escapeHtml(bio).replace(/\n/g, '<br>');
 
             bioModal.style.display = 'flex';
-            // 稍作延迟触发 CSS 过渡
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 bioModal.classList.add('open');
-            }, 10);
-            document.body.style.overflow = 'hidden'; // 锁定背景层滚动
+            });
+            document.body.style.overflow = 'hidden';
         }
 
         function closeBioModal() {
@@ -967,21 +1495,19 @@
             bioModal.classList.remove('open');
             setTimeout(() => {
                 bioModal.style.display = 'none';
-            }, 300); // 配合 CSS transition 延迟
+            }, 350);
             document.body.style.overflow = '';
         }
 
         document.getElementById('closeBioModalBtn')?.addEventListener('click', closeBioModal);
         document.getElementById('bioModalOverlay')?.addEventListener('click', closeBioModal);
-
-        // 绑定键盘 ESC 键关闭详情弹窗
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeBioModal();
-            }
+            if (e.key === 'Escape') closeBioModal();
         });
 
-        // 搜索过滤
+        // ============================================================
+        //  SEARCH FILTER
+        // ============================================================
         function bindSearchFilter() {
             const searchInput = document.getElementById('staffSearch');
             if (!searchInput) return;
@@ -1010,39 +1536,56 @@
             });
         }
 
-        function escapeHtml(str) { return str ? str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])) : ''; }
-
-        // 滚动到顶部按钮
+        // ============================================================
+        //  BACK TO TOP
+        // ============================================================
         const backToTopBtn = document.getElementById('backToTop');
+        const header = document.getElementById('header');
+
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
             const st = window.pageYOffset || document.documentElement.scrollTop;
             if (st > 10) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
             if (st > 400) backToTopBtn.classList.add('visible');
             else backToTopBtn.classList.remove('visible');
         });
-        backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // 微信二维码弹窗 (同时绑定社交模块内的WeChat按钮和底部Footer的WeChat按钮)
-        const wechatVideoBtn = document.getElementById('wechatVideoBtn');
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================================
+        //  QR MODAL
+        // ============================================================
+        const wechatFooterBtn = document.getElementById('wechatVideoBtn');
         const wechatSocialBtn = document.getElementById('wechatSocialBtn');
         const qrModal = document.getElementById('qrcodeModal');
         const closeModalBtn = document.getElementById('closeModalBtn');
-        
+
         function openQrModal(e) {
             e.preventDefault();
             qrModal.style.display = 'flex';
         }
 
-        if (wechatVideoBtn) wechatVideoBtn.addEventListener('click', openQrModal);
+        if (wechatFooterBtn) wechatFooterBtn.addEventListener('click', openQrModal);
         if (wechatSocialBtn) wechatSocialBtn.addEventListener('click', openQrModal);
         if (closeModalBtn) closeModalBtn.addEventListener('click', () => qrModal.style.display = 'none');
-        window.addEventListener('click', (e) => { if (e.target === qrModal) qrModal.style.display = 'none'; });
+        window.addEventListener('click', (e) => {
+            if (e.target === qrModal) qrModal.style.display = 'none';
+        });
 
-        document.getElementById('sponsorChannelBtn')?.addEventListener('click', () => window.open('https://v.wjx.cn/vm/PF6YwiM.aspx#', '_blank'));
+        // ============================================================
+        //  SPONSOR BUTTON
+        // ============================================================
+        document.getElementById('sponsorChannelBtn')?.addEventListener('click', () => {
+            window.open('https://v.wjx.cn/vm/PF6YwiM.aspx#', '_blank');
+        });
+
         document.getElementById('currentYear').innerText = new Date().getFullYear();
 
+        // ============================================================
+        //  INIT
+        // ============================================================
         initLang();
         loadStaffData();
     </script>
