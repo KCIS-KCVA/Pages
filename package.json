@@ -1,0 +1,20 @@
+{
+  "name": "kcva-official-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/prepare-assets.mjs && node scripts/prepare-media.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit --allowJs --checkJs --target ES2022 --module ES2022 --moduleResolution bundler scripts/site.js data/site-config.js data/media.js",
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/check-site.mjs && node scripts/check-references.mjs",
+    "preview": "vite --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "sharp": "^0.34.3",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5"
+  }
+}
