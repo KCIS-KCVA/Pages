@@ -1,65 +1,97 @@
 [
   {
     "photo": "benze-new.png",
-    "name_en": "Benze",
-    "name_zh": "王子涵",
+    "name_en": "Benze.W",
+    "name_zh": "Benze.W",
     "role_en": "FOUNDER & CEO",
-    "role_zh": "创始人 & 首席执行官",
+    "role_zh": "创始人 & CEO",
     "bio_en": "Hello, I'm Benze, Founder and CEO of KCVA. I specialize in tournament operations and strategic partnerships, bringing an avant-garde vision to the international school sports scene. As a decisive leader and referee, I thrive in managing high-stakes coordination and ensuring seamless execution from the boardroom to the court.",
     "bio_zh": "大家好，我是 Benze，KCVA 创始人兼 CEO。我负责赛事运营与战略合作，为国际学校体育场景带来前卫视野。作为果断的领导者与裁判，我擅长高压协调，确保从会议室到赛场的每一个环节无缝执行。"
   },
   {
     "photo": "jian_zhixuan.jpeg",
-    "name_en": "Tony",
-    "name_zh": "简帜轩",
-    "role_en": "MEDIA TECH LEAD",
-    "role_zh": "媒体技术负责人",
-    "bio_en": "As a Media Technology Lead collaborating closely with KCVA, I oversee reliable operation of the official website and manage on-site media delivery for KCVA events. I also coordinate a team of media technology professionals to deliver comprehensive end-to-end technical and media support for all KCVA engagements.",
-    "bio_zh": "作为与 KCVA 紧密协作的媒体技术负责人，我负责保障官方网站稳定运行，统筹 KCVA 各类活动的现场媒体落地工作。同时协调媒体技术专业团队，为 KCVA 全部项目提供一站式综合媒体与技术保障支持。"
+    "name_en": "Tony.J",
+    "name_zh": "Tony.J",
+    "role_en": "CTO",
+    "role_zh": "CTO",
+    "bio_en": "As KCVA's CTO, Tony oversees the official website and coordinates reliable technical and media delivery across KCVA events.",
+    "bio_zh": "作为 KCVA CTO，Tony 负责官方网站，并统筹赛事技术与媒体执行。"
   },
-    {
+  {
     "photo": "yang_jiazhen.jpeg",
-    "name_en": "Katherine",
-    "name_zh": "杨珈祯",
-    "role_en": "ADMINISTRATION LEAD",
-    "role_zh": "行政负责人",
-    "bio_en": "Hi！I'm Katherine, in charge of business liaison and on-site management, adept at cross-team coordination to secure smooth events. I enjoy frisbee and fencing, which sharpen my quick on-spot judgment.",
-    "bio_zh": "嗨！我是 Katherine，负责商务联络与现场管理，擅长跨团队协调确保活动顺畅。我喜欢飞盘和击剑，这些运动磨练了我的快速判断力。"
+    "name_en": "Katherine.Y",
+    "name_zh": "Katherine.Y",
+    "role_en": "COO",
+    "role_zh": "COO",
+    "bio_en": "Katherine oversees KCVA operations, cross-team coordination and on-site management to keep each event running smoothly.",
+    "bio_zh": "Katherine 负责 KCVA 运营、跨团队协调与现场管理，保障赛事顺畅进行。"
   },
   {
     "photo": "zheng_chenyan.jpeg",
-    "name_en": "Ivory",
-    "name_zh": "郑辰妍",
-    "role_en": "LIAISON LEAD",
-    "role_zh": "外联负责人",
-    "bio_en": "Hello! I'm Ivory. I’m good at coordinating with schools, managing event venues and communicating with school staff to make activities go well. I love playing volleyball and badminton, and I also enjoy playing the drums. No matter when I need to handle on-site management or school follow-ups, I can get used to new tasks quickly and bring solid communication skills to team cooperation.",
-    "bio_zh": "大家好！我是 Ivory。我擅长与学校协调、管理活动场地以及与校方人员沟通，使活动顺利进行。我喜欢打排球和羽毛球，也喜欢打架子鼓。无论是现场管理还是学校跟进，我都能快速适应新任务，并为团队合作带来扎实的沟通能力。"
+    "name_en": "Ivory.Z",
+    "name_zh": "Ivory.Z",
+    "role_en": "CCO",
+    "role_zh": "CCO",
+    "bio_en": "Ivory coordinates communication with schools, venues and event partners, helping KCVA collaborations move forward clearly and efficiently.",
+    "bio_zh": "Ivory 负责学校、场地及活动合作方的沟通协调，推动 KCVA 合作清晰高效地进行。"
   },
   {
-    "photo": "ding_yuchen.jpeg",
-    "name_en": "Chris",
-    "name_zh": "丁于辰",
-    "role_en": "BUSINESS LEAD",
-    "role_zh": "商务负责人",
-    "bio_en": "Hi！ I am Chris. I am responsible for event management and on-site layout. Contacting the sponsor. I've been conducting sports through secondary and high school. Therefore, I am aware for different situations and circumstances and deal with them calmly.",
-    "bio_zh": "嗨！我是 Chris。我负责活动管理与现场布置，联系赞助商。我在中学和高中一直参与体育活动，因此能够了解不同情况并冷静处理。"
+    "photo": "susanna-y.jpg",
+    "position": "68% 48%",
+    "name_en": "Susanna.Y",
+    "name_zh": "Susanna.Y",
+    "role_en": "CMO · BUSINESS LEAD",
+    "role_zh": "CMO · 商务负责人",
+    "bio_en": "Susanna leads KCVA's marketing and business work, coordinating partner communication, sponsorship planning and the presentation of each tournament to schools and supporters.",
+    "bio_zh": "Susanna 负责 KCVA 的市场与商务工作，统筹合作方沟通、赞助策划以及赛事面向学校和支持者的整体呈现。"
+  },
+  {
+    "photo": "jiarui-c.jpg",
+    "position": "50% 38%",
+    "name_en": "Jiarui.C",
+    "name_zh": "Jiarui.C",
+    "role_en": "BUSINESS STAFF",
+    "role_zh": "商务部成员",
+    "bio_en": "Jiarui supports KCVA's business team through partner communication, sponsorship follow-ups and event preparation, helping turn collaboration ideas into clear and practical actions.",
+    "bio_zh": "Jiarui 负责协助 KCVA 商务部进行合作方沟通、赞助跟进与赛事筹备，将合作想法转化为清晰可执行的任务。"
   },
   {
     "photo": "abby.jpeg",
-    "name_en": "Abby",
-    "name_zh": "Abby",
-    "role_en": "ON-SITE CONSULTANT",
-    "role_zh": "现场顾问",
-    "bio_en": "As our go-to volleyball coordinator, I linked up partnering schools beforehand. Also, working as host and on-site consultant for the tourney, I share insights from managing my school’s volleyball team and participating clubs to polish event details.",
-    "bio_zh": "作为我们首选的排球协调员，我提前联络了合作学校。同时，作为赛事主持人和现场顾问，我分享管理学校排球队和参与社团的经验，以打磨活动细节。"
+    "name_en": "Abby.W",
+    "name_zh": "Abby.W",
+    "role_en": "HOST 2 · ON-SITE STAFF",
+    "role_zh": "主持 2 · 线下执行",
+    "bio_en": "Abby supports KCVA as Host 2 and an on-site volleyball coordinator, bringing practical team and club experience to event delivery.",
+    "bio_zh": "Abby 担任 KCVA 主持 2 及线下排球协调工作，将校队与社团经验带入赛事执行。"
   },
   {
-    "photo": "caelina.jpeg",
-    "name_en": "Caelina",
-    "name_zh": "Caelina",
-    "role_en": "ON-SITE CONSULTANT",
-    "role_zh": "现场顾问",
-    "bio_en": "I excel in event management, handling venue coordination and school liaison to ensure everything runs smoothly. With 7 years of sports experience, I also serve as a fair and efficient referee. Whether handling on-field officiating or behind-the-scenes control, I adapt quickly and bring strong communication and collaboration skills.",
-    "bio_zh": "我擅长活动管理，负责场地协调与学校联络，确保一切顺利进行。凭借 7 年的运动经验，我也担任公正高效的裁判。无论是场上执法还是幕后调度，我都能快速适应，并具备优秀的沟通与协作能力。"
+    "photo": "justin-p.jpg",
+    "position": "50% 70%",
+    "name_en": "Justin.P",
+    "name_zh": "Justin.P",
+    "role_en": "BUSINESS STAFF",
+    "role_zh": "商务部成员",
+    "bio_en": "Justin supports KCVA's business operations, assisting with partner follow-ups, materials coordination and practical preparation before each event.",
+    "bio_zh": "Justin 协助 KCVA 商务运营，负责合作跟进、物料协调及赛事前期的具体筹备工作。"
+  },
+  {
+    "photo": "chris-d.jpg",
+    "position": "58% 50%",
+    "name_en": "Chris.D",
+    "name_zh": "Chris.D",
+    "role_en": "ON-SITE STAFF",
+    "role_zh": "线下执行",
+    "bio_en": "Chris supports on-site execution, including venue setup, equipment coordination and keeping event-day operations aligned with the schedule.",
+    "bio_zh": "Chris 负责线下执行，包括场地布置、器材协调以及按赛程推进比赛日现场工作。"
+  },
+  {
+    "photo": "courtney-z.jpg",
+    "position": "52% 42%",
+    "name_en": "Courtney.Z",
+    "name_zh": "Courtney.Z",
+    "role_en": "HOST · ON-SITE STAFF",
+    "role_zh": "主持 · 线下执行",
+    "bio_en": "Courtney serves as a KCVA host and on-site staff member, guiding the event programme and keeping transitions, announcements and participant communication clear.",
+    "bio_zh": "Courtney 担任 KCVA 主持及线下工作人员，负责推进活动流程，并确保环节衔接、现场播报及参赛沟通清晰顺畅。"
   }
 ]

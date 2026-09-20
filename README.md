@@ -1,6 +1,6 @@
 # KCVA Official Website
 
-The static website for KCVA, a student-led interschool volleyball organization in Shanghai.
+The static website for KCVA, KC Varsity Association, a student-led interschool varsity sports organization in Shanghai.
 
 ## Local development
 

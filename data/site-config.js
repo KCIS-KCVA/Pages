@@ -6,12 +6,12 @@ export const siteConfig = {
   douyinUrl: 'https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu',
   sponsorInquiryUrl: 'https://v.wjx.cn/vm/PF6YwiM.aspx#',
   tournament: {
-    name: '26–27 KCVA Volleyball Tournament One',
+    name: '26-27 KCVA X Volleywoods Volleyball Tournament 1',
     date: '14–15 November 2026',
     venue: 'Volleywoods, TOP Central Park',
     address: 'No. 137 Dunhuang Road, Taopu Town, Putuo District, Shanghai',
     divisions: 'Boys’ Volleyball / Girls’ Volleyball',
-    registration: '7 September–9 October 2026',
+    registration: '7 September–12 October 2026',
     fee: 'This is a cost-sharing event. The estimated fee is approximately RMB 400 per player. The final amount will be calculated after registration closes and the total number of participants and actual event costs are confirmed.'
   },
   sponsors: [

@@ -53,7 +53,7 @@ for (const file of files) {
 
 const staff = JSON.parse(await fs.readFile(path.join(root, 'assets/data/staff.json'), 'utf8'));
 for (const member of staff) {
-  if (!await exists(`/assets/staff/${member.photo}`)) problems.push(`assets/data/staff.json -> ${member.photo}`);
+  if (member.photo && !await exists(`/assets/staff/${member.photo}`)) problems.push(`assets/data/staff.json -> ${member.photo}`);
 }
 
 if (problems.length) {

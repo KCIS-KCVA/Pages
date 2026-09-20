@@ -51,6 +51,10 @@ async function photoSet(input, name, position) {
 
 await trimLogo('kcva-wordmark-original.png', 'kcva-wordmark', 900);
 await trimLogo('kcva-emblem-original.png', 'kcva-emblem', 720);
+await sharp(path.join(brand, 'kcva-emblem.png'))
+  .negate({ alpha: false })
+  .resize(192, 192, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .png()
+  .toFile(path.join(brand, 'kcva-emblem-white.png'));
 await photoSet('dsc01294-original.jpg', 'tournament-team', 'center');
 await photoSet('dsc01260-original.jpg', 'community-team', 'center');
-
