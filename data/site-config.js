@@ -1,6 +1,7 @@
 export const siteConfig = {
   canonical: 'https://kcva.com.cn',
   registrationUrl: 'https://6txd4nws.jsjform.com/f/X5lZme',
+  frisbeeRegistrationUrl: 'https://6txd4nws.jsjform.com/f/dsktsS',
   joinUrl: 'https://v.wjx.cn/vm/OtZGLn5.aspx#',
   contactEmail: 'b1nzew44@gmail.com',
   douyinUrl: 'https://www.douyin.com/user/MS4wLjABAAAA6FgCUjn0_HAACX9JxfrBGZlrjEcmyrayEiHpCAIZYcdRCMAUk8AktXPYkmDi7acu',

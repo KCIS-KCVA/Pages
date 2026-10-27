@@ -8,7 +8,20 @@ const make = (id, category, altEn, altZh, featured = false, focalPoint = '50% 50
   avif: [480,960,1600].map(w => `/assets/media/wlsa-2026/${id}-${w}.avif ${w}w`).join(', ')
 });
 
+const makeCrew = (id, altEn, altZh) => ({
+  id: `crew-${id}`, filename: `crew-${id}`, category: 'crew', event: 'KCVA 2026 Crew', date: '2026-10-11',
+  orientation: 'landscape', width: 2200, height: 1650, alt: { en: altEn, zh: altZh }, focalPoint: '50% 50%',
+  homepageFeatured: false, source: 'KCVA official October 2026 photo shoot', usageRightsConfirmed: true,
+  original: `/assets/media/crew-2026/crew-${id}-original.jpg`,
+  webp: [480,960,1600].map(w => `/assets/media/crew-2026/crew-${id}-${w}.webp ${w}w`).join(', '),
+  avif: ''
+});
+
 export const mediaItems = [
+  makeCrew('3462', 'KCVA crew in white uniforms poses for the camera', 'KCVA 团队身穿白色队服合影'),
+  makeCrew('3460', 'KCVA crew stands together in their new team uniforms', 'KCVA 团队穿着新版队服合影'),
+  makeCrew('3458', 'KCVA crew gathers for a relaxed group portrait', 'KCVA 团队轻松合影'),
+  makeCrew('3461', 'KCVA crew makes a team gesture together', 'KCVA 团队一起展示手势'),
   make('dsc00122','girls-action','WLSA player serving as teammates prepare','WLSA 女排队员发球，队友准备接应',true),
   make('dsc00292','girls-action','Girls’ teams contest a point across the net','女排队伍隔网争夺一分',true),
   make('dsc00453','girls-action','SNA player receives the ball in defensive formation','SNA 女排队员在防守阵型中接球',true,'56% 48%'),

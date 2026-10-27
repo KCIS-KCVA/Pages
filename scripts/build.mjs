@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const out = path.join(root, 'dist');
-const entries = ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', '404.html', 'about', 'sports', 'tournament-1', 'register', 'matches', 'results', 'media', 'sponsor', 'safety', 'privacy', 'contact', 'staff', 'join', 'assets', 'styles', 'scripts', 'data'];
+const entries = ['index.html', 'CNAME', 'robots.txt', 'sitemap.xml', '404.html', 'about', 'tournaments', 'shop', 'sports', 'tournament-1', 'frisbee-tournament', 'register', 'matches', 'results', 'media', 'sponsor', 'safety', 'privacy', 'contact', 'staff', 'join', 'assets', 'styles', 'scripts', 'data'];
 await fs.rm(out, { recursive: true, force: true });
 await fs.mkdir(out, { recursive: true });
 for (const entry of entries) {

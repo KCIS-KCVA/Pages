@@ -1,6 +1,6 @@
 [
   {
-    "photo": "benze-new.png",
+    "photo": "benze-2026.webp",
     "name_en": "Benze.W",
     "name_zh": "Benze.W",
     "role_en": "FOUNDER & CEO",
@@ -9,7 +9,7 @@
     "bio_zh": "大家好，我是 Benze，KCVA 创始人兼 CEO。我负责赛事运营与战略合作，为国际学校体育场景带来前卫视野。作为果断的领导者与裁判，我擅长高压协调，确保从会议室到赛场的每一个环节无缝执行。"
   },
   {
-    "photo": "jian_zhixuan.jpeg",
+    "photo": "tony-2026.webp",
     "name_en": "Tony.J",
     "name_zh": "Tony.J",
     "role_en": "CTO",
@@ -18,7 +18,7 @@
     "bio_zh": "作为 KCVA CTO，Tony 负责官方网站，并统筹赛事技术与媒体执行。"
   },
   {
-    "photo": "yang_jiazhen.jpeg",
+    "photo": "katherine-2026.webp",
     "name_en": "Katherine.Y",
     "name_zh": "Katherine.Y",
     "role_en": "COO",
@@ -27,7 +27,7 @@
     "bio_zh": "Katherine 负责 KCVA 运营、跨团队协调与现场管理，保障赛事顺畅进行。"
   },
   {
-    "photo": "zheng_chenyan.jpeg",
+    "photo": "ivory-2026.webp",
     "name_en": "Ivory.Z",
     "name_zh": "Ivory.Z",
     "role_en": "CCO",
@@ -36,8 +36,8 @@
     "bio_zh": "Ivory 负责学校、场地及活动合作方的沟通协调，推动 KCVA 合作清晰高效地进行。"
   },
   {
-    "photo": "susanna-y.jpg",
-    "position": "68% 48%",
+    "photo": "susanna-2026.webp",
+    "position": "50% 46%",
     "name_en": "Susanna.Y",
     "name_zh": "Susanna.Y",
     "role_en": "CMO · BUSINESS LEAD",
@@ -46,8 +46,8 @@
     "bio_zh": "Susanna 负责 KCVA 的市场与商务工作，统筹合作方沟通、赞助策划以及赛事面向学校和支持者的整体呈现。"
   },
   {
-    "photo": "jiarui-c.jpg",
-    "position": "50% 38%",
+    "photo": "jiarui-2026.webp",
+    "position": "50% 46%",
     "name_en": "Jiarui.C",
     "name_zh": "Jiarui.C",
     "role_en": "BUSINESS STAFF",
@@ -65,8 +65,8 @@
     "bio_zh": "Abby 担任 KCVA 主持 2 及线下排球协调工作，将校队与社团经验带入赛事执行。"
   },
   {
-    "photo": "justin-p.jpg",
-    "position": "50% 70%",
+    "photo": "justin-2026.webp",
+    "position": "50% 46%",
     "name_en": "Justin.P",
     "name_zh": "Justin.P",
     "role_en": "BUSINESS STAFF",
@@ -75,8 +75,8 @@
     "bio_zh": "Justin 协助 KCVA 商务运营，负责合作跟进、物料协调及赛事前期的具体筹备工作。"
   },
   {
-    "photo": "chris-d.jpg",
-    "position": "58% 50%",
+    "photo": "chris-2026.webp",
+    "position": "50% 45%",
     "name_en": "Chris.D",
     "name_zh": "Chris.D",
     "role_en": "ON-SITE STAFF",
@@ -85,13 +85,23 @@
     "bio_zh": "Chris 负责线下执行，包括场地布置、器材协调以及按赛程推进比赛日现场工作。"
   },
   {
-    "photo": "courtney-z.jpg",
-    "position": "52% 42%",
+    "photo": "courtney-2026.webp",
+    "position": "50% 46%",
     "name_en": "Courtney.Z",
     "name_zh": "Courtney.Z",
     "role_en": "HOST · ON-SITE STAFF",
     "role_zh": "主持 · 线下执行",
     "bio_en": "Courtney serves as a KCVA host and on-site staff member, guiding the event programme and keeping transitions, announcements and participant communication clear.",
     "bio_zh": "Courtney 担任 KCVA 主持及线下工作人员，负责推进活动流程，并确保环节衔接、现场播报及参赛沟通清晰顺畅。"
+  },
+  {
+    "photo": "alissa-2026.webp",
+    "position": "50% 44%",
+    "name_en": "Alissa",
+    "name_zh": "Alissa",
+    "role_en": "KCVA TEAM",
+    "role_zh": "KCVA 团队",
+    "bio_en": "Alissa is a member of the KCVA team. More details about her role will be added soon.",
+    "bio_zh": "Alissa 是 KCVA 团队成员，具体职责介绍即将补充。"
   }
 ]
